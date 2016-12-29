@@ -5,6 +5,7 @@
   "description": "columbus website",
   "author": "Matthew Mueller",
   "dependencies": {
+    "classnames": "^2.2.5",
     "lokka": "^1.7.0",
     "lokka-transport-http": "^1.6.1",
     "next": "^1.2.3",
