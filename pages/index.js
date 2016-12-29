@@ -38,12 +38,27 @@ export default class Page extends Component {
           <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet" />
         </Head>
-        <Header />
+        <div className='w-100 center'>
+          <Header />
+
+          <div className = "w-100 db contain bg-center" style = {{"backgroundImage":"url(/static/berlin.jpg)", "paddingBottom":"49.2%"}}>
+            
+          </div>
+
+          {/* <img className="w-100 db" src="/static/berlin.jpg" /> /*}
+
+
+
         {/* 
+
+          some saved stuff
+
         <div className={cls('pa1', this.state.errors && 'error')}>{data.name}</div>
         <img width='112' className='pa5' src='https://cloud.githubusercontent.com/assets/13041/19686250/971bf7f8-9ac0-11e6-975c-188defd82df1.png' alt='next.js' />
         <Link href="/course">Courses</Link> 
         */}
+
+        </div>
       </div>
     )
   }

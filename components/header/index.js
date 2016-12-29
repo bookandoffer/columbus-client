@@ -21,7 +21,7 @@ export default class Header extends Component {
             <div className = "layout horizontal pa2 center">
                 <i className ="material-icons ph2 mid-gray">language</i>
                 <div className = "b f5 mid-gray">COLUMBUS</div>
-                <div className = "ph2 f7 mid-gray" style = {{"margin-left":"auto"}}>KURS EINSTELLEN</div>
+                <div className = "ph2 f7 mid-gray" style = {{"marginLeft":"auto"}}>KURS EINSTELLEN</div>
                 <div className = "ph2 f7 mid-gray">HILFE</div>
                 <div className = "ph2 f7 mid-gray">REGISTRIEREN</div>
                 <div className = "ph2 f7 mid-gray">LOGIN</div>
