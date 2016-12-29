@@ -1,6 +1,7 @@
 
 import Head from 'next/head'
-
+import Portal from 'react-portal'
+console.log(Portal)
 export default () => (
   <div>
     <Head>
