@@ -8,15 +8,24 @@ export default class Header extends Component {
         }
     }
 
-    onClick () {
-        this.setState({
-            clicked: !this.state.clicked
-        })
-    }
+    // onClick (e) {
+    //     this.setState({
+    //         clicked: !this.state.clicked
+    //     })
+    // }
+
+    // <div className='f2 bg-blue' onClick={(e) => this.onClick(e)}>header - {this.state.clicked ? 'yes' : 'no'}</div>
 
     render (props) {
         return (
-            <div className='f2 bg-gray' style={{ border: '1px solid blue' }} onClick={() => this.onClick()}>header - {this.state.clicked ? 'yes' : 'no'}</div>
+            <div className = "layout horizontal pa2 center">
+                <i className ="material-icons ph2 mid-gray">language</i>
+                <div className = "b f5 mid-gray">COLUMBUS</div>
+                <div className = "ph2 f7 mid-gray" style = {{"margin-left":"auto"}}>KURS EINSTELLEN</div>
+                <div className = "ph2 f7 mid-gray">HILFE</div>
+                <div className = "ph2 f7 mid-gray">REGISTRIEREN</div>
+                <div className = "ph2 f7 mid-gray">LOGIN</div>
+            </div>
         )
     }
 }
