@@ -1,12 +1,12 @@
 import { Component } from 'react'
 
 export default class Header extends Component {
-    constructor (props) {
-        super(props)
-        this.state = {
-            clicked: false
-        }
+  constructor (props) {
+    super(props)
+    this.state = {
+      clicked: false
     }
+  }
 
     // onClick (e) {
     //     this.setState({

@@ -19,11 +19,13 @@
 }
 
 .btn {
+  cursor: pointer;
   color: white;
   background: #EF6664;
 }
 
 .btn-alt {
+  cursor: pointer;
   color: #EF6664;
   background: white;
   border: 1px solid #EF6664;

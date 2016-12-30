@@ -1,5 +1,10 @@
 
+const currentYear = new Date().getFullYear()
+import cookie from 'component-cookie'
 import { Component } from 'react'
+import graph from '../../lib/graph'
+import cls from 'classnames'
+import Router from 'next/router'
 
 export default class Element extends Component {
   constructor (props) {
@@ -19,7 +24,7 @@ export default class Element extends Component {
   handleMouseClickOutside (e) {
     if (this.isNodeInRoot(e.target, this.refs.content)) return
     e.stopPropagation()
-    this.props.closePortal()
+    this.props.closePortal && this.props.closePortal()
   }
 
   isNodeInRoot (node, root) {
@@ -56,43 +61,223 @@ export default class Element extends Component {
   }
 }
 
-const Signup = (props) => (
-  <div>
-    <label className='db pv3 ph3 ba b--mid-gray layout horizontal center'>
-      <input type='text' className='bn outline-0' placeholder='Vorname' />
-      <i className='material-icons'>face</i>
-    </label>
-    <label className='db pv3 ph3 ba b--mid-gray layout horizontal center'>
-      <input type='text' className='bn outline-0' placeholder='Nachname' />
-      <i className='material-icons'>face</i>
-    </label>
-    <label className='db pv3 ph3 ba b--mid-gray layout horizontal center'>
-      <input type='text' className='bn outline-0' placeholder='E-Mail-Adresse' />
-      <i className='material-icons'>email</i>
-    </label>
-    <label className='db pv3 ph3 ba b--mid-gray layout horizontal center'>
-      <input type='text' className='bn outline-0' placeholder='Neues Passwort' />
-      <i className='material-icons'>lock</i>
-    </label>
-    <button onClick={() => props.onLogin()}>Login</button>
-  </div>
-)
+class Signup extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {}
+  }
 
-const Login = (props) => (
-  <div>
-    <label className='db pv3 ph3 ba b--mid-gray layout horizontal center'>
-      <input type='text' className='bn outline-0' placeholder='E-Mail-Adresse' />
-      <i className='material-icons'>email</i>
-    </label>
-    <label className='db pv3 ph3 mt3 ba b--mid-gray layout horizontal center'>
-      <input type='text' className='bn outline-0' placeholder='Passwort' />
-      <i className='material-icons'>lock</i>
-    </label>
-    <button className='btn' onClick={() => props.onLogin()}>Einloggen</button>
-    <div className='layout horizontal'>
-      <span className='c-3A888D'>Hast du noch keinen Account?</span>
-      <button className='btn-alt mla' onClick={() => props.onSignup()}>Registrieren</button>
-    </div>
-  </div>
+  async signup () {
+    const { firstName, lastName, email, password, month, day, year } = this.state
+    let errors = false
 
-)
+    if (firstName && firstName.length >= 2) {
+      this.setState({ firstNameError: null })
+    } else {
+      this.setState({ firstNameError: 'First name must be atleast 2 characters' })
+      errors = true
+    }
+
+    if (lastName && lastName.length >= 2) {
+      this.setState({ lastNameError: null })
+    } else {
+      this.setState({ lastNameError: 'First name must be atleast 2 characters' })
+      errors = true
+    }
+
+    if (email && email.length >= 5 && ~email.indexOf('@') && email.indexOf('.')) {
+      this.setState({ emailError: null })
+    } else {
+      this.setState({ emailError: 'Invalid email address' })
+      errors = true
+    }
+
+    if (password && password.length >= 6) {
+      this.setState({ passwordError: null })
+    } else {
+      this.setState({ passwordError: 'Password must be atleast 6 characters' })
+      errors = true
+    }
+
+    if (month && day && year) {
+      this.setState({ birthdateError: null })
+    } else {
+      this.setState({ birthdateError: 'Must enter your birthdate' })
+      errors = true
+    }
+
+    if (errors) return
+
+    const birthdate = new Date(`${month}/${day}/${year}`)
+
+    // create the user
+    let res = await graph(`
+      mutation signup ($email: String!, $password: String!, $firstName: String!, $lastName: String!, $birthdate: DateTime!) {
+        user: createUser (authProvider: { email: { email: $email, password: $password } }, firstName: $firstName, lastName: $lastName, birthdate: $birthdate) {
+          id
+        }
+      }
+      `, { firstName, lastName, email, password, birthdate })
+    if (res instanceof Error) {
+      window.alert(e.message)
+      return
+    }
+
+    res = await graph(`
+      mutation signin ($email: String!, $password: String!) {
+        user: signinUser(email: {email: $email, password: $password }) {
+          token
+        }
+      }
+      `, { email, password })
+    if (res instanceof Error) {
+      window.alert(e.message)
+      return
+    }
+
+    if (res && res.user) {
+      cookie('token', res.user.token)
+      Router.push('/me')
+    }
+  }
+
+  render () {
+    return (
+      <div>
+        <label className='db'>
+          { this.state.firstNameError && <div className='c-B24334'>{this.state.firstNameError}</div> }
+          <div className='layout horizontal center pv3 ph3 ba b--mid-gray'>
+            <input onInput={(e) => this.setState({ firstName: e.target.value, firstNameError: null })} value={this.state.firstName || ''} type='text' className='w-100 bn outline-0' placeholder='Vorname' />
+            <i className='material-icons'>face</i>
+          </div>
+        </label>
+        <label className='db'>
+          { this.state.lastNameError && <div className='c-B24334'>{this.state.lastNameError}</div> }
+          <div className='layout horizontal center pv3 ph3 ba b--mid-gray'>
+            <input onInput={(e) => this.setState({ lastName: e.target.value, lastNameError: null })} value={this.state.lastName || ''} type='text' className='w-100 bn outline-0' placeholder='Nachname' />
+            <i className='material-icons'>face</i>
+          </div>
+        </label>
+        <label className='db'>
+          { this.state.emailError && <div className='c-B24334'>{this.state.emailError}</div> }
+          <div className='layout horizontal center pv3 ph3 ba b--mid-gray'>
+            <input onInput={(e) => this.setState({ email: e.target.value, emailError: null })} value={this.state.email || ''} type='text' className='w-100 bn outline-0' placeholder='E-Mail-Adresse' />
+            <i className='material-icons'>email</i>
+          </div>
+        </label>
+        <label className='db'>
+          { this.state.passwordError && <div className='c-B24334'>{this.state.passwordError}</div> }
+          <div className='layout horizontal center pv3 ph3 ba b--mid-gray'>
+            <input onInput={(e) => this.setState({ password: e.target.value, passwordError: null })} value={this.state.password || ''} type='password' className='w-100 bn outline-0' placeholder='Neues Passwort' />
+            <i className='material-icons'>lock</i>
+          </div>
+        </label>
+        <label htmlFor='Geburtstag'>
+          <strong className='f7'>Geburtstag <i className='material-icons'>help</i></strong>
+          { this.state.birthdateError && <div style={{color: 'red'}}>{this.state.birthdateError}</div> }
+          <div className='layout horizontal'>
+            <select onChange={(e) => this.setState({ month: e.target.value, birthdateError: null })}>
+              <option key='' value='' default>Monat</option>
+              <option key='1' value='1'>Januar</option>
+              <option key='2' value='2'>Februar</option>
+              <option key='3' value='3'>März</option>
+              <option key='4' value='4'>April</option>
+              <option key='5' value='5'>Kann</option>
+              <option key='6' value='6'>Juni</option>
+              <option key='7' value='7'>Juli</option>
+              <option key='8' value='8'>August</option>
+              <option key='9' value='9'>September</option>
+              <option key='10' value='10'>Oktober</option>
+              <option key='11' value='11'>November</option>
+              <option key='12' value='12'>Dezember</option>
+            </select>
+            <select onChange={(e) => this.setState({ day: e.target.value, birthdateError: null })}>
+              <option value='' default>Tag</option>
+              {Array.apply(null, Array(31)).map((_, i) => <option key={i + 1} value={i + 1} default>{i + 1}</option>)}
+            </select>
+            <select onChange={(e) => this.setState({ year: e.target.value, birthdateError: null })}>
+              <option value='' default>Jahr</option>
+              {Array.apply(null, Array(123)).map((_, i) => <option key={currentYear - i} value={currentYear - i} default>{currentYear - i}</option>)}
+            </select>
+          </div>
+        </label>
+        <button className='btn' onClick={() => this.signup()}>Registrieren</button>
+        <div className='layout horizontal'>
+          <span className=''>Hast du schon einen Columbus Account?</span>
+          <button className='btn-alt mla' onClick={() => this.props.onLogin()}>Einloggen</button>
+        </div>
+      </div>
+    )
+  }
+}
+
+class Login extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {}
+  }
+
+  async login () {
+    const { email, password} = this.state
+    let errors = false
+
+    if (email && email.length >= 5 && ~email.indexOf('@') && email.indexOf('.')) {
+      this.setState({ emailError: null })
+    } else {
+      this.setState({ emailError: 'Invalid email address' })
+      errors = true
+    }
+
+    if (password && password.length >= 6) {
+      this.setState({ passwordError: null })
+    } else {
+      this.setState({ passwordError: 'Password must be atleast 6 characters' })
+      errors = true
+    }
+
+    if (errors) return
+
+    let res = await graph(`
+      mutation signin ($email: String!, $password: String!) {
+        user: signinUser(email: {email: $email, password: $password }) {
+          token
+        }
+      }
+      `, { email, password })
+
+    if (res instanceof Error) {
+      window.alert(res.message)
+    } else if (res.user) {
+      cookie('token', res.user.token)
+      Router.push('/me')
+    } else {
+      window.alert('couldnt find a user with that info')
+    }
+  }
+
+  render () {
+    return (
+      <div>
+        <label className='db'>
+          { this.state.emailError && <div className='c-B24334'>{this.state.emailError}</div> }
+          <div className='layout horizontal center pv3 ph3 ba b--mid-gray'>
+            <input onInput={(e) => this.setState({ email: e.target.value, emailError: null })} value={this.state.email || ''} type='text' className='w-100 bn outline-0' placeholder='E-Mail-Adresse' />
+            <i className='material-icons'>email</i>
+          </div>
+        </label>
+        <label className='db'>
+          { this.state.passwordError && <div className='c-B24334'>{this.state.passwordError}</div> }
+          <div className='layout horizontal center pv3 ph3 ba b--mid-gray'>
+            <input onInput={(e) => this.setState({ password: e.target.value, passwordError: null })} value={this.state.password || ''} type='password' className='w-100 bn outline-0' placeholder='Neues Passwort' />
+            <i className='material-icons'>lock</i>
+          </div>
+        </label>
+        <button className='btn' onClick={() => this.login()}>Einloggen</button>
+        <div className='layout horizontal'>
+          <span className='c-3A888D'>Hast du noch keinen Account?</span>
+          <button className='btn-alt mla' onClick={() => this.props.onSignup()}>Registrieren</button>
+        </div>
+      </div>
+    )
+  }
+}
