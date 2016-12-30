@@ -1,9 +1,21 @@
+.headerSize{
+    font-size: 3rem;
+}
+
 .f7 {
     font-size:.750rem
 }
 
 .orange-yellow{
     color: #F8B92D
+}
+
+.c-484848{
+    color: #686868;
+}
+
+.sysFont{
+    font-family: 'Montserrat', sans-serif;
 }
 
 .btn {
@@ -19,6 +31,15 @@
 
 .c-3A888D {
   color: #3A888D;
+}
+
+.textSecondary{
+    color: #B4B4B4
+}
+
+.searchBox{
+    border: 1px solid #989797;
+    border-radius: 4px;
 }
 
 
