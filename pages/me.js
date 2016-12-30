@@ -5,7 +5,7 @@ import graph from '../lib/graph'
 export default class Me extends Component {
   static async getInitialProps (ctx) {
     const { token } = cookies(ctx)
-
+    console.log('token', token ? 'yes' : 'no')
   }
 
   constructor (props) {
