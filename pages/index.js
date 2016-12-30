@@ -41,8 +41,12 @@ export default class Page extends Component {
         <div className='w-100 center'>
           <Header />
 
-          <div className = "w-100 db contain bg-center" style = {{"backgroundImage":"url(/static/berlin.jpg)", "paddingBottom":"49.2%"}}>
-            
+          <div className = "w-100 db contain bg-center layout horizontal center" style = {{"backgroundImage":"url(/static/berlin.jpg)"}}>
+            <div className="center">
+              <h1 className = "white mt0">Entdecke die Welt!</h1>
+              <h1 className = "white mt0">Entdecke die Welt!</h1>
+            </div>
+            <div style={{"paddingBottom":"50%"}} />
           </div>
 
           {/* <img className="w-100 db" src="/static/berlin.jpg" /> /*}
