@@ -1,3 +1,18 @@
 .f7 {
     font-size:.750rem
 }
+
+.btn {
+  color: white;
+  background: #EF6664;
+}
+
+.btn-alt {
+  color: #EF6664;
+  background: white;
+  border: 1px solid #EF6664;
+}
+
+.c-3A888D {
+  color: #3A888D;
+}

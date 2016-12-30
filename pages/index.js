@@ -1,10 +1,6 @@
 
 import Head from 'next/head'
 import Portal from 'react-portal'
-import Header from '../components/header'
-import { Component } from 'react'
-import cls from 'classnames'
-import Link from 'next/link'
 
 var data = {
   "name": "Standardkur, NL, A1",
@@ -53,13 +49,13 @@ export default class Page extends Component {
 
 
 
-        {/* 
+        {/*
 
           some saved stuff
 
         <div className={cls('pa1', this.state.errors && 'error')}>{data.name}</div>
         <img width='112' className='pa5' src='https://cloud.githubusercontent.com/assets/13041/19686250/971bf7f8-9ac0-11e6-975c-188defd82df1.png' alt='next.js' />
-        <Link href="/course">Courses</Link> 
+        <Link href="/course">Courses</Link>
         */}
 
         </div>
