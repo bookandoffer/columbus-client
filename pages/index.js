@@ -1,16 +1,13 @@
-
+import { Component } from 'react'
+import Header from '../components/header'
 import Head from 'next/head'
 import Portal from 'react-portal'
-import Header from '../components/header'
-import { Component } from 'react'
-import cls from 'classnames'
-import Link from 'next/link'
 
 var data = {
-  "name": "Standardkur, NL, A1",
-  "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos cumque dolore, quidem, nobis doloremque placeat, laudantium ex, totam veritatis suscipit incidunt? Iure assumenda fuga quo facere modi fugiat similique, ex!",
-  "image": "http://dropbox.com/asdjflkajsdf.png",
-  "price": 35,
+  'name': 'Standardkur, NL, A1',
+  'description': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos cumque dolore, quidem, nobis doloremque placeat, laudantium ex, totam veritatis suscipit incidunt? Iure assumenda fuga quo facere modi fugiat similique, ex!',
+  'image': 'http://dropbox.com/asdjflkajsdf.png',
+  'price': 35
 
 }
 
@@ -35,8 +32,8 @@ export default class Page extends Component {
           <link href='/static/flex.css' rel='stylesheet' />
           <link href='/static/global.css' rel='stylesheet' />
           <link href='/static/theme.css' rel='stylesheet' />
-          <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet" />
+          <link href='https://fonts.googleapis.com/icon?family=Material+Icons'
+            rel='stylesheet' />
         </Head>
         <div className='w-100 center'>
           <Header />
@@ -53,15 +50,13 @@ export default class Page extends Component {
 
           {/* <img className="w-100 db" src="/static/berlin.jpg" /> /*}
 
-
-
-        {/* 
+        {/*
 
           some saved stuff
 
         <div className={cls('pa1', this.state.errors && 'error')}>{data.name}</div>
         <img width='112' className='pa5' src='https://cloud.githubusercontent.com/assets/13041/19686250/971bf7f8-9ac0-11e6-975c-188defd82df1.png' alt='next.js' />
-        <Link href="/course">Courses</Link> 
+        <Link href="/course">Courses</Link>
         */}
 
         </div>
