@@ -18,7 +18,7 @@ export default class Header extends Component {
 
     render (props) {
         return (
-            <div className = "layout horizontal pa2 center" style = {{"height":"50px"}}>
+            <div className = "layout horizontal pa2 center mb0" style = {{"height":"50px"}}>
                 <i className ="material-icons ph2 mid-gray">language</i>
                 <div className = "b f5 mid-gray">COLUMBUS</div>
                 <div className = "ph2 f7 mid-gray" style = {{"marginLeft":"auto"}}>KURS EINSTELLEN</div>

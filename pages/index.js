@@ -38,12 +38,19 @@ export default class Page extends Component {
         <div className='w-100 center'>
           <Header />
 
-          <div className = "w-100 db contain bg-center layout horizontal center" style = {{"backgroundImage":"url(/static/Header-bg.png)"}}>
-            <div className="center" style = {{"text-align":"center", "width":"80%"}}>
+          <div className = "db background-banner layout horizontal center" style = {{"backgroundImage":"url(/static/Header-bg.png)"}}>
+            <div className="center" style = {{"text-align":"center", "width":"80%","margin-top":"-50px"}}>
               <h1 className = "white mt0 normal f1 mb1">Entdecke die Welt!</h1>
               <h2 className = "white mt0 normal f3 pv0 mb4">Finde den Kurs, der zu Dir passt!</h2>
               <h3 className = "white mt0 normal f6 pv0 orange-yellow mb4">FINDE JETZT SPRACHKURSE, SPORTKURSE UND MEHR</h3>
-              <div className = "bg-white mt0" style = {{"width":"100%", "height":"80px"}}></div>
+              <div className = "bg-white mt0 layout horizontal flex center" style = {{"width":"100%", "height":"70px"}}>
+                
+                <div style = {{"flexGrow":"1","border-right":"1px solid gray"}}>hi</div>
+                <div style = {{"flexGrow":"1","border-right":"1px solid gray"}}>hi</div>
+                <div style = {{"flexGrow":"1","border-right":"1px solid gray"}}>hi</div>
+                <div style = {{"flexGrow":"1"}}>hi</div>
+
+              </div>
             </div>
             <div style={{"paddingBottom":"38.2%"}} />
           </div>
