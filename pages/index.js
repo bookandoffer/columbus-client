@@ -40,16 +40,16 @@ export default class Page extends Component {
           <Header />
 
           <div className = "db background-banner layout horizontal center sysFont" style = {{"backgroundImage":"url(/static/Header-bg.png)"}}>
-            <div className="center" style = {{"text-align":"center", "width":"80%","margin-top":"-50px", "maxWidth":"1200px"}}>
+            <div className="center" style = {{"textAlign":"center", "width":"80%","marginTop":"-50px", "maxWidth":"1200px"}}>
               <h1 className = "white mt0 normal headerSize mb1">Entdecke die Welt!</h1>
               <h2 className = "white mt0 normal f3 pv0 mb4">Finde den Kurs, der zu Dir passt!</h2>
               <h3 className = "white mt0 normal f6 pv0 orange-yellow mb4">FINDE JETZT SPRACHKURSE, SPORTKURSE UND MEHR</h3>
 
               <div className = "bg-white mt0 layout horizontal searchBox" style = {{"width":"100%", "height":"80px"}}>
-                <div className = "flex layout vertical justify-center f6 pa3" style = {{"border-right":"1px solid #eeeeee","text-align":"left"}}><span className = "c-484848 pb2">Welche Art Kurs suchst du?</span><span className = "textSecondary">Sprachkurs, Tanzkurs, ...</span></div>
-                <div className = "flex layout vertical justify-center f6 pa3" style = {{"border-right":"1px solid #eeeeee"}}><span className = "c-484848 pb2">Wo</span><span className = "textSecondary">Stadt, Land, Region</span></div>
+                <div className = "flex layout vertical justify-center f6 pa3" style = {{"borderRight":"1px solid #eeeeee","textAlign":"left"}}><span className = "c-484848 pb2">Welche Art Kurs suchst du?</span><span className = "textSecondary">Sprachkurs, Tanzkurs, ...</span></div>
+                <div className = "flex layout vertical justify-center f6 pa3" style = {{"borderRight":"1px solid #eeeeee"}}><span className = "c-484848 pb2">Wo</span><span className = "textSecondary">Stadt, Land, Region</span></div>
                 <div className = "flex layout vertical justify-center f6 pa3"><span className = "c-484848 pb2">Wann</span><span className = "textSecondary">Datum oder Zeitraum</span></div>
-                <div className = "flex layout vertical justify-center">hi</div>
+                <div className = "flex layout vertical justify-center"><button className = "btn">Suche</button></div>
               </div>
 
             </div>
