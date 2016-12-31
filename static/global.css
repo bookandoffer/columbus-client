@@ -6,6 +6,10 @@
     font-size:.750rem
 }
 
+.w6{
+  width: 32rem;
+}
+
 .orange-yellow{
     color: #F8B92D
 }
@@ -36,12 +40,28 @@
 }
 
 .textSecondary{
-    color: #B4B4B4
+  color: #B4B4B4
 }
 
 .searchBox{
-    border: 1px solid #989797;
-    border-radius: 4px;
+  border: 1px solid #989797;
+  border-radius: 4px;
+}
+
+.row{
+  background-color: gray;
+}
+
+.double{
+  background-color: gray;
+  width: 50%;
+  height: 50%;
+}
+
+.single{
+  background-color: gray;
+  width: 25%;
+  height: 25%;
 }
 
 
