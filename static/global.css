@@ -6,6 +6,11 @@
     font-size:.750rem
 }
 
+.m-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .orange-yellow{
     color: #F8B92D
 }
@@ -22,6 +27,7 @@
   cursor: pointer;
   color: white;
   background: #EF6664;
+  border-radius: 5px;
 }
 
 .btn-alt {
@@ -31,8 +37,12 @@
   border: 1px solid #EF6664;
 }
 
-.c-3A888D {
-  color: #3A888D;
+.btn-green {
+  background: #3A888D;
+  color: #ffffff;
+  border-radius: 5px;
+  border: none;
+  padding: 10px 20px;
 }
 
 .textSecondary{
@@ -43,7 +53,6 @@
     border: 1px solid #989797;
     border-radius: 4px;
 }
-
 
 @media (max-width: 1430px) {
   .background-banner{
@@ -60,4 +69,3 @@
     background-size: cover;
   }
 }
-
