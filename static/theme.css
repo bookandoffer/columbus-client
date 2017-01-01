@@ -18,10 +18,18 @@
   background: #484848
 }
 
-.c-ffffff {
-  color: #ffffff;
+.c-FFFFFF {
+  color: #FFFFFF;
 }
 
-.bg-ededed {
-  background: #ededed;
+.bg-EDEDED {
+  background: #EDEDED;
+}
+
+.bg-BBBBBB {
+  background: #BBBBBB;
+}
+
+.c-BBBBBB {
+  color: #BBBBBB;
 }

@@ -1,28 +1,13 @@
 import Header from '../components/header'
-import loadUser from '../lib/load-user'
 import Head from '../components/head'
-import cookies from 'next-cookies'
 import { Component } from 'react'
-import graph from '../lib/graph'
+import Router from 'next/router'
+import auth from '../lib/auth'
 
 export default class Me extends Component {
   static async getInitialProps (ctx) {
-    const { token } = cookies(ctx)
-    if (ctx.req && !token) {
-      return ctx.res.writeHead(302, { Location: '/' })
-    } else if (!token) {
-      document.location.pathname = '/'
-      return
-    }
-
-    const res = await loadUser(token)
-
-    // @TODO figure out how we should handle this error
-    if (res instanceof Error) {
-      return ctx.res.writeHead(302, { Location: '/' })
-    }
-
-    return { user: res.user }
+    const user = await auth(ctx)
+    return { user }
   }
 
   constructor (props) {
@@ -37,9 +22,9 @@ export default class Me extends Component {
         <Head title='Columbus | My courses' />
         <Header token={this.props.cookies && this.props.cookies.token} />
         <div className='subnav layout horizontal bg-484848'>
-          <div className='center pv3'>
-            <a className='f6 c-ffffff mh3 link' href='#'>Deine Kurse</a>
-            <a className='f6 c-ffffff mh3 link' href='#'>Profil</a>
+          <div className='m-auto pv3'>
+            <a className='f6 c-FFFFFF mh3 link' href='#'>Deine Kurse</a>
+            <a className='f6 c-FFFFFF mh3 link' href='#'>Profil</a>
           </div>
         </div>
         <div className='layout horizontal mw8 mt5 m-auto'>
@@ -47,10 +32,38 @@ export default class Me extends Component {
             <a className='mt3 c-484848 link b' href='#'>Dein Inserate</a>
             <a className='mt3 c-484848 link' href='#'>Meine Buchungen</a>
             <a className='mt3 c-484848 link' href='#'>Buchungsvoraussetzungen</a>
-            <button className='mt4 btn-green'>Neue Inserate hinzufügen</button>
+            <button className='mt4 btn-green' onClick={() => Router.push('/create-course')}>Neue Inserate hinzufügen</button>
           </div>
-          <div className='layout vertical flex'>
-            <div className='bg-ededed pa3'>In Bearbeitung</div>
+          <div className='courses'>
+            <Course />
+          </div>
+        </div>
+      </div>
+    )
+  }
+}
+
+class Course extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {}
+  }
+
+  render (props) {
+    return (
+      <div className='layout vertical flex ml4'>
+        <div className='bg-EDEDED pa3'>In Bearbeitung</div>
+        <div className='layout horizontal pa3 b--light-gray ba'>
+          <div className='thumbnail layout horizontal center bg-BBBBBB w-100' style={{ maxWidth: '18rem', height: '11.5rem' }}>
+            <i className='material-icons c-FFFFFF f1 m-auto'>photo_camera</i>
+          </div>
+          <div className='layout vertical pa3'>
+            <span className='b'>Kleine private Sprachschule, kleine Gruppen, Englisch & Holländisch, A1 bis C2 in Amsterdam</span>
+            <span className='mt2 mid-gray'>Zuletzt aktualistiert am 9. November 2016</span>
+            <div className='layout horizontal mt4'>
+              <button className='btn'>Das Inserat fertigstellen</button>
+              <button className='ml3 btn-gray'>Vorschau</button>
+            </div>
           </div>
         </div>
       </div>
