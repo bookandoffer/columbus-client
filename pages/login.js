@@ -1,7 +1,7 @@
 
 import { Component } from 'react'
-import Head from 'next/head'
 import Portal from 'react-portal'
+import Head from '../components/head'
 import Login from '../components/login'
 
 export default class Page extends Component {
@@ -13,6 +13,7 @@ export default class Page extends Component {
   render (props) {
     return (
       <div>
+        <Head title='login' />
         <div>
           {/* <Portal ref='loginModal' /> */}
           <button className='ma5' onClick={() => this.refs.loginModal.openPortal()}>open login</button>
