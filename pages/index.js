@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import Header from '../components/header'
-import Head from 'next/head'
+import Head from '../components/head'
 import Portal from 'react-portal'
 
 var data = {
@@ -26,16 +26,7 @@ export default class Page extends Component {
   render () {
     return (
       <div>
-        <Head>
-          <meta name='viewport' content='width=device-width, initial-scale=1' />
-          <link href='/static/tachyons.css' rel='stylesheet' />
-          <link href='/static/flex.css' rel='stylesheet' />
-          <link href='/static/global.css' rel='stylesheet' />
-          <link href='/static/theme.css' rel='stylesheet' />
-          <link href='https://fonts.googleapis.com/icon?family=Material+Icons'
-            rel='stylesheet' />
-          <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' />
-        </Head>
+        <Head title='Columbus' />
         <div className='w-100 center'>
           <Header />
 
