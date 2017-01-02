@@ -39,6 +39,7 @@ var egdata = {
   "address": "1145 Lone Tree Rd",
   "title": "English course in Elm Grove",
   "type": "LANGUAGE",
+  "language": "English",
   "equipment": ['Wi-Fi','Beamer','Laptop (Windows)','Wasser','Kaffee','Obst'],
   "startDate": "2017-01-12T06:00:00.000Z",
   "images": [
@@ -134,7 +135,7 @@ export default class Me extends Component {
         </div>
 
         <div className = "w-100 flex justify-start sysFont" style = {{paddingLeft:"15%"}}>
-          <div className = "w-70 layout horizontal pb5" style = {{minWidth:"800px",borderBottom:"2px solid #F1F1F1",lineHeight:"2"}}>
+          <div className = "w-70 layout horizontal pb5" style = {{minWidth:"800px",borderBottom:"2px solid #F1F1F1"}}>
             <div className = "w5 courseTextSecondary fw7" style = {{fontSize:"1.1rem"}}>Der Unterricht</div>
             <div className = "flex layout vertical courseTextSecondary f6" style = {{lineHeight:"2"}}>
               <span>Gruppenunterricht</span>
@@ -146,14 +147,39 @@ export default class Me extends Component {
           </div>
         </div>
 
-        <div className = "w-100 flex justify-start sysFont pv4" style = {{paddingLeft:"15%"}}>
-          <div className = "w-70 layout horizontal pb5" style = {{minWidth:"800px",borderBottom:"2px solid #F1F1F1",lineHeight:"2"}}>
+        <div className = "w-100 flex justify-start sysFont pt4" style = {{paddingLeft:"15%"}}>
+          <div className = "w-70 layout horizontal pb5" style = {{minWidth:"800px",borderBottom:"2px solid #F1F1F1"}}>
             <div className = "w5 courseTextSecondary fw7" style = {{fontSize:"1.1rem"}}>Ausstattung</div>
             <div className = "flex layout vertical courseTextSecondary f6" style = {{lineHeight:"2"}}>
               {evenEquipment}
             </div>
             <div className = "flex layout vertical courseTextSecondary f6" style = {{lineHeight:"2"}}>
               {oddEquipment}
+            </div>
+          </div>
+        </div>
+
+        <div className = "w-100 flex justify-start sysFont pt4" style = {{paddingLeft:"15%"}}>
+          <div className = "w-70 layout horizontal pb5" style = {{minWidth:"800px",borderBottom:"2px solid #F1F1F1"}}>
+            <div className = "w5 courseTextSecondary fw7" style = {{fontSize:"1.1rem"}}>Sprache</div>
+            <div className = "flex layout vertical courseTextSecondary f6" style = {{lineHeight:"2"}}>
+              {egdata['language']}
+            </div>
+          </div>
+        </div>
+
+        <div className = "w-100 flex justify-start sysFont pt4" style = {{paddingLeft:"15%"}}>
+          <div className = "w-70 layout horizontal pb6" style = {{minWidth:"800px",borderBottom:"2px solid #F1F1F1"}}>
+            <div className = "w5 courseTextSecondary fw7" style = {{fontSize:"1.1rem"}}>Sprachniveau</div>
+            <div className = "flex layout courseTextSecondary vertical h3 f6" style = {{lineHeight:"2"}}>
+              <form className = "flex items-start flex-wrap">
+                <label className = "" style = {{width:"33%"}}><input type="radio" name="level" value="a1" /> A1</label>
+                <label className = "" style = {{width:"33%"}}><input type="radio" name="level" value="b1" /> B1</label>
+                <label className = "" style = {{width:"33%"}}><input type="radio" name="level" value="c1" /> C1</label>
+                <label className = "" style = {{width:"33%"}}><input type="radio" name="level" value="a2" /> A2</label>
+                <label className = "" style = {{width:"33%"}}><input type="radio" name="level" value="b2" /> B2</label>
+                <label className = "" style = {{width:"33%"}}><input type="radio" name="level" value="c2" /> C2</label>
+              </form>
             </div>
           </div>
         </div>
