@@ -14,7 +14,7 @@
     "lodash.defaults": "^4.2.0",
     "lokka": "^1.7.0",
     "lokka-transport-http": "^1.6.1",
-    "next": "2.0.0-beta.5",
+    "next": "2.0.0-beta.12",
     "next-cookies": "^1.0.1",
     "popsicle": "^9.0.0",
     "react-portal": "^3.0.0",

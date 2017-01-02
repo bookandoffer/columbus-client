@@ -16,7 +16,7 @@ export default class Me extends Component {
   }
 
   render () {
-    console.log('user', this.props.user)
+    const { user } = this.props
     return (
       <div>
         <Head title='Columbus | My courses' />
@@ -35,7 +35,7 @@ export default class Me extends Component {
             <button className='mt4 btn-green' onClick={() => Router.push('/create-course')}>Neue Inserate hinzufügen</button>
           </div>
           <div className='courses'>
-            <Course />
+            { user && user.courses.map(course => <Course key={course.id} {...course} />) }
           </div>
         </div>
       </div>
@@ -49,16 +49,24 @@ class Course extends Component {
     this.state = {}
   }
 
-  render (props) {
+  render () {
+    const props = this.props || {}
+    const img = props.images && props.images[0]
+
     return (
       <div className='layout vertical flex ml4'>
         <div className='bg-EDEDED pa3'>In Bearbeitung</div>
         <div className='layout horizontal pa3 b--light-gray ba'>
-          <div className='thumbnail layout horizontal center bg-BBBBBB w-100' style={{ maxWidth: '18rem', height: '11.5rem' }}>
-            <i className='material-icons c-FFFFFF f1 m-auto'>photo_camera</i>
-          </div>
+          { img
+            ? <img src={img} className='db w-100' style={{ maxWidth: '18rem', height: '11.5rem' }} />
+            : (
+              <div className='thumbnail layout horizontal center bg-BBBBBB w-100' style={{ maxWidth: '18rem', height: '11.5rem' }}>
+                <i className='material-icons c-FFFFFF f1 m-auto'>photo_camera</i>
+              </div>
+            )
+          }
           <div className='layout vertical pa3'>
-            <span className='b'>Kleine private Sprachschule, kleine Gruppen, Englisch & Holländisch, A1 bis C2 in Amsterdam</span>
+            <span className='b'>{props.title}</span>
             <span className='mt2 mid-gray'>Zuletzt aktualistiert am 9. November 2016</span>
             <div className='layout horizontal mt4'>
               <button className='btn'>Das Inserat fertigstellen</button>
