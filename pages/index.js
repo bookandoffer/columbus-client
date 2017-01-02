@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import Header from '../components/header'
-import Head from 'next/head'
+import Head from '../components/head'
 import Portal from 'react-portal'
 
 var data = {
@@ -26,37 +26,27 @@ export default class Page extends Component {
   render () {
     return (
       <div>
-        <Head>
-          <meta name='viewport' content='width=device-width, initial-scale=1' />
-          <link href='/static/tachyons.css' rel='stylesheet' />
-          <link href='/static/flex.css' rel='stylesheet' />
-          <link href='/static/global.css' rel='stylesheet' />
-          <link href='/static/theme.css' rel='stylesheet' />
-          <link href='https://fonts.googleapis.com/icon?family=Material+Icons'
-            rel='stylesheet' />
-          <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" />
-        </Head>
+        <Head title='Columbus' />
         <div className='w-100 center'>
           <Header />
 
-          <div className = "db background-banner layout horizontal center sysFont" style = {{"backgroundImage":"url(/static/Header-bg.png)"}}>
-            <div className="center" style = {{"textAlign":"center", "width":"80%","marginTop":"-50px", "maxWidth":"1200px"}}>
-              <h1 className = "white mt0 normal headerSize mb1">Entdecke die Welt!</h1>
-              <h2 className = "white mt0 normal f3 pv0 mb4">Finde den Kurs, der zu Dir passt!</h2>
-              <h3 className = "white mt0 normal f6 pv0 orange-yellow mb4" style = {{"letterSpacing":"2px"}}>FINDE JETZT SPRACHKURSE, SPORTKURSE UND MEHR</h3>
+          <div className='db background-banner layout horizontal center sysFont' style={{'backgroundImage': 'url(/static/Header-bg.png)'}}>
+            <div className='m-auto' style={{'textAlign': 'center', 'width': '80%', 'marginTop': '-50px', 'maxWidth': '1200px'}}>
+              <h1 className='white mt0 normal headerSize mb1'>Entdecke die Welt!</h1>
+              <h2 className='white mt0 normal f3 pv0 mb4'>Finde den Kurs, der zu Dir passt!</h2>
+              <h3 className='white mt0 normal f6 pv0 orange-yellow mb4' style={{'letterSpacing': '2px'}}>FINDE JETZT SPRACHKURSE, SPORTKURSE UND MEHR</h3>
 
-              <div className = "bg-white mt0 center layout horizontal searchBox" style = {{"width":"100%", "height":"80px","maxWidth":"1000px"}}>
-                <div className = "flex layout vertical justify-center f6 pa3" style = {{"borderRight":"1px solid #eeeeee","textAlign":"left"}}><span className = "c-484848 pb2">Welche Art Kurs suchst du?</span><span className = "textSecondary">Sprachkurs, Tanzkurs, ...</span></div>
-                <div className = "flex layout vertical justify-center f6 pa3" style = {{"borderRight":"1px solid #eeeeee","textAlign":"left"}}><span className = "c-484848 pb2">Wo</span><span className = "textSecondary">Stadt, Land, Region</span></div>
-                <div className = "flex layout vertical justify-center f6 pa3" style = {{"textAlign":"left"}}><span className = "c-484848 pb2">Wann</span><span className = "textSecondary">Datum oder Zeitraum</span></div>
-                <div className = "flex layout vertical justify-center pr3"><button className = "btn bn" style = {{"height":"40px","borderRadius":"5px","width":"150px"}}>Suche</button></div>
+              <div className='bg-white mt0 m-auto layout horizontal searchBox' style={{'width': '100%', 'height': '80px', 'maxWidth': '1000px'}}>
+                <div className='flex layout vertical justify-center f6 pa3' style={{'borderRight': '1px solid #eeeeee', 'textAlign': 'left'}}><span className='c-484848 pb2'>Welche Art Kurs suchst du?</span><span className='textSecondary'>Sprachkurs, Tanzkurs, ...</span></div>
+                <div className='flex layout vertical justify-center f6 pa3' style={{'borderRight': '1px solid #eeeeee', 'textAlign': 'left'}}><span className='c-484848 pb2'>Wo</span><span className='textSecondary'>Stadt, Land, Region</span></div>
+                <div className='flex layout vertical justify-center f6 pa3' style={{'textAlign': 'left'}}><span className='c-484848 pb2'>Wann</span><span className='textSecondary'>Datum oder Zeitraum</span></div>
+                <div className='flex layout vertical justify-center pr3'><button className='btn bn' style={{'height': '40px', 'borderRadius': '5px', 'width': '150px'}}>Suche</button></div>
               </div>
 
             </div>
-            <div style={{"paddingBottom":"38.2%"}} />
+            <div style={{'paddingBottom': '38.2%'}} />
           </div>
         </div>
-
 
           {/*
 
@@ -66,9 +56,6 @@ export default class Page extends Component {
                 <div className = "flex justify-center bg-red self-stretch">hi</div>
                 <div className = "flex justify-center bg-blue self-stretch">hello</div>
               </div>
-
- 
-
 
           </div>
 
@@ -113,11 +100,6 @@ export default class Page extends Component {
             </div>
           </div>
         </div>
-
-
-
-
-
 
 
 

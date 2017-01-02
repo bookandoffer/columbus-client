@@ -5,7 +5,8 @@
 ### User
 
 - [ ] email: String
-- [ ] name: String
+- [ ] firstName: String
+- [ ] lastName: String
 - [ ] birthdate: DateTime
 - [ ] courses: [Course]
 

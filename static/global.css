@@ -1,3 +1,8 @@
+/* TODO: figure out why <Link> doesn't take additional classNames */
+a {
+  text-decoration: none;
+}
+
 .headerSize{
     font-size: 3rem;
 }
@@ -12,6 +17,14 @@
 
 .m-auto {
   margin-left: auto;
+  margin-right: auto;
+}
+
+.ml-auto {
+  margin-left: auto;
+}
+
+.mr-auto {
   margin-right: auto;
 }
 
@@ -36,6 +49,8 @@
   color: white;
   background: #EF6664;
   border-radius: 5px;
+  border: 1px solid #EF6664;
+  padding: 10px 20px;
 }
 
 .btn-alt {
@@ -43,13 +58,22 @@
   color: #EF6664;
   background: white;
   border: 1px solid #EF6664;
+  padding: 10px 20px;
 }
 
 .btn-green {
-  background: #3A888D;
+  background: #45A399;
   color: #ffffff;
   border-radius: 5px;
   border: none;
+  padding: 10px 20px;
+}
+
+.btn-gray {
+  background: white;
+  color: #484848;
+  border: 1px solid #b4b4b4;
+  border-radius: 5px;
   padding: 10px 20px;
 }
 

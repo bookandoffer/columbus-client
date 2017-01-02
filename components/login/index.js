@@ -53,7 +53,7 @@ export default class Element extends Component {
 
     return (
       <div className='absolute absolute--fill layout horizontal center'>
-        <div className='center ba b--light-gray pa5' ref='content'>
+        <div className='center ba b--light-gray pa5 m-auto' ref='content'>
           {Contents}
         </div>
       </div>
@@ -274,7 +274,7 @@ class Login extends Component {
         </label>
         <button className='btn' onClick={() => this.login()}>Einloggen</button>
         <div className='layout horizontal'>
-          <span className='c-3A888D'>Hast du noch keinen Account?</span>
+          <span className='c-45A399'>Hast du noch keinen Account?</span>
           <button className='btn-alt mla' onClick={() => this.props.onSignup()}>Registrieren</button>
         </div>
       </div>
