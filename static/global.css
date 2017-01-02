@@ -27,6 +27,10 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+.pointer{
+  cursor:pointer;
+}
+
 .btn {
   cursor: pointer;
   color: white;
@@ -77,8 +81,6 @@
 @media (max-width: 1430px) {
   .background-banner{
     min-height: 550px;
-    /*background-size: auto 100%;*/
-    /*border: 5px solid blue;*/
     background-position: center center;
     background-repeat: no-repeat;
   }

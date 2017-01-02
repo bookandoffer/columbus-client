@@ -55,6 +55,7 @@ export default class Page extends Component {
             </div>
             <div style={{"paddingBottom":"38.2%"}} />
           </div>
+        </div>
 
 
           {/*
@@ -75,32 +76,7 @@ export default class Page extends Component {
 
         */}
 
-        <div className='layout vertical tc mv5 ph7' style={{minHeight: '400px'}}>
-            <div className='layout horizontal flex-1'>
-              <div className='flex-2' style={{ backgroundImage: "url('/static/Header-bg.png')",backgroundSize:"cover"}}>paris</div>
-              <div className='layout vertical flex-1'>
-                <div className='flex-1' style={{ backgroundImage: "url('/static/Header-bg.png')",backgroundSize:"cover"}}>Rom</div>
-                <div className='flex-1' style={{ backgroundImage: "url('/static/Header-bg.png')",backgroundSize:"cover"}}>Lisabon</div>
-              </div>
-              <div className='layout vertical flex-1'>
-                <div className='flex-1' style={{ backgroundImage: "url('/static/Header-bg.png')",backgroundSize:"cover"}}>LA</div>
-                <div className='flex-1' style={{ backgroundImage: "url('/static/Header-bg.png')",backgroundSize:"cover"}}>Tokyo</div>
-              </div>
-            </div>
-            <div className='layout horizontal flex-1'>
-              <div className='layout vertical flex-1'>
-                <div className='flex-1' style={{ backgroundImage: "url('/static/Header-bg.png')",backgroundSize:"cover"}}>London</div>
-                <div className='flex-1' style={{ backgroundImage: "url('/static/Header-bg.png')",backgroundSize:"cover"}}>Barcelona</div>
-              </div>
-              <div className='flex-2' style={{ backgroundImage: "url('/static/Header-bg.png')",backgroundSize:"cover"}}>New York</div>
-              <div className='layout vertical flex-1'>
-                <div className='flex-1' style={{ backgroundImage: "url('/static/Header-bg.png')",backgroundSize:"cover"}}>Amsterdam</div>
-                <div className='flex-1' style={{ backgroundImage: "url('/static/Header-bg.png')",backgroundSize:"cover"}}>Berlin</div>
-              </div>
-            </div>
-          </div>
-
-        {/*
+          {/*
 
           some saved stuff
 
@@ -109,8 +85,45 @@ export default class Page extends Component {
         <Link href="/course">Courses</Link>
         */}
 
+        <div className = "flex justify-center">
+          <div className='layout db vertical mv5 sysFont white regular f7' style={{height:"500px",width:"70%"}}>
+            <div className = "mv2 black f5" style = {{color:"#4B4B4B"}}>Entdecke die Welt</div>
+            <div className='layout horizontal flex-1'>
+              <div className='flex-2 items-end ma1 tl flex pl2 pb2 pointer' style={{ backgroundImage: "url('/static/Header-bg.png')",backgroundSize:"cover"}}>Paris</div>
+                <div className='layout vertical flex-1'>
+                  <div className='flex-1 ma1 tl flex pl2 pb2 pointer items-end' style={{ backgroundImage: "url('/static/Header-bg.png')",backgroundSize:"cover"}}>Rom</div>
+                  <div className='flex-1 ma1 tl flex pl2 pb2 pointer items-end' style={{ backgroundImage: "url('/static/Header-bg.png')",backgroundSize:"cover"}}>Lissabon</div>
+                </div>
+                <div className='layout vertical flex-1'>
+                  <div className='flex-1 ma1 tl flex pl2 pb2 pointer items-end' style={{ backgroundImage: "url('/static/Header-bg.png')",backgroundSize:"cover"}}>Los Angeles</div>
+                  <div className='flex-1 ma1 tl flex pl2 pb2 pointer items-end' style={{ backgroundImage: "url('/static/Header-bg.png')",backgroundSize:"cover"}}>Tokio</div>
+                </div>
+              </div>
+            <div className='layout horizontal flex-1'>
+              <div className='layout vertical flex-1'>
+                <div className='flex-1 ma1 tl flex pl2 pb2 pointer items-end' style={{ backgroundImage: "url('/static/Header-bg.png')",backgroundSize:"cover"}}>London</div>
+                <div className='flex-1 ma1 tl flex pl2 pb2 pointer items-end' style={{ backgroundImage: "url('/static/Header-bg.png')",backgroundSize:"cover"}}>Barcelona</div>
+              </div>
+
+            <div className='flex-2 ma1 tl flex pl2 pb2 pointer items-end' style={{ backgroundImage: "url('/static/Header-bg.png')",backgroundSize:"cover"}}>New York</div>
+              <div className='layout vertical flex-1'>
+                <div className='flex-1 ma1 tl flex pl2 pb2 pointer items-end' style={{ backgroundImage: "url('/static/Header-bg.png')",backgroundSize:"cover"}}>Amsterdam</div>
+                <div className='flex-1 ma1 tl flex pl2 pb2 pointer items-end' style={{ backgroundImage: "url('/static/Header-bg.png')",backgroundSize:"cover"}}>Berlin</div>
+              </div>
+            </div>
+          </div>
         </div>
+
+
+
+
+
+
+
+
       </div>
+
+
     )
   }
 }
