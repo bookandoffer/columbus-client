@@ -106,6 +106,10 @@ class Section1 extends Component {
 }
 
 class CourseType extends Component {
+  componentWillMount () {
+    update('course', { type: 'LANGUAGE' })
+  }
+
   render () {
     const step = Number(get(this.props, 'step'))
     const type = get(this.props, 'course.type') || 'LANGUAGE'
@@ -137,6 +141,10 @@ class CourseType extends Component {
 }
 
 class CourseLocation extends Component {
+  componentWillMount () {
+    update('course', { location: { country: 'DE' } })
+  }
+
   render () {
     const step = Number(get(this.props, 'step'))
     const location = defaults(get(this.props, 'course.location') || {}, {
@@ -421,6 +429,10 @@ class CourseSize extends Component {
 }
 
 class CourseSchedule extends Component {
+  componentWillMount () {
+    update('course', { interval: 'DAILY' })
+  }
+
   render () {
     const step = Number(get(this.props, 'step'))
     const interval = get(this.props, 'course.interval') || 'DAILY'
@@ -501,6 +513,7 @@ class Section4 extends Component {
         $startTime: String!,
         $title: String!,
         $type: COURSE_TYPE!,
+        $fullAddress: String!,
         $userId: ID!
       ) {
         createCourse(
@@ -520,6 +533,7 @@ class Section4 extends Component {
           startTime: $startTime,
           title: $title,
           type: $type,
+          fullAddress: $fullAddress,
           userId: $userId
         ) {
           id
@@ -542,6 +556,7 @@ class Section4 extends Component {
       startTime: course.startTime,
       title: course.title,
       type: course.type,
+      fullAddress: fullAddress(course),
       userId: user.id
     })
 
@@ -593,4 +608,8 @@ function update (key, value) {
 
   }
   store.set(key, assign({}, existing, value))
+}
+
+function fullAddress (course) {
+  return `${course.location.address} ${course.location.addressSecondary || ''} ${course.location.city}, ${course.location.country} ${course.location.postal}`
 }
