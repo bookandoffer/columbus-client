@@ -39,6 +39,7 @@ var egdata = {
   "address": "1145 Lone Tree Rd",
   "title": "English course in Elm Grove",
   "type": "LANGUAGE",
+  "equipment": ['Wi-Fi','Beamer','Laptop (Windows)','Wasser','Kaffee','Obst'],
   "startDate": "2017-01-12T06:00:00.000Z",
   "images": [
     "http://www.elmgrovewi.org/images/pages/N1/slide1.jpg"
@@ -71,6 +72,14 @@ export default class Me extends Component {
 
 
   render () {
+    var evenEquipment = [];
+    for (var i = 0; i < egdata['equipment'].length; i+=2) {
+      evenEquipment.push(<span key={i}>{egdata['equipment'][i]}</span>);
+    }
+    var oddEquipment = [];
+    for (var i = 1; i < egdata['equipment'].length; i+=2) {
+      oddEquipment.push(<span key={i}>{egdata['equipment'][i]}</span>);
+    }
     return (
       <div>
         <Head title='Columbus | Course Details' />
@@ -121,6 +130,31 @@ export default class Me extends Component {
             <p className = "f4 fw7 courseTextPrimary">Über dieses Inserat</p>
             <p className = "f5 pb4 courseTextSecondary">{egdata['description']}</p>
             <p className = "f5 fw7 pb2 courseTextSecondary" style = {{color:"#56B6C5"}}>Kontaktiere den Anbieter</p>
+          </div>
+        </div>
+
+        <div className = "w-100 flex justify-start sysFont" style = {{paddingLeft:"15%"}}>
+          <div className = "w-70 layout horizontal pb5" style = {{minWidth:"800px",borderBottom:"2px solid #F1F1F1",lineHeight:"2"}}>
+            <div className = "w5 courseTextSecondary fw7" style = {{fontSize:"1.1rem"}}>Der Unterricht</div>
+            <div className = "flex layout vertical courseTextSecondary f6" style = {{lineHeight:"2"}}>
+              <span>Gruppenunterricht</span>
+              <span>Max Teilnehmer: {egdata['groupSize']}</span>
+            </div>
+            <div className = "flex layout vertical courseTextSecondary f6" style = {{lineHeight:"2"}}>
+              <span>Stunden / Woche: {egdata['duration']}</span>
+            </div>
+          </div>
+        </div>
+
+        <div className = "w-100 flex justify-start sysFont pv4" style = {{paddingLeft:"15%"}}>
+          <div className = "w-70 layout horizontal pb5" style = {{minWidth:"800px",borderBottom:"2px solid #F1F1F1",lineHeight:"2"}}>
+            <div className = "w5 courseTextSecondary fw7" style = {{fontSize:"1.1rem"}}>Ausstattung</div>
+            <div className = "flex layout vertical courseTextSecondary f6" style = {{lineHeight:"2"}}>
+              {evenEquipment}
+            </div>
+            <div className = "flex layout vertical courseTextSecondary f6" style = {{lineHeight:"2"}}>
+              {oddEquipment}
+            </div>
           </div>
         </div>
 
