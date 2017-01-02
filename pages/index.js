@@ -32,10 +32,10 @@ export default class Page extends Component {
               <h3 className='white mt0 normal f6 pv0 orange-yellow mb4' style={{'letterSpacing': '2px'}}>FINDE JETZT SPRACHKURSE, SPORTKURSE UND MEHR</h3>
 
               <div className='bg-white mt0 m-auto layout horizontal flex searchBox' style={{'width': '100%', 'height': '80px', 'maxWidth': '1000px'}}>
-                <div className='flex layout vertical justify-center f6 pa3' style={{'borderRight': '1px solid #eeeeee', 'textAlign': 'left'}}><span className='c-484848 pb2'>Welche Art Kurs suchst du?</span><span className='textSecondary'>Sprachkurs, Tanzkurs, ...</span></div>
-                <div className='flex layout vertical justify-center f6 pa3' style={{'borderRight': '1px solid #eeeeee', 'textAlign': 'left'}}><span className='c-484848 pb2'>Wo</span><span className='textSecondary'>Stadt, Land, Region</span></div>
-                <div className='flex layout vertical justify-center f6 pa3' style={{'textAlign': 'left'}}><span className='c-484848 pb2'>Wann</span><span className='textSecondary'>Datum oder Zeitraum</span></div>
-                <div className='flex layout vertical justify-center pr3'><button className='btn bn' style={{'height': '40px', 'borderRadius': '5px', 'width': '150px'}}>Suche</button></div>
+                <div className='flex layout vertical justify-center f6 pa3' style={{'borderRight': '1px solid #eeeeee', 'textAlign': 'left'}}><span className='c-565656 pb2'>Welche Art Kurs suchst du?</span><span className='textSecondary'><form><input className = "searchInput" placeholder = "Sprachkurs, Tanzkurs, .." type = "text" name = "where"/></form></span></div>
+                <div className='flex layout vertical justify-center f6 pa3' style={{'borderRight': '1px solid #eeeeee', 'textAlign': 'left'}}><span className='c-565656 pb2'>Wo</span><span className='textSecondary'><form><input className = "searchInput" placeholder = "Stadt, Land, Region" type = "text" name = "where"/></form></span></div>
+                <div className='flex layout vertical justify-center f6 pa3' style={{'textAlign': 'left'}}><span className='c-565656 pb2'>Wann</span><span className='textSecondary'><form><input className = "searchInput" placeholder = "Datum oder Zeitraum" type = "text" name = "where"/></form></span></div>
+                <div className='flex layout vertical justify-center items-end pr3'><button className='btn bn' style={{'height': '40px', 'borderRadius': '5px', 'width': '150px'}}>Suche</button></div>
               </div>
 
             </div>

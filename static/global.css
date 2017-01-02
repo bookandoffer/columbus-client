@@ -57,6 +57,21 @@ a {
   color: #484848;
 }
 
+.c-565656{
+  color: #565656; 
+}
+
+.searchInput{
+  border-width: 0px;
+  font-family: 'Montserrat', sans-serif;
+  color: #484848;
+}
+
+.searchInput:focus{
+  outline:none;
+}
+
+
 .courseTextPrimary{
   color: #686666;
 }

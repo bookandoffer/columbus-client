@@ -98,14 +98,14 @@ export default class Me extends Component {
                 <div className = "pa3" style = {{height:"200px"}}>
                   <div className = "flex h-100" style = {{backgroundImage:"url('/static/course-logo.png')",backgroundSize:"contain", backgroundPosition:"center center",backgroundRepeat:"no-repeat"}}></div>
                 </div>
-                <div className = "flex justify-center items-start" style = {{color:"#555555"}}>
+                <div className = "flex justify-center courseTextSecondary items-start">
                   Taleninstituut
                 </div>
               </div>
-              <div className = "flex layout vertical pl3" style = {{}}>
+              <div className = "flex layout vertical pl3">
                 <div className = "flex layout vertical">
-                  <span className = "flex items-end f4 courseTextPrimary">Standardkurs, NL, A1</span>
-                  <span className = "flex items-start f7 courseTextSecondary pt1">Amsterdam, NH, Niederlande</span>
+                  <span className = "flex items-end f3 courseTextPrimary">{egdata['title']}</span>
+                  <span className = "flex items-start f7 courseTextSecondary pt1">{egdata['address']}</span>
                 </div>
                 <div className = "flex">
                   <div className = "flex items-center layout vertical">
@@ -118,7 +118,7 @@ export default class Me extends Component {
                   </div>
                   <div className = "flex items-center layout vertical">
                     <div className = "flex h-100 w-100" style = {{backgroundImage:"url('/static/icons/door-icon.png')",backgroundSize:"contain",backgroundPosition:"center center",backgroundRepeat:"no-repeat"}}></div>
-                    <div className = "flex courseTextSecondary">20 Lektionen/Woche</div>
+                    <div className = "flex courseTextSecondary">{egdata['duration']} Lektionen/Woche</div>
                   </div>
                 </div>
               </div>
@@ -130,7 +130,7 @@ export default class Me extends Component {
           <div className = "w-70 pt5" style = {{minWidth:"800px",borderBottom:"2px solid #F1F1F1"}}>
             <p className = "f4 fw7 courseTextPrimary">Über dieses Inserat</p>
             <p className = "f5 pb4 courseTextSecondary">{egdata['description']}</p>
-            <p className = "f5 fw7 pb2 courseTextSecondary" style = {{color:"#56B6C5"}}>Kontaktiere den Anbieter</p>
+            <p className = "f5 fw7 pb2 courseTextSecondary pointer" style = {{color:"#56B6C5"}}>Kontaktiere den Anbieter</p>
           </div>
         </div>
 
