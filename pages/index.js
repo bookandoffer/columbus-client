@@ -8,7 +8,6 @@ var data = {
   'description': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos cumque dolore, quidem, nobis doloremque placeat, laudantium ex, totam veritatis suscipit incidunt? Iure assumenda fuga quo facere modi fugiat similique, ex!',
   'image': 'http://dropbox.com/asdjflkajsdf.png',
   'price': 35
-
 }
 
 export default class Page extends Component {
@@ -17,10 +16,6 @@ export default class Page extends Component {
     this.state = {
       errors: {}
     }
-  }
-
-  componentDidMount () {
-    console.log('mounted!')
   }
 
   render () {
@@ -47,21 +42,6 @@ export default class Page extends Component {
             <div style={{'paddingBottom': '38.2%'}} />
           </div>
         </div>
-
-          {/*
-
-          <div className = "sysFont h5 w-80 center mt5 mb5" style = {{"border":"1px solid blue","textAlign":"center","paddingBottom":"40%","maxWidth":"1000px"}}>
-
-              <div className = "layout horizontal h-100">
-                <div className = "flex justify-center bg-red self-stretch">hi</div>
-                <div className = "flex justify-center bg-blue self-stretch">hello</div>
-              </div>
-
-          </div>
-
-          {/* <img className="w-100 db" src="/static/berlin.jpg" /> /*}
-
-        */}
 
           {/*
 

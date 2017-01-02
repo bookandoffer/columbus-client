@@ -53,6 +53,14 @@ a {
   padding: 10px 20px;
 }
 
+.courseTextPrimary{
+  color: #686666;
+}
+
+.courseTextSecondary{
+  color: #909090;
+}
+
 .btn-alt {
   cursor: pointer;
   color: #EF6664;
