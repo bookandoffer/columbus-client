@@ -13,19 +13,20 @@ const alert = typeof window === 'undefined'
 
 export default class Me extends Component {
   static async getInitialProps (ctx) {
-    const query = get(ctx, 'query.query')
-    const location = get(ctx, 'query.location')
-    const date = get(ctx, 'query.date')
+    const what = get(ctx, 'query.what')
+    const where = get(ctx, 'query.where')
+    const when = get(ctx, 'query.when')
 
     // go back if we don't have a course id via ?course=...
-    if (!query || !location || !date) return redirect(ctx, '/')
-
-    const res = await findCourses({ query, location, date })
+    if (!what || !where || !when) return redirect(ctx, '/')
+    console.log(what, where, when)
+    const res = await findCourses({ query: what, location: where, date: when })
+    console.log(res)
     if (res instanceof Error) {
       alert(res.message)
       // return redirect(ctx, '/')
     }
-    
+
     return { courses: res.courses }
   }
 
