@@ -2,6 +2,7 @@ import loadCourse from '../lib/load-course'
 import Header from '../components/header'
 import redirect from '../lib/redirect'
 import Head from '../components/head'
+import Mailgun from '../lib/mailgun'
 import { Component } from 'react'
 import Router from 'next/router'
 import auth from '../lib/auth'
@@ -184,7 +185,7 @@ export default class Me extends Component {
           </div>
         </div>
 
-    
+
       </div>
 
 
