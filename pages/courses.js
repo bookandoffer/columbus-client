@@ -19,12 +19,12 @@ export default class Me extends Component {
 
     // go back if we don't have a course id via ?course=...
     if (!what || !where || !when) return redirect(ctx, '/')
-    console.log(what, where, when)
+
     const res = await findCourses({ query: what, location: where, date: when })
-    console.log(res)
+
     if (res instanceof Error) {
       alert(res.message)
-      // return redirect(ctx, '/')
+      return redirect(ctx, '/')
     }
 
     return { courses: res.courses }
