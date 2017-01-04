@@ -57,12 +57,8 @@ a {
   color: #484848;
 }
 
-.bg-FD5C63{
-  background-color: #FD5C63; 
-}
-
 .c-565656{
-  color: #565656; 
+  color: #565656;
 }
 
 .searchInput{
@@ -131,6 +127,40 @@ a {
   background-color: gray;
   width: 25%;
   height: 25%;
+}
+
+.select {
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  border: 1px solid #B0B0B0;
+  background-color: white;
+  color: #424242;
+  background-image: url('/static/select-black.svg');
+  background-repeat: no-repeat;
+  background-position: 95% center;
+  padding: 10px
+}
+
+.input[type='text'] {
+  padding: 10px;
+  border: 1px solid #B0B0B0;
+  background-color: white;
+  color: #424242;
+  border-radius: 3px;
+}
+
+.label {
+  padding: 10px;
+  border: 1px solid #B0B0B0;
+  background-color: white;
+  color: #424242;
+  border-radius: 3px;
+}
+
+.h-1 {
+  font-size: 1.75rem;
+  font-weight: 400;
 }
 
 @media (max-width: 1430px) {

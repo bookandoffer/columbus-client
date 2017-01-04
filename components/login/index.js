@@ -145,39 +145,42 @@ class Signup extends Component {
   render () {
     return (
       <div>
-        <label className='db'>
+        <div className='db'>
           { this.state.firstNameError && <div className='c-B24334'>{this.state.firstNameError}</div> }
-          <div className='layout horizontal center pv3 ph3 ba b--silver'>
+          <label className='label layout horizontal center pv3 ph3 ba b--silver'>
             <input onInput={(e) => this.setState({ firstName: e.target.value, firstNameError: null })} value={this.state.firstName || ''} type='text' className='w-100 bn outline-0' placeholder='Vorname' />
             <i className='material-icons'>face</i>
-          </div>
-        </label>
-        <label className='db mt3'>
+          </label>
+        </div>
+        <div className='db mt3'>
           { this.state.lastNameError && <div className='c-B24334'>{this.state.lastNameError}</div> }
-          <div className='layout horizontal center pv3 ph3 ba b--silver'>
+          <label className='label layout horizontal center pv3 ph3 ba b--silver'>
             <input onInput={(e) => this.setState({ lastName: e.target.value, lastNameError: null })} value={this.state.lastName || ''} type='text' className='w-100 bn outline-0' placeholder='Nachname' />
             <i className='material-icons'>face</i>
-          </div>
-        </label>
-        <label className='db mt3'>
+          </label>
+        </div>
+        <div className='db mt3'>
           { this.state.emailError && <div className='c-B24334'>{this.state.emailError}</div> }
-          <div className='layout horizontal center pv3 ph3 ba b--silver'>
+          <label className='label layout horizontal center pv3 ph3 ba b--silver'>
             <input onInput={(e) => this.setState({ email: e.target.value, emailError: null })} value={this.state.email || ''} type='text' className='w-100 bn outline-0' placeholder='E-Mail-Adresse' />
             <i className='material-icons'>email</i>
-          </div>
-        </label>
-        <label className='db mt3'>
+          </label>
+        </div>
+        <div className='db mt3'>
           { this.state.passwordError && <div className='c-B24334'>{this.state.passwordError}</div> }
-          <div className='layout horizontal center pv3 ph3 ba b--silver'>
+          <label className='label layout horizontal center pv3 ph3 ba b--silver'>
             <input onInput={(e) => this.setState({ password: e.target.value, passwordError: null })} value={this.state.password || ''} type='password' className='w-100 bn outline-0' placeholder='Neues Passwort' />
             <i className='material-icons'>lock</i>
-          </div>
-        </label>
+          </label>
+        </div>
         <label htmlFor='Geburtstag'>
-          <strong className='f7'>Geburtstag <i className='material-icons'>help</i></strong>
+          <div className='layout horizontal center mb1 ml1 mt4'>
+            <strong className='f7 fw4'>Geburtstag</strong>
+            <i className='material-icons f6 ml1'>help</i>
+          </div>
           { this.state.birthdateError && <div style={{color: 'red'}}>{this.state.birthdateError}</div> }
           <div className='layout horizontal'>
-            <select onChange={(e) => this.setState({ month: e.target.value, birthdateError: null })}>
+            <select className='select flex-2' onChange={(e) => this.setState({ month: e.target.value, birthdateError: null })}>
               <option key='' value='' default>Monat</option>
               <option key='1' value='1'>Januar</option>
               <option key='2' value='2'>Februar</option>
@@ -192,11 +195,11 @@ class Signup extends Component {
               <option key='11' value='11'>November</option>
               <option key='12' value='12'>Dezember</option>
             </select>
-            <select onChange={(e) => this.setState({ day: e.target.value, birthdateError: null })}>
+            <select className='select flex-1 ml3' onChange={(e) => this.setState({ day: e.target.value, birthdateError: null })}>
               <option value='' default>Tag</option>
               {Array.apply(null, Array(31)).map((_, i) => <option key={i + 1} value={i + 1} default>{i + 1}</option>)}
             </select>
-            <select onChange={(e) => this.setState({ year: e.target.value, birthdateError: null })}>
+            <select className='select flex-1 ml3' onChange={(e) => this.setState({ year: e.target.value, birthdateError: null })}>
               <option value='' default>Jahr</option>
               {Array.apply(null, Array(123)).map((_, i) => <option key={currentYear - i} value={currentYear - i} default>{currentYear - i}</option>)}
             </select>

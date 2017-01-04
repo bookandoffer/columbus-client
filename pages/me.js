@@ -2,7 +2,9 @@ import Header from '../components/header'
 import Head from '../components/head'
 import { Component } from 'react'
 import Router from 'next/router'
+import graph from '../lib/graph'
 import auth from '../lib/auth'
+import Link from 'next/link'
 
 export default class Me extends Component {
   static async getInitialProps (ctx) {
@@ -27,8 +29,8 @@ export default class Me extends Component {
             <a className='f6 c-FFFFFF mh3 link' href='#'>Profil</a>
           </div>
         </div>
-        <div className='layout horizontal mw8 mt5 m-auto'>
-          <div className='layout vertical'>
+        <div className='layout horizontal mt5 m-auto ph4' style={{maxWidth: '74rem'}}>
+          <div className='layout vertical mt4'>
             <a className='mt3 c-484848 link b' href='#'>Dein Inserate</a>
             <a className='mt3 c-484848 link' href='#'>Meine Buchungen</a>
             <a className='mt3 c-484848 link' href='#'>Buchungsvoraussetzungen</a>
@@ -46,16 +48,31 @@ export default class Me extends Component {
 class Course extends Component {
   constructor (props) {
     super(props)
-    this.state = {}
+    this.state = {
+      deleted: false
+    }
+  }
+
+  async delete (id) {
+    await graph(`
+      mutation deleteCourse($id: ID!) {
+        deleteCourse(id: $id){
+          id
+        }
+      }
+    `, { id })
+
+    this.setState({ deleted: true })
   }
 
   render () {
     const props = this.props || {}
     const img = props.images && props.images[0]
+    if (this.state.deleted) return null
 
     return (
-      <div className='layout vertical flex ml4'>
-        <div className='bg-EDEDED pa3'>In Bearbeitung</div>
+      <div className='layout vertical flex mt4 ml4'>
+        <div className='bg-EDEDED pa3 b'>{props.title}</div>
         <div className='layout horizontal pa3 b--light-gray ba'>
           { img
             ? <img src={img} className='db w-100' style={{ maxWidth: '18rem', height: '11.5rem' }} />
@@ -66,11 +83,24 @@ class Course extends Component {
             )
           }
           <div className='layout vertical pa3'>
-            <span className='b'>{props.title}</span>
             <span className='mt2 mid-gray'>Zuletzt aktualistiert am 9. November 2016</span>
-            <div className='layout horizontal mt4'>
-              <button className='btn'>Das Inserat fertigstellen</button>
-              <button className='ml3 btn-gray'>Vorschau</button>
+            <div className='layout horizontal mt4 wrap'>
+              <Link href={`/course?id=${props.id}`}>
+                <button className='ml3 btn-green layout horizontal center pointer'>
+                  <i className='material-icons mr2'>pageview</i>
+                  <span className='f6'>Vorschau</span>
+                </button>
+              </Link>
+              <Link href={`/create-course?id=${props.id}`}>
+                <button className='ml3 btn-gray layout horizontal center pointer'>
+                  <i className='material-icons mr2'>edit</i>
+                  <span className='f6'>Bearbeiten</span>
+                </button>
+              </Link>
+              <button className='ml3 btn-alt layout horizontal center pointer br2' onClick={() => this.delete(props.id)}>
+                <i className='material-icons mr2'>delete</i>
+                <span className='f6'>Unlist natürlich</span>
+              </button>
             </div>
           </div>
         </div>
