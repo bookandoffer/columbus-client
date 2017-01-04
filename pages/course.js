@@ -4,10 +4,11 @@ import redirect from '../lib/redirect'
 import Head from '../components/head'
 import send from '../lib/mailgun'
 import { Component } from 'react'
+import Portal from 'react-portal'
 import Router from 'next/router'
 import auth from '../lib/auth'
+import fecha from 'fecha'
 import get from 'dlv'
-import Portal from 'react-portal'
 
 
 var data = {
@@ -80,7 +81,7 @@ export default class Me extends Component {
       from: 'connector@bookandoffer.com',
       to: this.props.course.user.email,
       subject: "You've got a new student!",
-      text: `${this.state.email} would like to take ${this.props.course.title} on ${date.toString()} for ${numWeeks} weeks. Please reply to this email to coordinate further!`,
+      text: `${this.state.email} would like to take ${this.props.course.title} on ${fecha.format(date, 'mediumDate')} for ${numWeeks} weeks. Please reply to this email to coordinate further!`,
       replyTo: this.state.email
     }
 
