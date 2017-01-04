@@ -113,7 +113,7 @@ export default class Me extends Component {
           <div className='w-70 pt5' style={{minWidth: '800px', borderBottom: '2px solid #F1F1F1'}}>
             <p className='f4 fw7 courseTextPrimary'>Über dieses Inserat</p>
             <p className='f5 pb4 courseTextSecondary'>{data['description']}</p>
-            <p className='f5 fw7 pb2 courseTextSecondary pointer' style={{color: '#56B6C5'}}>Kontaktiere den Anbieter</p>
+            <p className='f5 fw7 pb2 courseTextSecondary pointer' style={{color: '#56B6C5'}}></p>
           </div>
         </div>
 
