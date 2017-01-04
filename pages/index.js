@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import Header from '../components/header'
 import Head from '../components/head'
+import Footer from '../components/footer'
 import Router from 'next/router'
 
 export default class Page extends Component {
@@ -106,8 +107,16 @@ export default class Page extends Component {
           </div>
         </div>
 
-      </div>
+        <div className='pa6 tl w-100 layout vertical mb5' style = {{backgroundColor:"#F7F9FB"}}>
+          <p className = "f4 sysFont">Was ist Columbus?</p>
+          <div className = "w3 sysFont" style = {{border:"2px solid #FCBB08",height:"3px"}}/>
+          <p className = "f5 fw2 courseTextPrimary">Columbus ist eine unabhängige Platform, die Menschen hilft, den für sie richtigen Sprachkurs zu finden. Sprachkurse können direkt über Columbus gebucht werden - bequem, transparent und zu fairen Konditionen. Anbieter von Sprachunterricht können Sprachkurse einstellen, Buchungen verwalten und ihre Reichweite und Auslastung erhöhen.</p>
+        </div>
 
+
+        <Footer />
+
+      </div>
     )
   }
 }
