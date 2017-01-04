@@ -32,9 +32,9 @@ export default class Me extends Component {
 
   render () {
     return (
-      <div className = "flex justify-center">
+      <div className = "">
         <Head title='Columbus | Course Results' />
-        {/*<pre><code>{JSON.stringify(this.props.courses, true, 2)}</code></pre>*/}
+        <Header />
 
         <div className = "layout horizontal justify-center wrap m-auto" style = {{maxWidth:"1500px"}}>
           {this.props.courses.map(course => <Course {...course} />)}

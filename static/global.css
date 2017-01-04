@@ -71,6 +71,16 @@ a {
   outline:none;
 }
 
+.transactionInput{
+  font-family: 'Montserrat', sans-serif;
+  color: #484848;
+  padding:10px;
+}
+
+.transactionInput:focus{
+  outline:none;
+}
+
 
 .courseTextPrimary{
   color: #686666;
