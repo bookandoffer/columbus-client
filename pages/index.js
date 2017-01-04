@@ -78,7 +78,7 @@ export default class Page extends Component {
         <Link href="/course">Courses</Link>
         */}
 
-        <div className='flex justify-center'>
+        <div className='flex justify-center pv5'>
           <div className='layout db vertical mv5 sysFont white regular f7' style={{height: '500px', width: '70%'}}>
             <div className='mv2 black f5' style={{color: '#4B4B4B'}}>Entdecke die Welt</div>
             <div className='layout horizontal flex-1'>
