@@ -1,4 +1,6 @@
 import { Component } from 'react'
+import Portal from 'react-portal'
+import Login from '../login'
 import Link from 'next/link'
 
 export default class Header extends Component {
@@ -24,7 +26,10 @@ export default class Header extends Component {
         <div className='ph3 f7 mid-gray pointer' style={{'marginLeft': 'auto'}}>KURS EINSTELLEN</div>
         <div className='ph3 f7 mid-gray pointer'>HILFE</div>
         <div className='ph3 f7 mid-gray pointer'>REGISTRIEREN</div>
-        <div className='ph3 f7 mid-gray pointer'>LOGIN</div>
+        <div className='ph3 f7 mid-gray pointer' onClick={() => this.refs.loginModal.openPortal()}>LOGIN</div>
+        <Portal ref='loginModal'>
+          <Login />
+        </Portal>
       </div>
     )
   }

@@ -52,8 +52,9 @@ export default class Element extends Component {
     })()
 
     return (
-      <div className='absolute absolute--fill layout horizontal center'>
-        <div className='center ba b--light-gray pa5 m-auto' ref='content'>
+      <div className='fixed absolute--fill layout horizontal center'>
+        <div className='center ba b--silver ph5 pb5 m-auto bg-FFFFFF' ref='content'>
+          <div className='f3 b tc pv5 mb0'>COLUMBUS</div>
           {Contents}
         </div>
       </div>
@@ -146,28 +147,28 @@ class Signup extends Component {
       <div>
         <label className='db'>
           { this.state.firstNameError && <div className='c-B24334'>{this.state.firstNameError}</div> }
-          <div className='layout horizontal center pv3 ph3 ba b--mid-gray'>
+          <div className='layout horizontal center pv3 ph3 ba b--silver'>
             <input onInput={(e) => this.setState({ firstName: e.target.value, firstNameError: null })} value={this.state.firstName || ''} type='text' className='w-100 bn outline-0' placeholder='Vorname' />
             <i className='material-icons'>face</i>
           </div>
         </label>
-        <label className='db'>
+        <label className='db mt3'>
           { this.state.lastNameError && <div className='c-B24334'>{this.state.lastNameError}</div> }
-          <div className='layout horizontal center pv3 ph3 ba b--mid-gray'>
+          <div className='layout horizontal center pv3 ph3 ba b--silver'>
             <input onInput={(e) => this.setState({ lastName: e.target.value, lastNameError: null })} value={this.state.lastName || ''} type='text' className='w-100 bn outline-0' placeholder='Nachname' />
             <i className='material-icons'>face</i>
           </div>
         </label>
-        <label className='db'>
+        <label className='db mt3'>
           { this.state.emailError && <div className='c-B24334'>{this.state.emailError}</div> }
-          <div className='layout horizontal center pv3 ph3 ba b--mid-gray'>
+          <div className='layout horizontal center pv3 ph3 ba b--silver'>
             <input onInput={(e) => this.setState({ email: e.target.value, emailError: null })} value={this.state.email || ''} type='text' className='w-100 bn outline-0' placeholder='E-Mail-Adresse' />
             <i className='material-icons'>email</i>
           </div>
         </label>
-        <label className='db'>
+        <label className='db mt3'>
           { this.state.passwordError && <div className='c-B24334'>{this.state.passwordError}</div> }
-          <div className='layout horizontal center pv3 ph3 ba b--mid-gray'>
+          <div className='layout horizontal center pv3 ph3 ba b--silver'>
             <input onInput={(e) => this.setState({ password: e.target.value, passwordError: null })} value={this.state.password || ''} type='password' className='w-100 bn outline-0' placeholder='Neues Passwort' />
             <i className='material-icons'>lock</i>
           </div>
@@ -201,10 +202,10 @@ class Signup extends Component {
             </select>
           </div>
         </label>
-        <button className='btn' onClick={() => this.signup()}>Registrieren</button>
-        <div className='layout horizontal'>
-          <span className=''>Hast du schon einen Columbus Account?</span>
-          <button className='btn-alt mla' onClick={() => this.props.onLogin()}>Einloggen</button>
+        <button className='btn w-100 mt4' onClick={() => this.signup()}>Registrieren</button>
+        <div className='layout horizontal bt b--light-gray mt4 pt4 center'>
+          <span className='c-45A399 b'>Hast du schon einen Columbus Account?</span>
+          <button className='btn-alt mla br2 ml4' onClick={() => this.props.onLogin()}>Einloggen</button>
         </div>
       </div>
     )
@@ -260,22 +261,22 @@ class Login extends Component {
       <div>
         <label className='db'>
           { this.state.emailError && <div className='c-B24334'>{this.state.emailError}</div> }
-          <div className='layout horizontal center pv3 ph3 ba b--mid-gray'>
+          <div className='layout horizontal center pv3 ph3 ba b--light-silver'>
             <input onInput={(e) => this.setState({ email: e.target.value, emailError: null })} value={this.state.email || ''} type='text' className='w-100 bn outline-0' placeholder='E-Mail-Adresse' />
             <i className='material-icons'>email</i>
           </div>
         </label>
-        <label className='db'>
+        <label className='db mt3'>
           { this.state.passwordError && <div className='c-B24334'>{this.state.passwordError}</div> }
-          <div className='layout horizontal center pv3 ph3 ba b--mid-gray'>
+          <div className='layout horizontal center pv3 ph3 ba b--light-silver'>
             <input onInput={(e) => this.setState({ password: e.target.value, passwordError: null })} value={this.state.password || ''} type='password' className='w-100 bn outline-0' placeholder='Neues Passwort' />
             <i className='material-icons'>lock</i>
           </div>
         </label>
-        <button className='btn' onClick={() => this.login()}>Einloggen</button>
-        <div className='layout horizontal'>
-          <span className='c-45A399'>Hast du noch keinen Account?</span>
-          <button className='btn-alt mla' onClick={() => this.props.onSignup()}>Registrieren</button>
+        <button className='btn w-100 mt4' onClick={() => this.login()}>Einloggen</button>
+        <div className='layout horizontal bt b--light-gray mt4 pt4 center'>
+          <span className='c-45A399 b'>Hast du noch keinen Account?</span>
+          <button className='btn-alt mla br2 ml4' onClick={() => this.props.onSignup()}>Registrieren</button>
         </div>
       </div>
     )

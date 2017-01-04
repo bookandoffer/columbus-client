@@ -14,11 +14,7 @@ export default class Page extends Component {
     return (
       <div>
         <Head title='login' />
-        <div>
-          {/* <Portal ref='loginModal' /> */}
-          <button className='ma5' onClick={() => this.refs.loginModal.openPortal()}>open login</button>
           <Login />
-        </div>
       </div>
     )
   }
