@@ -28,6 +28,10 @@ a {
   margin-right: auto;
 }
 
+.mt-auto {
+  margin-top: auto;
+}
+
 .orange-yellow{
     color: #F8B92D
 }

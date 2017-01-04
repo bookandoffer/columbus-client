@@ -58,7 +58,7 @@ export default class Me extends Component {
     this.state = {}
   }
 
-  sendEmail (e){
+  async sendEmail (e){
     e.preventDefault()
 
     const startDate = this.state.startDate;
@@ -84,9 +84,9 @@ export default class Me extends Component {
       replyTo: this.state.email
     }
 
-    console.log(data)
+    await send(data)
 
-    send(data);
+    Router.push('/thanks')
   }
 
   render () {
@@ -102,7 +102,7 @@ export default class Me extends Component {
     for (var i = 1; i < data['equipment'].length; i += 2) {
       oddEquipment.push(<span key={i}>{data['equipment'][i]}</span>)
     }
-  
+
     return (
 
       <div>
@@ -144,7 +144,7 @@ export default class Me extends Component {
                     <span>{this.state.numWeeks ? data.price * this.state.numWeeks + 40 + "€": "0€"}</span>
                   </div>
                   <button className = "btn mt3 fw7" onClick={(e) => this.sendEmail(e)}>Buchung anfragen</button>
-                </div> 
+                </div>
               </form>
             </div>
           </div>
