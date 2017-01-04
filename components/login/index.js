@@ -54,7 +54,7 @@ export default class Element extends Component {
     return (
       <div className='fixed absolute--fill layout horizontal center'>
         <div className='center ba b--silver ph5 pb5 m-auto bg-FFFFFF' ref='content'>
-          <div className='f3 b tc pv5 mb0'>COLUMBUS</div>
+          <div className='f3 b tc pv5 mb0'>bookandoffer</div>
           {Contents}
         </div>
       </div>
@@ -207,7 +207,7 @@ class Signup extends Component {
         </label>
         <button className='btn w-100 mt4' onClick={() => this.signup()}>Registrieren</button>
         <div className='layout horizontal bt b--light-gray mt4 pt4 center'>
-          <span className='c-45A399 b'>Hast du schon einen Columbus Account?</span>
+          <span className='c-45A399 b'>Hast du schon einen bookandoffer Account?</span>
           <button className='btn-alt mla br2 ml4' onClick={() => this.props.onLogin()}>Einloggen</button>
         </div>
       </div>

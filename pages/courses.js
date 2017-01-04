@@ -33,7 +33,7 @@ export default class Me extends Component {
   render () {
     return (
       <div className = "">
-        <Head title='Columbus | Course Results' />
+        <Head title='bookandoffer | Course Results' />
         <Header />
 
         <div className = "layout horizontal justify-center wrap m-auto" style = {{maxWidth:"1500px"}}>

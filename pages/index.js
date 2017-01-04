@@ -43,7 +43,7 @@ export default class Page extends Component {
 
     return (
       <div>
-        <Head title='Columbus' />
+        <Head title='bookandoffer' />
         <div className='w-100 center'>
           <Header />
 
@@ -108,9 +108,9 @@ export default class Page extends Component {
         </div>
 
         <div className='pa6 tl w-100 layout vertical mb5' style = {{backgroundColor:"#F7F9FB"}}>
-          <p className = "f4 sysFont">Was ist Columbus?</p>
+          <p className = "f4 sysFont">Was ist bookandoffer?</p>
           <div className = "w3 sysFont" style = {{border:"2px solid #FCBB08",height:"3px"}}/>
-          <p className = "f5 fw2 courseTextPrimary">Columbus ist eine unabhängige Platform, die Menschen hilft, den für sie richtigen Sprachkurs zu finden. Sprachkurse können direkt über Columbus gebucht werden - bequem, transparent und zu fairen Konditionen. Anbieter von Sprachunterricht können Sprachkurse einstellen, Buchungen verwalten und ihre Reichweite und Auslastung erhöhen.</p>
+          <p className = "f5 fw2 courseTextPrimary">bookandoffer ist eine unabhängige Platform, die Menschen hilft, den für sie richtigen Sprachkurs zu finden. Sprachkurse können direkt über bookandoffer gebucht werden - bequem, transparent und zu fairen Konditionen. Anbieter von Sprachunterricht können Sprachkurse einstellen, Buchungen verwalten und ihre Reichweite und Auslastung erhöhen.</p>
         </div>
 
 

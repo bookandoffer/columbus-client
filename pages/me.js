@@ -21,7 +21,7 @@ export default class Me extends Component {
     const { user } = this.props
     return (
       <div>
-        <Head title='Columbus | My courses' />
+        <Head title='bookandoffer | My courses' />
         <Header token={this.props.cookies && this.props.cookies.token} />
         <div className='subnav layout horizontal bg-484848'>
           <div className='m-auto pv3'>

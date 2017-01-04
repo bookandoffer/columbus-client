@@ -64,7 +64,7 @@ export default class Page extends Component {
   render () {
     return (
       <div>
-        <Head title='Columbus | Create a course' />
+        <Head title='bookandoffer | Create a course' />
         <Header {...this.props} />
         <div>
           <Routes {...this.props} {...this.state} />
@@ -101,7 +101,7 @@ class Section1 extends Component {
     return (
       <div className='layout horizontal mw8 m-auto pa4'>
         <div className='layout vertical flex'>
-          <h1 className='h-1'>Biete Deine Kurse bei Columbus an!</h1>
+          <h1 className='h-1'>Biete Deine Kurse bei bookandoffer an!</h1>
           <div className='layout vertical mt3'>
             <span className='f7'>SCHRITT 1</span>
             <span className='f4 mt2'>Beginne mit den Basics</span>
@@ -143,7 +143,7 @@ class CourseType extends Component {
 
     return (
       <div className='mw6 m-auto mt5 layout vertical'>
-        <h1 className='h-1 sysFont'>Biete Deine Kurse bei Columbus an!</h1>
+        <h1 className='h-1 sysFont'>Biete Deine Kurse bei bookandoffer an!</h1>
         <select value={type} className='mt5 select' onChange={(e) => update('course', { type: e.target.value })}>
           {Object.keys(types).map(t => (
             <option key={t} value={t}>{types[t]}</option>
@@ -229,7 +229,7 @@ class Section2 extends Component {
     return (
       <div className='layout horizontal mw8 m-auto pa4'>
         <div className='layout vertical flex'>
-          <h1 className=''>Biete Deine Kurse bei Columbus an!</h1>
+          <h1 className=''>Biete Deine Kurse bei bookandoffer an!</h1>
           <div className='layout vertical mt3'>
             <span className='f7'>SCHRITT 1</span>
             <i className='material-icons self-end f2 c-45A399' style={{height: 0}}>check_circle</i>
@@ -359,7 +359,7 @@ class Section3 extends Component {
     return (
       <div className='layout horizontal mw8 m-auto pa4'>
         <div className='layout vertical flex pr3'>
-          <h1 className=''>Biete Deine Kurse bei Columbus an!</h1>
+          <h1 className=''>Biete Deine Kurse bei bookandoffer an!</h1>
           <div className='layout vertical mt3'>
             <span className='f7'>SCHRITT 1</span>
             <i className='material-icons self-end f2 c-45A399' style={{height: 0}}>check_circle</i>
@@ -685,7 +685,7 @@ class Section4 extends Component {
     return (
       <div className='layout horizontal mw8 m-auto pa4'>
         <div className='layout vertical flex pr3'>
-          <h1 className=''>Biete Deine Kurse bei Columbus an!</h1>
+          <h1 className=''>Biete Deine Kurse bei bookandoffer an!</h1>
           <div className='layout vertical mt3'>
             <span className='f7'>SCHRITT 1</span>
             <i className='material-icons self-end f2 c-45A399' style={{height: 0}}>check_circle</i>

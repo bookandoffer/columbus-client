@@ -1,8 +1,8 @@
 {
-  "name": "columbus",
+  "name": "bookandoffer",
   "version": "1.0.0",
   "private": true,
-  "description": "columbus website",
+  "description": "bookandoffer website",
   "author": "Matthew Mueller",
   "dependencies": {
     "classnames": "^2.2.5",
