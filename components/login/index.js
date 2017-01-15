@@ -272,7 +272,7 @@ class Login extends Component {
         <label className='db mt3'>
           { this.state.passwordError && <div className='c-B24334'>{this.state.passwordError}</div> }
           <div className='layout horizontal center pv3 ph3 ba b--light-silver'>
-            <input onInput={(e) => this.setState({ password: e.target.value, passwordError: null })} value={this.state.password || ''} type='password' className='w-100 bn outline-0' placeholder='Neues Passwort' />
+            <input onInput={(e) => this.setState({ password: e.target.value, passwordError: null })} value={this.state.password || ''} type='password' className='w-100 bn outline-0' placeholder='Passwort' />
             <i className='material-icons'>lock</i>
           </div>
         </label>

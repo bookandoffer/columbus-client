@@ -1,3 +1,4 @@
+import findCoursesByCategory from '../lib/find-courses-by-category'
 import findCourses from '../lib/find-courses'
 import Header from '../components/header'
 import redirect from '../lib/redirect'
@@ -13,16 +14,21 @@ const alert = typeof window === 'undefined'
 
 export default class Me extends Component {
   static async getInitialProps (ctx) {
-    const what = get(ctx, 'query.what')
+    const category = get(ctx, 'query.category')
     const where = get(ctx, 'query.where')
+    const what = get(ctx, 'query.what')
     const when = get(ctx, 'query.when')
+    let res = null
 
-    // go back if we don't have a course id via ?course=...
-    if (!what || !where || !when) return redirect(ctx, '/')
+    if (what && where && when) {
+      res = await findCourses({ query: what, location: where, date: when })
+    } else if (category) {
+      res = await findCoursesByCategory({ category: category })
+    } else {
+      return redirect(ctx, '/')
+    }
 
-    const res = await findCourses({ query: what, location: where, date: when })
-
-    if (res instanceof Error) {
+    if (!res || res instanceof Error) {
       alert(res.message)
       return redirect(ctx, '/')
     }
@@ -32,11 +38,11 @@ export default class Me extends Component {
 
   render () {
     return (
-      <div className = "">
+      <div className=''>
         <Head title='bookandoffer | Course Results' />
         <Header />
 
-        <div className = "layout horizontal justify-center wrap m-auto" style = {{maxWidth:"1500px"}}>
+        <div className='layout horizontal justify-center wrap m-auto' style={{maxWidth: '1500px'}}>
           {this.props.courses.map(course => <Course {...course} />)}
         </div>
       </div>
@@ -55,20 +61,20 @@ class Course extends Component {
   }
 
   render () {
-    console.log(this.props)
+    const image = get(this.props, 'images.0') || 'http://law.depaul.edu/academics/study-abroad/berlin-germany/PublishingImages/Berlin-OberbaumBridge_1600.jpg'
 
     return (
-      <div className = "pa3 pointer" onClick={() => this.search(this.props.id)}>
-        <div className='layout horizontal justify-between flex h5 w5 sysFont' style = {{height: "240px", width: "400px",backgroundImage:"url(" + this.props.images[0] + ")",backgroundSize:"cover"}}>
-          <div className = "bg-FD5C63 self-end mb3 ph2 layout horizontal" style = {{height:"45px",width:"140px"}}>
-            <span className = "flex self-center white f3">{this.props.price}</span>
-            <span className = "white self-center" style = {{fontSize:"12px",marginTop:"5px"}}>€ Gesamt</span>
+      <div className='pa3 pointer' onClick={() => this.search(this.props.id)}>
+        <div className='layout horizontal justify-between flex h5 w5 sysFont' style={{height: '240px', width: '400px', backgroundImage: 'url(' + image + ')', backgroundSize: 'cover'}}>
+          <div className='bg-FD5C63 self-end mb3 ph2 layout horizontal' style={{height: '45px', width: '140px'}}>
+            <span className='flex self-center white f3'>{this.props.price}</span>
+            <span className='white self-center' style={{fontSize: '12px', marginTop: '5px'}}>€ Gesamt</span>
           </div>
-          <img className = "b--white self-end" src = "/static/course-logo.png" style = {{border:"0px solid white",borderRadius:"50px",height:"50px",width:"50px",marginRight:"15px",marginBottom:"-25px"}}/>
+          <img className='b--white self-end' src='/static/course-logo.png' style={{border: '0px solid white', borderRadius: '50px', height: '50px', width: '50px', marginRight: '15px', marginBottom: '-25px'}} />
         </div>
-        <div className = "ph3 layout vertical sysFont justify-center" style = {{height:"70px", width:"400px"}}>
-          <span className = "courseTextPrimary mb1" style = {{fontSize:"14px",letterSpacing:"1px"}}>{this.props.title}</span>
-          <span className = "courseTextSecondary" style = {{fontSize:"11px",letterSpacing:"1px"}}>{this.props.address + ", " + this.props.country}</span>
+        <div className='ph3 layout vertical sysFont justify-center' style={{height: '70px', width: '400px'}}>
+          <span className='courseTextPrimary mb1' style={{fontSize: '14px', letterSpacing: '1px'}}>{this.props.title}</span>
+          <span className='courseTextSecondary' style={{fontSize: '11px', letterSpacing: '1px'}}>{this.props.address + ', ' + this.props.country}</span>
         </div>
       </div>
     )

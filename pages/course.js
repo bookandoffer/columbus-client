@@ -10,7 +10,6 @@ import auth from '../lib/auth'
 import fecha from 'fecha'
 import get from 'dlv'
 
-
 var data = {
   'name': 'Standardkur, NL, A1',
   'address': 'Amsterdam, NH, Niederlande',
@@ -54,19 +53,19 @@ export default class Me extends Component {
     return { course: res.course }
   }
 
-  constructor(props){
+  constructor (props) {
     super(props)
     this.state = {}
   }
 
-  async sendEmail (e){
+  async sendEmail (e) {
     e.preventDefault()
 
-    const startDate = this.state.startDate;
-    const numWeeks = this.state.numWeeks;
-    const email = this.state.email;
+    const startDate = this.state.startDate
+    const numWeeks = this.state.numWeeks
+    const email = this.state.email
 
-    if(!email){
+    if (!email) {
       alert('Bitte geben sie eine gültige E-Mail')
     }
 
@@ -91,7 +90,6 @@ export default class Me extends Component {
   }
 
   render () {
-
     const data = Object.assign({}, staticData, this.props.course)
 
     console.log(data)
@@ -114,37 +112,37 @@ export default class Me extends Component {
         <Header />
 
         <div className='w-100 flex justify-end items-end' style={{height: '500px', backgroundImage: 'url(' + data.images[0] + ')', backgroundSize: 'cover'}}>
-          <div className = "bg-white layout vertical z-1" style = {{height:"470px",width:"300px", marginBottom:"-430px", marginRight:"50px"}}>
-            <div className = "layout horizontal items-center ph3 sysFont justify-between" style = {{height: "40px", backgroundColor:"#4A4C4C"}}>
-              <span className = "white f6">{data.price} € </span>
-              <span className = "white f6">Woche </span>
+          <div className='bg-white layout vertical z-1' style={{height: '470px', width: '300px', marginBottom: '-430px', marginRight: '50px'}}>
+            <div className='layout horizontal items-center ph3 sysFont justify-between' style={{height: '40px', backgroundColor: '#4A4C4C'}}>
+              <span className='white f6'>{data.price} € </span>
+              <span className='white f6'>Woche </span>
             </div>
-            <div className = "flex sysFont pa3 layout vertical" style = {{borderRight:"1px solid #E4E7E7",borderLeft:"1px solid #E4E7E7",borderBottom:"1px solid #E4E7E7"}}>
+            <div className='flex sysFont pa3 layout vertical' style={{borderRight: '1px solid #E4E7E7', borderLeft: '1px solid #E4E7E7', borderBottom: '1px solid #E4E7E7'}}>
               <form>
 
-                <span className = "f6 courseTextPrimary">Email</span>
-                <input className = "mt2 mb3 transactionInput" style = {{width:"88%",height:"32px",border:"1px solid #686666",borderRadius:"3px"}} type = "text" value = {this.state.email} onInput={(e) => this.setState({ email: e.target.value })}></input>
+                <span className='f6 courseTextPrimary'>Email</span>
+                <input className='mt2 mb3 transactionInput' style={{width: '88%', height: '32px', border: '1px solid #686666', borderRadius: '3px'}} type='text' value={this.state.email} onInput={(e) => this.setState({ email: e.target.value })} />
 
-                <span className = "f6 courseTextPrimary">Startdatum</span>
-                <input className = "mt2 mb3 transactionInput" style = {{width:"88%",height:"32px",border:"1px solid #686666",borderRadius:"3px"}} type = "text" value = {this.state.startDate} onInput={(e) => this.setState({ startDate: e.target.value })}></input>
+                <span className='f6 courseTextPrimary'>Startdatum</span>
+                <input className='mt2 mb3 transactionInput' style={{width: '88%', height: '32px', border: '1px solid #686666', borderRadius: '3px'}} type='text' value={this.state.startDate} onInput={(e) => this.setState({ startDate: e.target.value })} />
 
-                <span className = "f6 courseTextPrimary">Anzahl Wochen</span>
-                <input className = "mt2 transactionInput" style = {{width:"88%",height:"32px",border:"1px solid #686666",borderRadius:"3px"}} type = "text" min="0" type = "number" value = {this.state.numWeeks} onInput={(e) => this.setState({ numWeeks: parseInt(e.target.value,10) })}></input>
+                <span className='f6 courseTextPrimary'>Anzahl Wochen</span>
+                <input className='mt2 transactionInput' style={{width: '88%', height: '32px', border: '1px solid #686666', borderRadius: '3px'}} type='text' min='0' type='number' value={this.state.numWeeks} onInput={(e) => this.setState({ numWeeks: parseInt(e.target.value, 10) })} />
 
-                <div className = "flex layout vertical mt4">
-                  <div className = "layout courseTextPrimary horizontal ph3 items-center justify-between" style = {{height:"35px",borderBottom:"1px solid #E4E7E7"}}>
-                    <span>{this.state.numWeeks ? data.price + " € x " + this.state.numWeeks + " Wochen" : "-"}</span>
-                    <span>{this.state.numWeeks ? data.price * this.state.numWeeks + "€" : "0€"}</span>
+                <div className='flex layout vertical mt4'>
+                  <div className='layout courseTextPrimary horizontal ph3 items-center justify-between' style={{height: '35px', borderBottom: '1px solid #E4E7E7'}}>
+                    <span>{this.state.numWeeks ? data.price + ' € x ' + this.state.numWeeks + ' Wochen' : '-'}</span>
+                    <span>{this.state.numWeeks ? data.price * this.state.numWeeks + '€' : '0€'}</span>
                   </div>
-                  <div className = "layout courseTextPrimary horizontal ph3 items-center justify-between" style = {{height:"35px",borderBottom:"1px solid #E4E7E7"}}>
+                  <div className='layout courseTextPrimary horizontal ph3 items-center justify-between' style={{height: '35px', borderBottom: '1px solid #E4E7E7'}}>
                     <span>Service-Gebühr</span>
                     <span>40€</span>
                   </div>
-                  <div className = "layout courseTextPrimary horizontal ph3 items-center justify-between" style = {{height:"35px",borderBottom:"1px solid #E4E7E7"}}>
+                  <div className='layout courseTextPrimary horizontal ph3 items-center justify-between' style={{height: '35px', borderBottom: '1px solid #E4E7E7'}}>
                     <span>Gesamtsumme</span>
-                    <span>{this.state.numWeeks ? data.price * this.state.numWeeks + 40 + "€": "0€"}</span>
+                    <span>{this.state.numWeeks ? data.price * this.state.numWeeks + 40 + '€' : '0€'}</span>
                   </div>
-                  <button className = "btn mt3 fw7" onClick={(e) => this.sendEmail(e)}>Buchung anfragen</button>
+                  <button className='btn mt3 fw7' onClick={(e) => this.sendEmail(e)}>Buchung anfragen</button>
                 </div>
               </form>
             </div>
@@ -190,7 +188,7 @@ export default class Me extends Component {
           <div className='w-70 pt5' style={{minWidth: '800px', borderBottom: '2px solid #F1F1F1'}}>
             <p className='f4 fw7 courseTextPrimary'>Über dieses Inserat</p>
             <p className='f5 pb4 courseTextSecondary'>{data['description']}</p>
-            <p className='f5 fw7 pb2 courseTextSecondary pointer' style={{color: '#56B6C5'}}></p>
+            <p className='f5 fw7 pb2 courseTextSecondary pointer' style={{color: '#56B6C5'}} />
           </div>
         </div>
 
