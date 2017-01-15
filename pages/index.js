@@ -7,6 +7,7 @@ import Category from '../components/categories'
 // import DatePicker from '../components/datepicker'
 import DatePicker from 'react-datepicker'
 import moment from 'moment'
+import Link from 'next/link'
 
 export default class Page extends Component {
   constructor (props) {
@@ -86,23 +87,109 @@ export default class Page extends Component {
         <Link href="/course">Courses</Link>
         */}
 
+        <div className = "flex w-70 m-auto pl2 mb4 mt6 helvetica c-484848" style = {{"maxWidth":"1000px"}}>Finde den richtigen Kurs für dich - einfach online</div>
+        <div className='mt3 mb5 layout w-70 m-auto horizontal wrap' style = {{"maxWidth":"1000px"}}>
+          <div className='pa2 w-50'>
+            <Link href='/courses?category=language'>
+              <div className='aspect-ratio aspect-ratio--16x9  pointer'>
+                <div className='aspect-ratio--object pa3 cover layout vertical justify-end' style={{ backgroundImage: `url(/static/categories/language.png)` }}>
+                  <h3 className='c-FFFFFF fw4 f3 mb0'>Sprachkurse</h3>
+                  <p className='c-FFFFFF f6 fw2 mv1'>Englisch, Spanisch, Italienisch</p>
+                </div>
+              </div>
+            </Link>
+          </div>
+          <div className='pa2 w-50'>
+            <Link href='/courses?category=computer'>
+              <div className='aspect-ratio aspect-ratio--16x9 pointer'>
+                <div className='aspect-ratio--object pa3 cover layout vertical justify-end' style={{ backgroundImage: `url(/static/categories/computer.png)` }}>
+                  <h3 className='c-FFFFFF fw4 f3 mb0'>Computerkurse</h3>
+                  <p className='c-FFFFFF f6 fw2 mv1'>Word, Excel, iPad</p>
+                </div>
+              </div>
+            </Link>
+          </div>
+          <div className='pa2 w-50'>
+            <Link href='/courses?category=golf'>
+              <div className='aspect-ratio aspect-ratio--16x9 pointer'>
+                <div className='aspect-ratio--object pa3 cover layout vertical justify-end' style={{ backgroundImage: `url(/static/categories/golf.png)` }}>
+                  <h3 className='c-FFFFFF fw4 f3 mb0'>Golfkurse</h3>
+                  <p className='c-FFFFFF f6 fw2 mv1'>Platzreife, Fortgeschritten</p>
+                </div>
+              </div>
+            </Link>
 
-        <div className='flex justify-center pv5'>
-          <div className='layout db vertical mv5 sysFont white regular f7' style={{minHeight: '500px', width: '70%'}}>
-            <div className='mv2 black f5' style={{color: '#4B4B4B'}}>Finde den richtigen Kurs für dich - einfach online</div>
-            <div className='layout horizontal flex-1'>
-                <div className='flex-1 ma2 tl flex pl2 pb2 pointer items-end' style={{ backgroundImage: "url('/static/rome.jpg')", backgroundSize: 'cover' }}>Rom</div>
-                <div className='flex-1 ma2 tl flex pl2 pb2 pointer items-end' style={{ backgroundImage: "url('/static/lissabon.jpg')", backgroundSize: 'cover' }}>Lissabon</div>
-            </div>
-            <div className='layout horizontal flex-1'>
-                <div className='flex-1 ma2 tl flex pl2 pb2 pointer items-end' style={{ backgroundImage: "url('/static/rome.jpg')", backgroundSize: 'cover' }}>Rom</div>
-                <div className='flex-1 ma2 tl flex pl2 pb2 pointer items-end' style={{ backgroundImage: "url('/static/lissabon.jpg')", backgroundSize: 'cover' }}>Lissabon</div>
-            </div>
-            <div className='layout horizontal flex-1'>
-                <div className='flex-1 ma2 tl flex pl2 pb2 pointer items-end' style={{ backgroundImage: "url('/static/rome.jpg')", backgroundSize: 'cover' }}>Rom</div>
-                <div className='flex-1 ma2 tl flex pl2 pb2 pointer items-end' style={{ backgroundImage: "url('/static/lissabon.jpg')", backgroundSize: 'cover' }}>Lissabon</div>
-            </div>
-            
+          </div>
+          <div className='pa2 w-50'>
+            <Link href='/courses?category=golf'>
+              <div className='aspect-ratio aspect-ratio--16x9  pointer'>
+                <div className='aspect-ratio--object pa3 cover layout vertical justify-end' style={{ backgroundImage: `url(/static/categories/painting.png)` }}>
+                  <h3 className='c-FFFFFF fw4 f3 mb0'>Malkurse</h3>
+                  <p className='c-FFFFFF f6 fw2 mv1'>Zeichnen für Einsteiger, Ölmalerei, Acryl</p>
+                </div>
+              </div>
+            </Link>
+          </div>
+          <div className='pa2 w-50'>
+            <Link href='/courses?category=painting'>
+              <div className='aspect-ratio aspect-ratio--16x9  pointer'>
+                <div className='aspect-ratio--object pa3 cover layout vertical justify-end' style={{ backgroundImage: `url(/static/categories/skiing.png)` }}>
+                  <h3 className='c-FFFFFF fw4 f3 mb0'>Skikurse</h3>
+                  <p className='c-FFFFFF f6 fw2 mv1'>Einsteiger, Profis</p>
+                </div>
+              </div>
+            </Link>
+          </div>
+          <div className='pa2 w-50'>
+            <Link href='/courses?category=cooking'>
+              <div className='aspect-ratio aspect-ratio--16x9  pointer'>
+                <div className='aspect-ratio--object pa3 cover layout vertical justify-end' style={{ backgroundImage: `url(/static/categories/cooking.png)` }}>
+                  <h3 className='c-FFFFFF fw4 f3 mb0'>Kochkurse</h3>
+                  <p className='c-FFFFFF f6 fw2 mv1'>Einsteiger, Fortgeschritten, Profis</p>
+                </div>
+              </div>
+            </Link>
+          </div>
+          <div className='pa2 w-50'>
+            <Link href='/courses?category=yoga'>
+              <div className='aspect-ratio aspect-ratio--16x9  pointer'>
+                <div className='aspect-ratio--object pa3 cover layout vertical justify-end' style={{ backgroundImage: `url(/static/categories/yoga.png)` }}>
+                  <h3 className='c-FFFFFF fw4 f3 mb0'>Yogakurse</h3>
+                  <p className='c-FFFFFF f6 fw2 mv1'>Hatha Yoga, Einsteiger, Abendkurse</p>
+                </div>
+              </div>
+            </Link>
+          </div>
+          <div className='pa2 w-50'>
+            <Link href='/courses?category=chess'>
+              <div className='aspect-ratio aspect-ratio--16x9  pointer'>
+                <div className='aspect-ratio--object pa3 cover layout vertical justify-end' style={{ backgroundImage: `url(/static/categories/chess.png)` }}>
+                  <h3 className='c-FFFFFF fw4 f3 mb0'>Schachkurse</h3>
+                  <p className='c-FFFFFF f6 fw2 mv1'>Einsteiger, Fortgeschritten, Profis</p>
+                </div>
+              </div>
+            </Link>
+          </div>
+          <div className='pa2 w-50'>
+            <Link href='/courses?category=riding'>
+              <div className='aspect-ratio aspect-ratio--16x9  pointer'>
+                <div className='aspect-ratio--object pa3 cover layout vertical justify-end' style={{ backgroundImage: `url(/static/categories/riding.png)` }}>
+                  <h3 className='c-FFFFFF fw4 f3 mb0'>Reitkurse</h3>
+                  <p className='c-FFFFFF f6 fw2 mv1'>Kinderreitkurse, Einsteiger, Parcour</p>
+                </div>
+              </div>
+            </Link>
+          </div>
+
+          <div className='pa2 w-50'>
+            <Link href='/courses?category=fitness'>
+              <div className='aspect-ratio aspect-ratio--16x9  pointer'>
+                <div className='aspect-ratio--object pa3 cover layout vertical justify-end' style={{ backgroundImage: `url(/static/categories/fitness.png)` }}>
+                  <h3 className='c-FFFFFF fw4 f3 mb0'>Fitnesskurse</h3>
+                  <p className='c-FFFFFF f6 fw2 mv1'>Crossfit, Aerobic</p>
+                </div>
+              </div>
+            </Link>
           </div>
         </div>
 
