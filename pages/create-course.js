@@ -431,7 +431,7 @@ class CoursePrice extends Component {
 
     return (
       <div className='mw6 m-auto mt5 layout vertical'>
-        <h1 className='h-1'>Der Preis pro Stunde für den Kurs</h1>
+        <h1 className='h-1'>Preis pro Kursstunde</h1>
         <div>
           <div className='f7 fw4 mb1 ml1 mt4'>Preis</div>
           <label className='layout horizontal center label'>
