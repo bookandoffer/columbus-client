@@ -13,7 +13,10 @@ export default class Footer extends Component {
             <div className = "flex-1"><a href = "mailto:kontakt@bookandoffer.com"><div className = "flex-1 helvetica pointer c-767676">Kontakt</div></a></div>
             <div className = "flex-1"><a href = "/static/AGB_bookandoffer.docx"><div className = "flex-1 helvetica pointer c-767676">AGBs</div></a></div>
             <div className = "flex-1"><a href = "mailto:feedback@bookandoffer.com?Subject=Helfe%20uns%20bookandoffer%20besser%20zu%20machen"><div className = "flex-1 helvetica pointer c-767676">Feedback</div></a></div>
-            <div className = "flex-1 helvetica pointer c-767676"><a href = "http://www.facebook.com/tryhackerbay"><img src = "/static/facebook.png" className = "mr3 pointer" style = {{height:"20px"}} /></a><a href = "http://www.twitter.com/hackerbay"><img src = "/static/twitter.png" className = "pointer" style = {{height:"20px"}} /></a></div>
+            <div className = "flex-1 helvetica pointer c-767676">
+              <a href = "http://www.facebook.com/tryhackerbay" target="_blank"><img src = "/static/facebook.png" className = "mr3 pointer" style = {{height:"20px"}} /></a>
+              <a href = "http://www.twitter.com/hackerbay" target="_blank"><img src = "/static/twitter.png" className = "pointer" style = {{height:"20px"}} /></a>
+            </div>
           </div>
         </div>
       </div>
