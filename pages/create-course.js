@@ -1,5 +1,6 @@
 import countries from '../lib/countries/index.json'
 import loadCourse from '../lib/load-course'
+import DatePicker from 'react-datepicker'
 import Header from '../components/header'
 import defaults from 'lodash.defaults'
 import redirect from '../lib/redirect'
@@ -11,6 +12,7 @@ import Link from 'next/link'
 import store from '../lib/store'
 import Router from 'next/router'
 import auth from '../lib/auth'
+import moment from 'moment'
 import get from 'dlv'
 
 const alert = typeof window === 'undefined'
@@ -136,9 +138,16 @@ class CourseType extends Component {
     const step = Number(get(this.props, 'step'))
     const type = get(this.props, 'course.type') || 'LANGUAGE'
     const types = {
-      LANGUAGE: 'Sprachkurs',
-      DANCE: 'Tanzkurs',
-      PAINTING: 'Malerei Kurs'
+      COMPUTER: 'ComputerKurse',
+      GOLF: 'Golfkurse',
+      PAINTING: 'Malkurse',
+      SKI: 'Skikurse',
+      COOKING: 'Kochkurse',
+      YOGA: 'Yogakurse',
+      CHESS: 'Schachkurse',
+      RIDING: 'Reitkurse',
+      LANGUAGE: 'Sprachkurse',
+      FITNESS: 'Fitnesskurse'
     }
 
     return (
@@ -235,6 +244,7 @@ class Section2 extends Component {
             <i className='material-icons self-end f2 c-45A399' style={{height: 0}}>check_circle</i>
             <span className='f4 mt2'>Beginne mit den Basics</span>
             <span className='f7 mt2'>Ort, Art des Kurses</span>
+            <Link href={`/create-course?step=1`}><div className='f7 pt2 c-45A399'>bearbeiten</div></Link>
           </div>
           <div className='layout vertical mt4'>
             <span className='f7 mt2'>SCHRITT 2</span>
@@ -315,8 +325,8 @@ class CourseDescription extends Component {
       <div className='mw6 m-auto mt5 layout vertical'>
         <h1 className='h-1'>Fang an, deine Beschreibung zu erstellen</h1>
         <label className='relative'>
-          <input type='text' className='w-100 input' maxLength='50' value={description} onInput={(e) => update('course', { description: e.target.value })} placeholder='Du wirst den Unterricht bei mir lieben, weil' />
-          <div className='absolute top-0 right-0 pa2 f7 silver'>{50 - description.length}</div>
+          <input type='text' className='w-100 input' maxLength='500' value={description} onInput={(e) => update('course', { description: e.target.value })} placeholder='Du wirst den Unterricht bei mir lieben, weil' />
+          <div className='absolute top-0 right-0 pa2 f7 silver'>{500 - description.length}</div>
         </label>
         <div className='layout horizontal bt b--light-gray center mt6 pt4'>
           <Link href={`/create-course?step=${step - 1}`}><span className='c-484848'>← Zurück</span></Link>
@@ -365,12 +375,14 @@ class Section3 extends Component {
             <i className='material-icons self-end f2 c-45A399' style={{height: 0}}>check_circle</i>
             <span className='f4 mt2'>Beginne mit den Basics</span>
             <span className='f7 mt2'>Ort, Art des Kurses</span>
+            <Link href={`/create-course?step=1`}><div className='f7 pt2 c-45A399'>bearbeiten</div></Link>
           </div>
           <div className='layout vertical mt4'>
             <span className='f7 mt2'>SCHRITT 2</span>
             <i className='material-icons self-end f2 c-45A399' style={{height: 0}}>check_circle</i>
             <span className='f4 mt2'>Beschreib die Atmosphäre</span>
             <span className='f7'>Fotos, Kurzbeschreibung, Title</span>
+            <Link href={`/create-course?step=4`}><div className='f7 pt2 c-45A399'>bearbeiten</div></Link>
           </div>
           <div className='layout vertical mt4'>
             <span className='f7 mt2'>SCHRITT 3</span>
@@ -419,7 +431,7 @@ class CoursePrice extends Component {
 
     return (
       <div className='mw6 m-auto mt5 layout vertical'>
-        <h1 className='h-1'>Lege Preie für deinen Kurs fest</h1>
+        <h1 className='h-1'>Der Preis pro Stunde für den Kurs</h1>
         <div>
           <div className='f7 fw4 mb1 ml1 mt4'>Preis</div>
           <label className='layout horizontal center label'>
@@ -475,8 +487,8 @@ class CourseSchedule extends Component {
     const step = Number(get(this.props, 'step'))
     const interval = get(this.props, 'course.interval') || 'DAILY'
     const startDate = get(this.props, 'course.startDate') || ''
-    const endDate = get(this.props, 'course.endDate') || ''
-    const startTime = get(this.props, 'course.startTime') || ''
+    const endDate = get(this.props, 'course.endDate') || moment().add(5, 'days')
+    const startTime = get(this.props, 'course.startTime') || moment()
 
     const intervals = {
       DAILY: 'Daily',
@@ -487,17 +499,17 @@ class CourseSchedule extends Component {
     }
 
     return (
-      <div className='mw6 m-auto mt5 layout vertical'>
+      <div className='course-schedule mw6 m-auto mt5 layout vertical'>
         <h1 className='h-1'>In welchem Zeitraum findet dein Kurs statt?</h1>
         <div className='layout vertical'>
           <div className='layout horizontal'>
             <label htmlFor='startDate' className='db flex-1 pa3'>
               <div className='f7 fw4 mb1 ml1 mt4'>Startdatum</div>
-              <input type='text' className='w-100 input' value={startDate} onInput={(e) => update('course', { startDate: e.target.value })} placeholder='10.01.2017' />
+              <DatePicker selected={moment(startDate)} onChange={(date) => update('course', { startDate: date.format('l') })} className='w-100 input' placeholderText='10/1/2017' />
             </label>
             <label htmlFor='endDate' className='db flex-1 pa3'>
               <div className='f7 fw4 mb1 ml1 mt4'>Enddatum</div>
-              <input type='text' className='w-100 input' value={endDate} onInput={(e) => update('course', { endDate: e.target.value })} placeholder='10.03.2017' />
+              <DatePicker selected={moment(endDate)} onChange={(date) => update('course', { endDate: date.format('l') })} className='w-100 input' placeholderText='10/6/2017' />
             </label>
           </div>
           <div className='layout horizontal'>
@@ -691,18 +703,21 @@ class Section4 extends Component {
             <i className='material-icons self-end f2 c-45A399' style={{height: 0}}>check_circle</i>
             <span className='f4 mt2'>Beginne mit den Basics</span>
             <span className='f7 mt2'>Ort, Art des Kurses</span>
+            <Link href={`/create-course?step=1`}><div className='f7 pt2 c-45A399'>bearbeiten</div></Link>
           </div>
           <div className='layout vertical mt4'>
             <span className='f7 mt2'>SCHRITT 2</span>
             <i className='material-icons self-end f2 c-45A399' style={{height: 0}}>check_circle</i>
             <span className='f4 mt2'>Beschreib die Atmosphäre</span>
             <span className='f7'>Fotos, Kurzbeschreibung, Title</span>
+            <Link href={`/create-course?step=4`}><div className='f7 pt2 c-45A399'>bearbeiten</div></Link>
           </div>
           <div className='layout vertical mt4'>
             <span className='f7 mt2'>SCHRITT 3</span>
             <i className='material-icons self-end f2 c-45A399' style={{height: 0}}>check_circle</i>
             <span className='f4 mt2'>Mach dich bereit für deine Schüler</span>
             <span className='f7'>Lektionen, Kalendar, Preis</span>
+            <Link href={`/create-course?step=8`}><div className='f7 pt2 c-45A399'>bearbeiten</div></Link>
           </div>
           <button onClick={() => this.save()} className='btn mt5 self-start'>Speichern und Account erstellen</button>
         </div>

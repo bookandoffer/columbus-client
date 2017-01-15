@@ -193,3 +193,11 @@ a {
     background-size: cover;
   }
 }
+
+/**
+ * Hack for datepicker
+ */
+
+.course-schedule .react-datepicker__input-container {
+  display: block !important;
+}
