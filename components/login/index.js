@@ -9,7 +9,7 @@ import Router from 'next/router'
 export default class Element extends Component {
   constructor (props) {
     super(props)
-    this.state = { tab: 'login' }
+    this.state = { tab: this.props.tab || 'login' }
     this.outside = this.handleMouseClickOutside.bind(this)
   }
 

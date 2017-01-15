@@ -1,5 +1,7 @@
+import cookie from 'component-cookie'
 import { Component } from 'react'
 import Portal from 'react-portal'
+import Router from 'next/router'
 import Login from '../login'
 import Link from 'next/link'
 
@@ -7,28 +9,30 @@ export default class Header extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      clicked: false
+      loggedIn: !!cookie('token'),
+      clicked: false,
+      tab: 'login'
     }
   }
 
-    // onClick (e) {
-    //     this.setState({
-    //         clicked: !this.state.clicked
-    //     })
-    // }
-
-    // <div className='f2 bg-blue' onClick={(e) => this.onClick(e)}>header - {this.state.clicked ? 'yes' : 'no'}</div>
+  createCourse () {
+    if (this.state.loggedIn) {
+      Router.push('/create-course')
+    } else {
+      this.setState({ tab: 'login' }, () => this.refs.loginModal.openPortal())
+    }
+  }
 
   render (props) {
     return (
       <div className='layout horizontal pa2 center mb0 sysFont' style={{'height': '50px'}}>
         <Link href='/' className='link' style={{ textDecoration: 'none' }}><div className='b f5 mid-gray layout horizontal center'><img src='/static/globe.svg' style={{'height': '30px', 'marginLeft': '25px', 'marginRight': '25px'}} />bookandoffer</div></Link>
-        <div className='ph3 f7 mid-gray pointer' style={{'marginLeft': 'auto'}}>KURS EINSTELLEN</div>
-        <div className='ph3 f7 mid-gray pointer'>HILFE</div>
-        <div className='ph3 f7 mid-gray pointer'>REGISTRIEREN</div>
-        <div className='ph3 f7 mid-gray pointer' onClick={() => this.refs.loginModal.openPortal()}>LOGIN</div>
+        <div className='ph3 f7 mid-gray pointer' style={{'marginLeft': 'auto'}} onClick={() => this.createCourse()}>KURS EINSTELLEN</div>
+        <Link href='/categories'><div className='ph3 f7 mid-gray pointer'>KATEGORIEN</div></Link>
+        <div className='ph3 f7 mid-gray pointer' onClick={() => { this.setState({ tab: 'signup' }, () => this.refs.loginModal.openPortal()) }}>REGISTRIEREN</div>
+        <div className='ph3 f7 mid-gray pointer' onClick={() => { this.setState({ tab: 'login' }, () => this.refs.loginModal.openPortal()) }}>LOGIN</div>
         <Portal ref='loginModal'>
-          <Login />
+          <Login tab={this.state.tab} />
         </Portal>
       </div>
     )
