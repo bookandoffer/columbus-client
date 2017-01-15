@@ -91,6 +91,7 @@ export default class Me extends Component {
 
   render () {
     const data = Object.assign({}, staticData, this.props.course)
+    const image = get(data, 'images.0') || 'http://law.depaul.edu/academics/study-abroad/berlin-germany/PublishingImages/Berlin-OberbaumBridge_1600.jpg'
 
     console.log(data)
     var evenEquipment = []
@@ -111,7 +112,7 @@ export default class Me extends Component {
 
         <Header />
 
-        <div className='w-100 flex justify-end items-end' style={{height: '500px', backgroundImage: 'url(' + data.images[0] + ')', backgroundSize: 'cover'}}>
+        <div className='w-100 flex justify-end items-end' style={{height: '500px', backgroundImage: 'url(' + image + ')', backgroundSize: 'cover'}}>
           <div className='bg-white layout vertical z-1' style={{height: '470px', width: '300px', marginBottom: '-430px', marginRight: '50px'}}>
             <div className='layout horizontal items-center ph3 sysFont justify-between' style={{height: '40px', backgroundColor: '#4A4C4C'}}>
               <span className='white f6'>{data.price} € </span>

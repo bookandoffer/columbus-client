@@ -1,6 +1,7 @@
 import findCoursesByCategory from '../lib/find-courses-by-category'
 import findCourses from '../lib/find-courses'
 import Header from '../components/header'
+import Footer from '../components/footer'
 import redirect from '../lib/redirect'
 import Head from '../components/head'
 import { Component } from 'react'
@@ -37,14 +38,19 @@ export default class Me extends Component {
   }
 
   render () {
+    const courses = this.props.courses
     return (
-      <div className=''>
+      <div className='layout vertical mvh-100'>
         <Head title='bookandoffer | Course Results' />
         <Header />
-
-        <div className='layout horizontal justify-center wrap m-auto' style={{maxWidth: '1500px'}}>
-          {this.props.courses.map(course => <Course {...course} />)}
+        <div className='m-auto layout horizontal wrap justify-center pv6' style={{maxWidth: '1500px'}}>
+          {
+            courses.length
+              ? courses.map(course => <Course key={course.id} {...course} />)
+              : <h2 className='sysFont pt4 fw3'>No courses found!</h2>
+          }
         </div>
+        <Footer />
       </div>
     )
   }
