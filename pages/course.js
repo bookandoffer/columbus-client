@@ -1,4 +1,5 @@
 import loadCourse from '../lib/load-course'
+import DatePicker from 'react-datepicker'
 import Header from '../components/header'
 import redirect from '../lib/redirect'
 import Head from '../components/head'
@@ -7,6 +8,7 @@ import { Component } from 'react'
 import Portal from 'react-portal'
 import Router from 'next/router'
 import auth from '../lib/auth'
+import moment from 'moment'
 import fecha from 'fecha'
 import get from 'dlv'
 
@@ -92,6 +94,7 @@ export default class Me extends Component {
   render () {
     const data = Object.assign({}, staticData, this.props.course)
     const image = get(data, 'images.0') || 'http://law.depaul.edu/academics/study-abroad/berlin-germany/PublishingImages/Berlin-OberbaumBridge_1600.jpg'
+    const startDate = this.state.startDate || new Date()
 
     console.log(data)
     var evenEquipment = []
@@ -105,7 +108,7 @@ export default class Me extends Component {
 
     return (
 
-      <div>
+      <div className='course-page'>
         <Head title='Columbus | Course Details' />
 
         <pre style={{display: 'none'}}><code>{JSON.stringify(this.props.course, true, 2)}</code></pre>
@@ -125,7 +128,8 @@ export default class Me extends Component {
                 <input className='mt2 mb3 transactionInput' style={{width: '88%', height: '32px', border: '1px solid #686666', borderRadius: '3px'}} type='text' value={this.state.email} onInput={(e) => this.setState({ email: e.target.value })} />
 
                 <span className='f6 courseTextPrimary'>Startdatum</span>
-                <input className='mt2 mb3 transactionInput' style={{width: '88%', height: '32px', border: '1px solid #686666', borderRadius: '3px'}} type='text' value={this.state.startDate} onInput={(e) => this.setState({ startDate: e.target.value })} />
+                <DatePicker selected={moment(startDate)} onChange={(date) => this.setState({ startDate: date.format('l') })} className='mt2 mb3 transactionInput course-page-date-picker' style={{width: '88%', height: '32px', border: '1px solid #686666', borderRadius: '3px'}} placeholderText='10/1/2017' />
+                {/* <input className='mt2 mb3 transactionInput'  type='text' value={this.state.startDate} onInput={(e) => this.setState({ startDate: e.target.value })} /> */}
 
                 <span className='f6 courseTextPrimary'>Anzahl Wochen</span>
                 <input className='mt2 transactionInput' style={{width: '88%', height: '32px', border: '1px solid #686666', borderRadius: '3px'}} type='text' min='0' type='number' value={this.state.numWeeks} onInput={(e) => this.setState({ numWeeks: parseInt(e.target.value, 10) })} />

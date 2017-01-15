@@ -202,6 +202,14 @@ a {
  * Hack for datepicker
  */
 
+.course-page .react-datepicker__input-container,
 .course-schedule .react-datepicker__input-container {
   display: block !important;
+}
+
+.course-page-date-picker {
+  width: 88%;
+  height: 32px;
+  border: 1px solid #686666;
+  border-radius: 3px;
 }

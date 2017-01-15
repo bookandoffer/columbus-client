@@ -40,15 +40,17 @@ export default class Me extends Component {
   render () {
     const courses = this.props.courses
     return (
-      <div className='layout vertical mvh-100'>
+      <div className='layout vertical min-vh-100'>
         <Head title='bookandoffer | Course Results' />
         <Header />
-        <div className='m-auto layout horizontal wrap justify-center pv6' style={{maxWidth: '1500px'}}>
-          {
+        <div className='m-auto justify-center pv6 flex-1' style={{maxWidth: '1500px'}}>
+          <div className='layout horizontal wrap'>
+            {
             courses.length
               ? courses.map(course => <Course key={course.id} {...course} />)
               : <h2 className='sysFont pt4 fw3'>No courses found!</h2>
           }
+          </div>
         </div>
         <Footer />
       </div>
