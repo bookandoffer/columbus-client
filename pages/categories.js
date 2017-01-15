@@ -25,7 +25,7 @@ export default class Categories extends Component {
             <div className='pa2 w-50'>
               <Link href='/courses?category=language'>
                 <div className='aspect-ratio aspect-ratio--16x9  pointer'>
-                  <div className='aspect-ratio--object pa3 cover layout vertical justify-end' style={{ backgroundImage: `url(/static/categories/language.png)` }}>
+                  <div className='aspect-ratio--object pa3 cover layout vertical justify-end z-0' style={{ backgroundImage: `url(/static/categories/language.png)` }}>
                     <h3 className='c-FFFFFF fw4 f3 mb0'>Sprachkurse</h3>
                     <p className='c-FFFFFF f6 fw2 mv1'>Englisch, Spanisch, Italienisch</p>
                   </div>
@@ -35,7 +35,7 @@ export default class Categories extends Component {
             <div className='pa2 w-50'>
               <Link href='/courses?category=computer'>
                 <div className='aspect-ratio aspect-ratio--16x9 pointer'>
-                  <div className='aspect-ratio--object pa3 cover layout vertical justify-end' style={{ backgroundImage: `url(/static/categories/computer.png)` }}>
+                  <div className='aspect-ratio--object pa3 cover layout vertical justify-end z-0' style={{ backgroundImage: `url(/static/categories/computer.png)` }}>
                     <h3 className='c-FFFFFF fw4 f3 mb0'>Computerkurse</h3>
                     <p className='c-FFFFFF f6 fw2 mv1'>Word, Excel, iPad</p>
                   </div>
@@ -45,7 +45,7 @@ export default class Categories extends Component {
             <div className='pa2 w-50'>
               <Link href='/courses?category=golf'>
                 <div className='aspect-ratio aspect-ratio--16x9 pointer'>
-                  <div className='aspect-ratio--object pa3 cover layout vertical justify-end' style={{ backgroundImage: `url(/static/categories/golf.png)` }}>
+                  <div className='aspect-ratio--object pa3 cover layout vertical justify-end z-0' style={{ backgroundImage: `url(/static/categories/golf.png)` }}>
                     <h3 className='c-FFFFFF fw4 f3 mb0'>Golfkurse</h3>
                     <p className='c-FFFFFF f6 fw2 mv1'>Platzreife, Fortgeschritten</p>
                   </div>
@@ -56,7 +56,7 @@ export default class Categories extends Component {
             <div className='pa2 w-50'>
               <Link href='/courses?category=golf'>
                 <div className='aspect-ratio aspect-ratio--16x9  pointer'>
-                  <div className='aspect-ratio--object pa3 cover layout vertical justify-end' style={{ backgroundImage: `url(/static/categories/painting.png)` }}>
+                  <div className='aspect-ratio--object pa3 cover layout vertical justify-end z-0' style={{ backgroundImage: `url(/static/categories/painting.png)` }}>
                     <h3 className='c-FFFFFF fw4 f3 mb0'>Malkurse</h3>
                     <p className='c-FFFFFF f6 fw2 mv1'>Zeichnen für Einsteiger, Ölmalerei, Acryl</p>
                   </div>
@@ -66,7 +66,7 @@ export default class Categories extends Component {
             <div className='pa2 w-50'>
               <Link href='/courses?category=painting'>
                 <div className='aspect-ratio aspect-ratio--16x9  pointer'>
-                  <div className='aspect-ratio--object pa3 cover layout vertical justify-end' style={{ backgroundImage: `url(/static/categories/skiing.png)` }}>
+                  <div className='aspect-ratio--object pa3 cover layout vertical justify-end z-0' style={{ backgroundImage: `url(/static/categories/skiing.png)` }}>
                     <h3 className='c-FFFFFF fw4 f3 mb0'>Skikurse</h3>
                     <p className='c-FFFFFF f6 fw2 mv1'>Einsteiger, Profis</p>
                   </div>
@@ -76,7 +76,7 @@ export default class Categories extends Component {
             <div className='pa2 w-50'>
               <Link href='/courses?category=cooking'>
                 <div className='aspect-ratio aspect-ratio--16x9  pointer'>
-                  <div className='aspect-ratio--object pa3 cover layout vertical justify-end' style={{ backgroundImage: `url(/static/categories/cooking.png)` }}>
+                  <div className='aspect-ratio--object pa3 cover layout vertical justify-end z-0' style={{ backgroundImage: `url(/static/categories/cooking.png)` }}>
                     <h3 className='c-FFFFFF fw4 f3 mb0'>Kochkurse</h3>
                     <p className='c-FFFFFF f6 fw2 mv1'>Einsteiger, Fortgeschritten, Profis</p>
                   </div>
@@ -86,7 +86,7 @@ export default class Categories extends Component {
             <div className='pa2 w-50'>
               <Link href='/courses?category=yoga'>
                 <div className='aspect-ratio aspect-ratio--16x9  pointer'>
-                  <div className='aspect-ratio--object pa3 cover layout vertical justify-end' style={{ backgroundImage: `url(/static/categories/yoga.png)` }}>
+                  <div className='aspect-ratio--object pa3 cover layout vertical justify-end z-0' style={{ backgroundImage: `url(/static/categories/yoga.png)` }}>
                     <h3 className='c-FFFFFF fw4 f3 mb0'>Yogakurse</h3>
                     <p className='c-FFFFFF f6 fw2 mv1'>Hatha Yoga, Einsteiger, Abendkurse</p>
                   </div>
@@ -96,7 +96,7 @@ export default class Categories extends Component {
             <div className='pa2 w-50'>
               <Link href='/courses?category=chess'>
                 <div className='aspect-ratio aspect-ratio--16x9  pointer'>
-                  <div className='aspect-ratio--object pa3 cover layout vertical justify-end' style={{ backgroundImage: `url(/static/categories/chess.png)` }}>
+                  <div className='aspect-ratio--object pa3 cover layout vertical justify-end z-0' style={{ backgroundImage: `url(/static/categories/chess.png)` }}>
                     <h3 className='c-FFFFFF fw4 f3 mb0'>Schachkurse</h3>
                     <p className='c-FFFFFF f6 fw2 mv1'>Einsteiger, Fortgeschritten, Profis</p>
                   </div>
@@ -106,7 +106,7 @@ export default class Categories extends Component {
             <div className='pa2 w-50'>
               <Link href='/courses?category=riding'>
                 <div className='aspect-ratio aspect-ratio--16x9  pointer'>
-                  <div className='aspect-ratio--object pa3 cover layout vertical justify-end' style={{ backgroundImage: `url(/static/categories/riding.png)` }}>
+                  <div className='aspect-ratio--object pa3 cover layout vertical justify-end z-0' style={{ backgroundImage: `url(/static/categories/riding.png)` }}>
                     <h3 className='c-FFFFFF fw4 f3 mb0'>Reitkurse</h3>
                     <p className='c-FFFFFF f6 fw2 mv1'>Kinderreitkurse, Einsteiger, Parcour</p>
                   </div>
@@ -117,7 +117,7 @@ export default class Categories extends Component {
             <div className='pa2 w-50'>
               <Link href='/courses?category=fitness'>
                 <div className='aspect-ratio aspect-ratio--16x9  pointer'>
-                  <div className='aspect-ratio--object pa3 cover layout vertical justify-end' style={{ backgroundImage: `url(/static/categories/fitness.png)` }}>
+                  <div className='aspect-ratio--object pa3 cover layout vertical justify-end z-0' style={{ backgroundImage: `url(/static/categories/fitness.png)` }}>
                     <h3 className='c-FFFFFF fw4 f3 mb0'>Fitnesskurse</h3>
                     <p className='c-FFFFFF f6 fw2 mv1'>Crossfit, Aerobic</p>
                   </div>
