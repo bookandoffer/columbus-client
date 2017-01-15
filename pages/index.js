@@ -5,9 +5,8 @@ import Footer from '../components/footer'
 import Router from 'next/router'
 import Category from '../components/categories'
 // import DatePicker from '../components/datepicker'
-var React = require('react');
-var DatePicker = require('react-datepicker');
-var moment = require('moment');
+import DatePicker from 'react-datepicker'
+import moment from 'moment'
 
 export default class Page extends Component {
   constructor (props) {
