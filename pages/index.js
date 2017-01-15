@@ -23,7 +23,7 @@ export default class Page extends Component {
     const { what, where, when } = this.state
     let errors = []
 
-    console.log(when);
+    console.log(when)
 
     if (!what) errors.push('Phai umfassen einen Kurs')
     if (!where) errors.push('müssen Sie ausfüllen, wo')
@@ -65,7 +65,7 @@ export default class Page extends Component {
                   <div className='flex layout vertical justify-center f6 pa3' style={{'borderRight': '1px solid #eeeeee', 'textAlign': 'left'}}><span className='c-565656 pb2'>Welche Art Kurs suchst du?</span><span className='textSecondary'><input className='searchInput' value={what} onInput={(e) => this.setState({ what: e.target.value })} placeholder='Sprachkurs, Tanzkurs, ..' type='text' name='what' /></span></div>
                   <div className='flex layout vertical justify-center f6 pa3' style={{'borderRight': '1px solid #eeeeee', 'textAlign': 'left'}}><span className='c-565656 pb2'>Wo</span><span className='textSecondary'><input className='searchInput' value={where} onInput={(e) => this.setState({ where: e.target.value })} placeholder='Stadt, Land, Region' type='text' name='where' /></span></div>
                   {/* <div className='flex layout vertical justify-center f6 pa3' style={{'textAlign': 'left'}}><span className='c-565656 pb2'>Wann</span><span className='textSecondary'><input className='searchInput' placeholder='Datum oder Zeitraum' type='text' name='when' value={when} onInput={(e) => this.setState({ when: e.target.value })} /></span></div> */}
-                  <div className='flex layout vertical justify-center f6 pa3' style={{'textAlign': 'left'}}><span className='c-565656 pb2'>Wann</span><span className='textSecondary'><ReactDatePicker value = {when} onChange={(date) => this.setState({ when: date })} /></span></div>
+                  <div className='flex layout vertical justify-center f6 pa3' style={{'textAlign': 'left'}}><span className='c-565656 pb2'>Wann</span><span className='textSecondary'><ReactDatePicker value={when} onChange={(date) => this.setState({ when: date })} /></span></div>
 
                   <div className='flex layout vertical justify-center items-end pr3'>
                     <button className='btn bn' style={{'height': '40px', 'borderRadius': '5px', 'width': '150px'}} onClick={(e) => this.search(e)}>Suche</button>
@@ -87,12 +87,12 @@ export default class Page extends Component {
         <Link href="/course">Courses</Link>
         */}
 
-        <div className = "flex w-70 m-auto pl2 mb4 mt6 helvetica c-484848" style = {{"maxWidth":"1000px"}}>Finde den richtigen Kurs für dich - einfach online</div>
-        <div className='mt3 mb3 layout w-70 m-auto horizontal wrap' style = {{"maxWidth":"1000px"}}>
+        <div className='flex w-70 m-auto pl2 mb4 mt6 helvetica c-484848' style={{'maxWidth': '1000px'}}>Finde den richtigen Kurs für dich - einfach online</div>
+        <div className='mt3 mb3 layout w-70 m-auto horizontal wrap' style={{'maxWidth': '1000px'}}>
           <div className='pa2 w-50'>
             <Link href='/courses?category=language'>
               <div className='aspect-ratio aspect-ratio--16x9  pointer'>
-                <div className='aspect-ratio--object pa3 cover layout vertical justify-end' style={{ zIndex: "0", backgroundImage: `url(/static/categories/language.png)` }}>
+                <div className='aspect-ratio--object pa3 cover layout vertical justify-end' style={{ zIndex: '0', backgroundImage: `url(/static/categories/language.png)` }}>
                   <h3 className='c-FFFFFF fw4 f3 mb0'>Sprachkurse</h3>
                   <p className='c-FFFFFF f6 fw2 mv1'>Englisch, Spanisch, Italienisch</p>
                 </div>
@@ -100,32 +100,11 @@ export default class Page extends Component {
             </Link>
           </div>
           <div className='pa2 w-50'>
-            <Link href='/courses?category=computer'>
-              <div className='aspect-ratio aspect-ratio--16x9 pointer'>
-                <div className='aspect-ratio--object pa3 cover layout vertical justify-end' style={{ zIndex: "0", backgroundImage: `url(/static/categories/computer.png)` }}>
-                  <h3 className='c-FFFFFF fw4 f3 mb0'>Computerkurse</h3>
-                  <p className='c-FFFFFF f6 fw2 mv1'>Word, Excel, iPad</p>
-                </div>
-              </div>
-            </Link>
-          </div>
-          <div className='pa2 w-50'>
-            <Link href='/courses?category=golf'>
-              <div className='aspect-ratio aspect-ratio--16x9 pointer'>
-                <div className='aspect-ratio--object pa3 cover layout vertical justify-end' style={{ zIndex: "0", backgroundImage: `url(/static/categories/golf.png)` }}>
-                  <h3 className='c-FFFFFF fw4 f3 mb0'>Golfkurse</h3>
-                  <p className='c-FFFFFF f6 fw2 mv1'>Platzreife, Fortgeschritten</p>
-                </div>
-              </div>
-            </Link>
-
-          </div>
-          <div className='pa2 w-50'>
-            <Link href='/courses?category=golf'>
+            <Link href='/courses?category=fitness'>
               <div className='aspect-ratio aspect-ratio--16x9  pointer'>
-                <div className='aspect-ratio--object pa3 cover layout vertical justify-end' style={{ zIndex: "0", backgroundImage: `url(/static/categories/painting.png)` }}>
-                  <h3 className='c-FFFFFF fw4 f3 mb0'>Malkurse</h3>
-                  <p className='c-FFFFFF f6 fw2 mv1'>Zeichnen für Einsteiger, Ölmalerei, Acryl</p>
+                <div className='aspect-ratio--object pa3 cover layout vertical justify-end' style={{ zIndex: '0', backgroundImage: `url(/static/categories/fitness.png)` }}>
+                  <h3 className='c-FFFFFF fw4 f3 mb0'>Fitnesskurse</h3>
+                  <p className='c-FFFFFF f6 fw2 mv1'>Crossfit, Aerobic</p>
                 </div>
               </div>
             </Link>
@@ -133,7 +112,17 @@ export default class Page extends Component {
           <div className='pa2 w-50'>
             <Link href='/courses?category=painting'>
               <div className='aspect-ratio aspect-ratio--16x9  pointer'>
-                <div className='aspect-ratio--object pa3 cover layout vertical justify-end' style={{ zIndex: "0", backgroundImage: `url(/static/categories/skiing.png)` }}>
+                <div className='aspect-ratio--object pa3 cover layout vertical justify-end' style={{ zIndex: '0', backgroundImage: `url(/static/categories/painting.png)` }}>
+                  <h3 className='c-FFFFFF fw4 f3 mb0'>Malkurse</h3>
+                  <p className='c-FFFFFF f6 fw2 mv1'>Zeichnen für Einsteiger, Ölmalerei, Acryl</p>
+                </div>
+              </div>
+            </Link>
+          </div>
+          <div className='pa2 w-50'>
+            <Link href='/courses?category=skiing'>
+              <div className='aspect-ratio aspect-ratio--16x9  pointer'>
+                <div className='aspect-ratio--object pa3 cover layout vertical justify-end' style={{ zIndex: '0', backgroundImage: `url(/static/categories/skiing.png)` }}>
                   <h3 className='c-FFFFFF fw4 f3 mb0'>Skikurse</h3>
                   <p className='c-FFFFFF f6 fw2 mv1'>Einsteiger, Profis</p>
                 </div>
@@ -141,29 +130,9 @@ export default class Page extends Component {
             </Link>
           </div>
           <div className='pa2 w-50'>
-            <Link href='/courses?category=cooking'>
-              <div className='aspect-ratio aspect-ratio--16x9  pointer'>
-                <div className='aspect-ratio--object pa3 cover layout vertical justify-end' style={{ zIndex: "0", backgroundImage: `url(/static/categories/cooking.png)` }}>
-                  <h3 className='c-FFFFFF fw4 f3 mb0'>Kochkurse</h3>
-                  <p className='c-FFFFFF f6 fw2 mv1'>Einsteiger, Fortgeschritten, Profis</p>
-                </div>
-              </div>
-            </Link>
-          </div>
-          <div className='pa2 w-50'>
-            <Link href='/courses?category=yoga'>
-              <div className='aspect-ratio aspect-ratio--16x9  pointer'>
-                <div className='aspect-ratio--object pa3 cover layout vertical justify-end' style={{ zIndex: "0", backgroundImage: `url(/static/categories/yoga.png)` }}>
-                  <h3 className='c-FFFFFF fw4 f3 mb0'>Yogakurse</h3>
-                  <p className='c-FFFFFF f6 fw2 mv1'>Hatha Yoga, Einsteiger, Abendkurse</p>
-                </div>
-              </div>
-            </Link>
-          </div>
-          <div className='pa2 w-50'>
             <Link href='/courses?category=chess'>
               <div className='aspect-ratio aspect-ratio--16x9  pointer'>
-                <div className='aspect-ratio--object pa3 cover layout vertical justify-end' style={{ zIndex: "0", backgroundImage: `url(/static/categories/chess.png)` }}>
+                <div className='aspect-ratio--object pa3 cover layout vertical justify-end' style={{ zIndex: '0', backgroundImage: `url(/static/categories/chess.png)` }}>
                   <h3 className='c-FFFFFF fw4 f3 mb0'>Schachkurse</h3>
                   <p className='c-FFFFFF f6 fw2 mv1'>Einsteiger, Fortgeschritten, Profis</p>
                 </div>
@@ -173,7 +142,7 @@ export default class Page extends Component {
           <div className='pa2 w-50'>
             <Link href='/courses?category=riding'>
               <div className='aspect-ratio aspect-ratio--16x9  pointer'>
-                <div className='aspect-ratio--object pa3 cover layout vertical justify-end' style={{ zIndex: "0", backgroundImage: `url(/static/categories/riding.png)` }}>
+                <div className='aspect-ratio--object pa3 cover layout vertical justify-end' style={{ zIndex: '0', backgroundImage: `url(/static/categories/riding.png)` }}>
                   <h3 className='c-FFFFFF fw4 f3 mb0'>Reitkurse</h3>
                   <p className='c-FFFFFF f6 fw2 mv1'>Kinderreitkurse, Einsteiger, Parcour</p>
                 </div>
@@ -181,26 +150,16 @@ export default class Page extends Component {
             </Link>
           </div>
 
-          <div className='pa2 w-50'>
-            <Link href='/courses?category=fitness'>
-              <div className='aspect-ratio aspect-ratio--16x9  pointer'>
-                <div className='aspect-ratio--object pa3 cover layout vertical justify-end' style={{ zIndex: "0", backgroundImage: `url(/static/categories/fitness.png)` }}>
-                  <h3 className='c-FFFFFF fw4 f3 mb0'>Fitnesskurse</h3>
-                  <p className='c-FFFFFF f6 fw2 mv1'>Crossfit, Aerobic</p>
-                </div>
-              </div>
-            </Link>
-          </div>
         </div>
 
-        <div className = "tc">
-          <Link href = "/categories"><button className='btn bn mb5 fw2 f6' style={{'height': '40px', 'borderRadius': '5px', 'width': '150px'}}>Weitere Kurse</button></Link>
+        <div className='tc'>
+          <Link href='/categories'><button className='btn bn mb5 fw2 f6' style={{'height': '40px', 'borderRadius': '5px', 'width': '150px'}}>Weitere Kurse</button></Link>
         </div>
 
-        <div className='pa6 tl w-100 layout vertical mb5' style = {{backgroundColor:"#F7F9FB"}}>
-          <p className = "f4 sysFont">Was ist BookAndOffer?</p>
-          <div className = "w3 sysFont" style = {{border:"2px solid #FCBB08",height:"3px"}}/>
-          <p className = "f5 fw2 courseTextPrimary">BookAndOffer ist eine Platform, die es dir ermöglicht einen passenden Kurs in deiner Nähe zu finden. Du kannst unter den vielen Anbieter wählen und den passenden Kurs raussuchen. Für Anbieter ist BookAndOffer die ideale Plattform um Kurse und Angebote bekannt zumachen. Deine Kurse werden schneller gefunden und profitierst von einer großen Gemeinschaft.</p>
+        <div className='pa6 tl w-100 layout vertical mb5' style={{backgroundColor: '#F7F9FB'}}>
+          <p className='f4 sysFont'>Was ist BookAndOffer?</p>
+          <div className='w3 sysFont' style={{border: '2px solid #FCBB08', height: '3px'}} />
+          <p className='f5 fw2 courseTextPrimary'>BookAndOffer ist eine Platform, die es dir ermöglicht einen passenden Kurs in deiner Nähe zu finden. Du kannst unter den vielen Anbieter wählen und den passenden Kurs raussuchen. Für Anbieter ist BookAndOffer die ideale Plattform um Kurse und Angebote bekannt zumachen. Deine Kurse werden schneller gefunden und profitierst von einer großen Gemeinschaft.</p>
         </div>
 
         <Footer />
@@ -213,29 +172,29 @@ export default class Page extends Component {
 var ReactDatePicker = React.createClass({
   displayName: 'ReactDatePicker',
 
-  getInitialState: function() {
+  getInitialState: function () {
     return {
-      startDate: ""
-    };
+      startDate: ''
+    }
   },
 
-  handleChange: function(date) {
+  handleChange: function (date) {
     this.setState({
       startDate: date
-    });
-    this.props.onChange(date.toDate());
-    console.log(date);
+    })
+    this.props.onChange(date.toDate())
+    console.log(date)
   },
 
-  render: function() {
+  render: function () {
     return <DatePicker
-        selected={this.state.startDate}
-        onChange={this.handleChange.bind(this)}
-        className = 'bn textSecondary sysFont pointer datePicker c-484848'
-        placeholderText='Wählen Sie ein Datum'
-        />;
+      selected={this.state.startDate}
+      onChange={this.handleChange.bind(this)}
+      className='bn textSecondary sysFont pointer datePicker c-484848'
+      placeholderText='Wählen Sie ein Datum'
+        />
   }
-});
+})
 
 function validDate (d) {
   if (Object.prototype.toString.call(d) === '[object Date]') {

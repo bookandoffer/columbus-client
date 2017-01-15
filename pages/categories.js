@@ -54,7 +54,7 @@ export default class Categories extends Component {
 
             </div>
             <div className='pa2 w-50'>
-              <Link href='/courses?category=golf'>
+              <Link href='/courses?category=painting'>
                 <div className='aspect-ratio aspect-ratio--16x9  pointer'>
                   <div className='aspect-ratio--object pa3 cover layout vertical justify-end z-0' style={{ backgroundImage: `url(/static/categories/painting.png)` }}>
                     <h3 className='c-FFFFFF fw4 f3 mb0'>Malkurse</h3>
@@ -64,7 +64,7 @@ export default class Categories extends Component {
               </Link>
             </div>
             <div className='pa2 w-50'>
-              <Link href='/courses?category=painting'>
+              <Link href='/courses?category=skiing'>
                 <div className='aspect-ratio aspect-ratio--16x9  pointer'>
                   <div className='aspect-ratio--object pa3 cover layout vertical justify-end z-0' style={{ backgroundImage: `url(/static/categories/skiing.png)` }}>
                     <h3 className='c-FFFFFF fw4 f3 mb0'>Skikurse</h3>

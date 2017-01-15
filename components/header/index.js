@@ -5,11 +5,14 @@ import Router from 'next/router'
 import Login from '../login'
 import Link from 'next/link'
 
+const browser = typeof window !== 'undefined'
+
 export default class Header extends Component {
   constructor (props) {
     super(props)
+    
     this.state = {
-      loggedIn: !!cookie('token'),
+      loggedIn: browser ? !!cookie('token') : false,
       clicked: false,
       tab: 'login'
     }
