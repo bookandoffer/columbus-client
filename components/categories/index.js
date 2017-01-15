@@ -1,6 +1,6 @@
 import { Component } from 'react'
 
-export default class Footer extends Component {
+export default class Category extends Component {
 
   render () {
     const categories = this.props.categories

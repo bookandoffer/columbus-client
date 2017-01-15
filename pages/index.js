@@ -3,6 +3,7 @@ import Header from '../components/header'
 import Head from '../components/head'
 import Footer from '../components/footer'
 import Router from 'next/router'
+import Category from '../components/categories'
 // import DatePicker from '../components/datepicker'
 var React = require('react');
 var DatePicker = require('react-datepicker');
@@ -55,9 +56,9 @@ export default class Page extends Component {
 
           <div className='db background-banner layout horizontal center sysFont' style={{'backgroundImage': 'url(/static/Header-bg.png)'}}>
             <div className='m-auto' style={{'textAlign': 'center', 'width': '80%', 'marginTop': '-50px', 'maxWidth': '1200px'}}>
-              <h1 className='white mt0 normal headerSize mb1'>Entdecke die Welt!</h1>
-              <h2 className='white mt0 normal f3 pv0 mb4'>Finde den Kurs, der zu Dir passt!</h2>
-              <h3 className='white mt0 normal f6 pv0 orange-yellow mb4' style={{'letterSpacing': '2px'}}>FINDE JETZT SPRACHKURSE, SPORTKURSE UND MEHR</h3>
+              <h1 className='white mt0 normal headerSize mb5'>Finde den richtigen Kurs für dich</h1>
+              {/* <h2 className='white mt0 normal f3 pv0 mb4'>EINE GROSSE AUSWAHL AN KURSEN UND AKTIVITÄTEN WARTEN AUF DICH</h2> */}
+              <h3 className='white mt0 normal f6 pv0 orange-yellow mb4' style={{'letterSpacing': '2px'}}>EINE GROSSE AUSWAHL AN KURSEN UND AKTIVITÄTEN WARTEN AUF DICH</h3>
 
               <form>
                 <div className='bg-white mt0 m-auto layout horizontal flex searchBox' style={{'width': '100%', 'height': '80px', 'maxWidth': '1000px'}}>
@@ -86,39 +87,31 @@ export default class Page extends Component {
         <Link href="/course">Courses</Link>
         */}
 
-        <div className='flex justify-center pv5'>
-          <div className='layout db vertical mv5 sysFont white regular f7' style={{height: '500px', width: '70%'}}>
-            <div className='mv2 black f5' style={{color: '#4B4B4B'}}>Entdecke die Welt</div>
-            <div className='layout horizontal flex-1'>
-              <div className='flex-2 items-end ma1 tl flex pl2 pb2 pointer' style={{ backgroundImage: "url('/static/paris.jpg')", backgroundSize: 'cover' }}>Paris</div>
-              <div className='layout vertical flex-1'>
-                <div className='flex-1 ma1 tl flex pl2 pb2 pointer items-end' style={{ backgroundImage: "url('/static/rome.jpg')", backgroundSize: 'cover' }}>Rom</div>
-                <div className='flex-1 ma1 tl flex pl2 pb2 pointer items-end' style={{ backgroundImage: "url('/static/lissabon.jpg')", backgroundSize: 'cover' }}>Lissabon</div>
-              </div>
-              <div className='layout vertical flex-1'>
-                <div className='flex-1 ma1 tl flex pl2 pb2 pointer items-end' style={{ backgroundImage: "url('/static/los angeles.jpg')", backgroundSize: 'cover' }}>Los Angeles</div>
-                <div className='flex-1 ma1 tl flex pl2 pb2 pointer items-end' style={{ backgroundImage: "url('/static/tokio.jpg')", backgroundSize: 'cover' }}>Tokio</div>
-              </div>
-            </div>
-            <div className='layout horizontal flex-1'>
-              <div className='layout vertical flex-1'>
-                <div className='flex-1 ma1 tl flex pl2 pb2 pointer items-end' style={{ backgroundImage: "url('/static/london.jpg')", backgroundSize: 'cover' }}>London</div>
-                <div className='flex-1 ma1 tl flex pl2 pb2 pointer items-end' style={{ backgroundImage: "url('/static/barcelona.jpg')", backgroundSize: 'cover' }}>Barcelona</div>
-              </div>
 
-              <div className='flex-2 ma1 tl flex pl2 pb2 pointer items-end' style={{ backgroundImage: "url('/static/new york.jpg')", backgroundSize: 'cover' }}>New York</div>
-              <div className='layout vertical flex-1'>
-                <div className='flex-1 ma1 tl flex pl2 pb2 pointer items-end' style={{ backgroundImage: "url('/static/amsterdam.jpg')", backgroundSize: 'cover' }}>Amsterdam</div>
-                <div className='flex-1 ma1 tl flex pl2 pb2 pointer items-end' style={{ backgroundImage: "url('/static/berlin.jpg')", backgroundSize: 'cover' }}>Berlin</div>
-              </div>
+        <div className='flex justify-center pv5'>
+          <div className='layout db vertical mv5 sysFont white regular f7' style={{minHeight: '500px', width: '70%'}}>
+            <div className='mv2 black f5' style={{color: '#4B4B4B'}}>Finde den richtigen Kurs für dich - einfach online</div>
+            <div className='layout horizontal flex-1'>
+                <div className='flex-1 ma2 tl flex pl2 pb2 pointer items-end' style={{ backgroundImage: "url('/static/rome.jpg')", backgroundSize: 'cover' }}>Rom</div>
+                <div className='flex-1 ma2 tl flex pl2 pb2 pointer items-end' style={{ backgroundImage: "url('/static/lissabon.jpg')", backgroundSize: 'cover' }}>Lissabon</div>
             </div>
+            <div className='layout horizontal flex-1'>
+                <div className='flex-1 ma2 tl flex pl2 pb2 pointer items-end' style={{ backgroundImage: "url('/static/rome.jpg')", backgroundSize: 'cover' }}>Rom</div>
+                <div className='flex-1 ma2 tl flex pl2 pb2 pointer items-end' style={{ backgroundImage: "url('/static/lissabon.jpg')", backgroundSize: 'cover' }}>Lissabon</div>
+            </div>
+            <div className='layout horizontal flex-1'>
+                <div className='flex-1 ma2 tl flex pl2 pb2 pointer items-end' style={{ backgroundImage: "url('/static/rome.jpg')", backgroundSize: 'cover' }}>Rom</div>
+                <div className='flex-1 ma2 tl flex pl2 pb2 pointer items-end' style={{ backgroundImage: "url('/static/lissabon.jpg')", backgroundSize: 'cover' }}>Lissabon</div>
+            </div>
+            
           </div>
         </div>
 
+
         <div className='pa6 tl w-100 layout vertical mb5' style = {{backgroundColor:"#F7F9FB"}}>
-          <p className = "f4 sysFont">Was ist bookandoffer?</p>
+          <p className = "f4 sysFont">Was ist BookAndOffer?</p>
           <div className = "w3 sysFont" style = {{border:"2px solid #FCBB08",height:"3px"}}/>
-          <p className = "f5 fw2 courseTextPrimary">bookandoffer ist eine unabhängige Platform, die Menschen hilft, den für sie richtigen Sprachkurs zu finden. Sprachkurse können direkt über bookandoffer gebucht werden - bequem, transparent und zu fairen Konditionen. Anbieter von Sprachunterricht können Sprachkurse einstellen, Buchungen verwalten und ihre Reichweite und Auslastung erhöhen.</p>
+          <p className = "f5 fw2 courseTextPrimary">BookAndOffer ist eine Platform, die es dir ermöglicht einen passenden Kurs in deiner Nähe zu finden. Du kannst unter den vielen Anbieter wählen und den passenden Kurs raussuchen. Für Anbieter ist BookAndOffer die ideale Plattform um Kurse und Angebote bekannt zumachen. Deine Kurse werden schneller gefunden und profitierst von einer großen Gemeinschaft.</p>
         </div>
 
         <Footer />
@@ -129,7 +122,7 @@ export default class Page extends Component {
 }
 
 var ReactDatePicker = React.createClass({
-  displayName: 'Example',
+  displayName: 'ReactDatePicker',
 
   getInitialState: function() {
     return {
@@ -148,8 +141,9 @@ var ReactDatePicker = React.createClass({
   render: function() {
     return <DatePicker
         selected={this.state.startDate}
-        onChange={this.handleChange.bind(this)} 
-        className = 'bn textSecondary sysFont pointer datePicker c-484848' 
+        onChange={this.handleChange.bind(this)}
+        className = 'bn textSecondary sysFont pointer datePicker c-484848'
+        placeholderText='Wählen Sie ein Datum'
         />;
   }
 });
