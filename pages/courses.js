@@ -43,8 +43,8 @@ export default class Me extends Component {
       <div className='layout vertical min-vh-100'>
         <Head title='bookandoffer | Course Results' />
         <Header />
-        <div className='m-auto justify-center pv6 flex-1' style={{maxWidth: '1500px'}}>
-          <div className='layout horizontal wrap'>
+        <div className='m-auto pv6 flex-1' style={{maxWidth: '1500px'}}>
+          <div className='layout horizontal wrap justify-center '>
             {
             courses.length
               ? courses.map(course => <Course key={course.id} {...course} />)
