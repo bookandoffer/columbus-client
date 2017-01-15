@@ -85,6 +85,9 @@ a {
   outline:none;
 }
 
+.datePicker:focus{
+  outline: none;
+}
 
 .courseTextPrimary{
   color: #686666;

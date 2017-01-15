@@ -3,6 +3,10 @@ import Header from '../components/header'
 import Head from '../components/head'
 import Footer from '../components/footer'
 import Router from 'next/router'
+// import DatePicker from '../components/datepicker'
+var React = require('react');
+var DatePicker = require('react-datepicker');
+var moment = require('moment');
 
 export default class Page extends Component {
   constructor (props) {
@@ -17,6 +21,8 @@ export default class Page extends Component {
 
     const { what, where, when } = this.state
     let errors = []
+
+    console.log(when);
 
     if (!what) errors.push('Phai umfassen einen Kurs')
     if (!where) errors.push('müssen Sie ausfüllen, wo')
@@ -57,7 +63,9 @@ export default class Page extends Component {
                 <div className='bg-white mt0 m-auto layout horizontal flex searchBox' style={{'width': '100%', 'height': '80px', 'maxWidth': '1000px'}}>
                   <div className='flex layout vertical justify-center f6 pa3' style={{'borderRight': '1px solid #eeeeee', 'textAlign': 'left'}}><span className='c-565656 pb2'>Welche Art Kurs suchst du?</span><span className='textSecondary'><input className='searchInput' value={what} onInput={(e) => this.setState({ what: e.target.value })} placeholder='Sprachkurs, Tanzkurs, ..' type='text' name='what' /></span></div>
                   <div className='flex layout vertical justify-center f6 pa3' style={{'borderRight': '1px solid #eeeeee', 'textAlign': 'left'}}><span className='c-565656 pb2'>Wo</span><span className='textSecondary'><input className='searchInput' value={where} onInput={(e) => this.setState({ where: e.target.value })} placeholder='Stadt, Land, Region' type='text' name='where' /></span></div>
-                  <div className='flex layout vertical justify-center f6 pa3' style={{'textAlign': 'left'}}><span className='c-565656 pb2'>Wann</span><span className='textSecondary'><input className='searchInput' placeholder='Datum oder Zeitraum' type='text' name='when' value={when} onInput={(e) => this.setState({ when: e.target.value })} /></span></div>
+                  {/* <div className='flex layout vertical justify-center f6 pa3' style={{'textAlign': 'left'}}><span className='c-565656 pb2'>Wann</span><span className='textSecondary'><input className='searchInput' placeholder='Datum oder Zeitraum' type='text' name='when' value={when} onInput={(e) => this.setState({ when: e.target.value })} /></span></div> */}
+                  <div className='flex layout vertical justify-center f6 pa3' style={{'textAlign': 'left'}}><span className='c-565656 pb2'>Wann</span><span className='textSecondary'><ReactDatePicker value = {when} onChange={(date) => this.setState({ when: date })} /></span></div>
+
                   <div className='flex layout vertical justify-center items-end pr3'>
                     <button className='btn bn' style={{'height': '40px', 'borderRadius': '5px', 'width': '150px'}} onClick={(e) => this.search(e)}>Suche</button>
                   </div>
@@ -113,13 +121,38 @@ export default class Page extends Component {
           <p className = "f5 fw2 courseTextPrimary">bookandoffer ist eine unabhängige Platform, die Menschen hilft, den für sie richtigen Sprachkurs zu finden. Sprachkurse können direkt über bookandoffer gebucht werden - bequem, transparent und zu fairen Konditionen. Anbieter von Sprachunterricht können Sprachkurse einstellen, Buchungen verwalten und ihre Reichweite und Auslastung erhöhen.</p>
         </div>
 
-
         <Footer />
 
       </div>
     )
   }
 }
+
+var ReactDatePicker = React.createClass({
+  displayName: 'Example',
+
+  getInitialState: function() {
+    return {
+      startDate: ""
+    };
+  },
+
+  handleChange: function(date) {
+    this.setState({
+      startDate: date
+    });
+    this.props.onChange(date.toDate());
+    console.log(date);
+  },
+
+  render: function() {
+    return <DatePicker
+        selected={this.state.startDate}
+        onChange={this.handleChange.bind(this)} 
+        className = 'bn textSecondary sysFont pointer datePicker c-484848' 
+        />;
+  }
+});
 
 function validDate (d) {
   if (Object.prototype.toString.call(d) === '[object Date]') {

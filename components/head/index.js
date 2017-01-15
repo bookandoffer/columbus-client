@@ -9,5 +9,6 @@ export default (props) => (
     <link href='/static/flex.css' rel='stylesheet' />
     <link href='/static/global.css' rel='stylesheet' />
     <link href='/static/theme.css' rel='stylesheet' />
+    <link href='/static/react-datepicker.css' rel='stylesheet' />
   </Head>
 )
