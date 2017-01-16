@@ -12,7 +12,7 @@ pass: testtest
 user: mattmuelle+columbus@gmail.com
 pass: testtest
 
-### Running the server locally
+## Running the server locally
 
 You'll need node 4.x or higher.
 
