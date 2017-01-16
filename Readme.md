@@ -4,13 +4,13 @@
 
 ### Mailgun
 
-user: mattmuelle+columbus@gmail.com
-pass: testtest
+    user: mattmuelle+columbus@gmail.com
+    pass: testtest
 
 ### Graphcool
 
-user: mattmuelle+columbus@gmail.com
-pass: testtest
+    user: mattmuelle+columbus@gmail.com
+    pass: testtest
 
 ## Running the server locally
 
