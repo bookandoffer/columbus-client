@@ -79,7 +79,7 @@ export default class Me extends Component {
     }
 
     var data = {
-      from: 'connector@bookandoffer.com',
+      from: 'info@bookandoffer.com',
       to: this.props.course.user.email,
       subject: "You've got a new student!",
       text: `${this.state.email} would like to take ${this.props.course.title} on ${fecha.format(date, 'mediumDate')} for ${numWeeks} weeks. Please reply to this email to coordinate further!`,

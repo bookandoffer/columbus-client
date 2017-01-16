@@ -1,5 +1,28 @@
 # bookandoffer
 
+## Credentials
+
+### Mailgun
+
+user: mattmuelle+columbus@gmail.com
+pass: testtest
+
+### Graphcool
+
+user: mattmuelle+columbus@gmail.com
+pass: testtest
+
+### Running the server locally
+
+You'll need node 4.x or higher.
+
+    npm install
+    npm run dev
+
+For production:
+
+    npm start
+
 ## Models
 
 ### User
