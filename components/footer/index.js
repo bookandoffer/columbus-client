@@ -11,7 +11,7 @@ export default class Footer extends Component {
           <div className='flex tc layout f6 c-767676 horizontal w-70 m-auto'>
             <div className = "flex-1"><Link href = '/impressum'><div className = "flex-1 helvetica pointer c-767676">Impressum</div></Link></div>
             <div className = "flex-1"><a href = "mailto:kontakt@bookandoffer.com"><div className = "flex-1 helvetica pointer c-767676">Kontakt</div></a></div>
-            <div className = "flex-1"><a href = "/static/AGB_bookandoffer.docx"><div className = "flex-1 helvetica pointer c-767676">AGBs</div></a></div>
+            <div className = "flex-1"><a href = "/agb"><div className = "flex-1 helvetica pointer c-767676">AGBs</div></a></div>
             <div className = "flex-1"><a href = "mailto:feedback@bookandoffer.com?Subject=Helfe%20uns%20bookandoffer%20besser%20zu%20machen"><div className = "flex-1 helvetica pointer c-767676">Feedback</div></a></div>
             <div className = "flex-1 helvetica pointer c-767676">
               <a href = "http://www.facebook.com/bookandoffer.info" target="_blank"><img src = "/static/facebook.png" className = "mr3 pointer" style = {{height:"20px"}} /></a>

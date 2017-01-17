@@ -198,6 +198,13 @@ a {
   }
 }
 
+@media (min-width: 1000px){
+  .agbHolder{
+    width: 1000px;
+    margin: 0 auto;
+  }
+}
+
 /**
  * Hack for datepicker
  */
