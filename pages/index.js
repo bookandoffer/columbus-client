@@ -54,7 +54,7 @@ export default class Page extends Component {
         <div className='w-100 center'>
           <Header />
 
-          <div className='db background-banner layout horizontal center sysFont' style={{'backgroundImage': 'url(/static/Header-bg.png)'}}>
+          <div className='db background-banner layout horizontal center sysFont' style={{'backgroundImage': 'url(/static/Header-bg.jpg)'}}>
             <div className='m-auto' style={{'textAlign': 'center', 'width': '80%', 'marginTop': '-50px', 'maxWidth': '1200px'}}>
               <h1 className='white mt0 normal headerSize mb5'>Finde den richtigen Kurs für dich</h1>
               {/* <h2 className='white mt0 normal f3 pv0 mb4'>EINE GROSSE AUSWAHL AN KURSEN UND AKTIVITÄTEN WARTEN AUF DICH</h2> */}
