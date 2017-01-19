@@ -1,3 +1,4 @@
+import 'babel-polyfill'
 import countries from '../lib/countries/index.json'
 import loadCourse from '../lib/load-course'
 import DatePicker from 'react-datepicker'

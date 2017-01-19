@@ -1,3 +1,4 @@
+import 'babel-polyfill'
 import findCourses from '../lib/find-courses'
 import Header from '../components/header'
 import Footer from '../components/footer'

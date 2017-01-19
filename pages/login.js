@@ -1,4 +1,4 @@
-
+import 'babel-polyfill'
 import { Component } from 'react'
 import Portal from 'react-portal'
 import Head from '../components/head'

@@ -1,3 +1,4 @@
+import 'babel-polyfill'
 import loadCourse from '../lib/load-course'
 import DatePicker from 'react-datepicker'
 import Header from '../components/header'

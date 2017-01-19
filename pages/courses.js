@@ -1,3 +1,4 @@
+import 'babel-polyfill'
 import findCoursesByCategory from '../lib/find-courses-by-category'
 import findCourses from '../lib/find-courses'
 import Header from '../components/header'

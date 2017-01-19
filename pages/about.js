@@ -1,4 +1,4 @@
-
+import 'babel-polyfill'
 import Head from 'next/head'
 import Portal from 'react-portal'
 
