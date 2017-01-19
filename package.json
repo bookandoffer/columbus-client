@@ -28,7 +28,8 @@
   },
   "scripts": {
     "dev": "next",
-    "start": "next build && next start -p $PORT"
+    "postinstall": "next build",
+    "start": "next start -p $PORT"
   },
   "engines": {
     "node": "7.3.0"

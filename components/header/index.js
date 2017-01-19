@@ -32,8 +32,16 @@ export default class Header extends Component {
         <Link href='/' className='link' style={{ textDecoration: 'none' }}><div className='b f5 mid-gray layout horizontal center'>{/*<img src='/static/globe.svg' style={{'height': '30px', 'marginLeft': '25px', 'marginRight': '25px'}} />*/}bookandoffer</div></Link>
         <div className='ph3 f7 mid-gray pointer' style={{'marginLeft': 'auto'}} onClick={() => this.createCourse()}>KURS EINSTELLEN</div>
         <Link href='/categories'><div className='ph3 f7 mid-gray pointer'>KATEGORIEN</div></Link>
-        <div className='ph3 f7 mid-gray pointer' onClick={() => { this.setState({ tab: 'signup' }, () => this.refs.loginModal.openPortal()) }}>REGISTRIEREN</div>
-        <div className='ph3 f7 mid-gray pointer' onClick={() => { this.setState({ tab: 'login' }, () => this.refs.loginModal.openPortal()) }}>LOGIN</div>
+        { 
+          this.state.loggedIn
+          ? null
+          : (
+            <div className='layout horizontal'>
+              <div className='ph3 f7 mid-gray pointer' onClick={() => { this.setState({ tab: 'signup' }, () => this.refs.loginModal.openPortal()) }}>REGISTRIEREN</div>
+              <div className='ph3 f7 mid-gray pointer' onClick={() => { this.setState({ tab: 'login' }, () => this.refs.loginModal.openPortal()) }}>LOGIN</div>
+            </div>
+          )
+        }
         <Portal ref='loginModal'>
           <Login tab={this.state.tab} />
         </Portal>
