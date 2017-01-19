@@ -5,6 +5,7 @@
   "description": "bookandoffer website",
   "author": "Matthew Mueller",
   "dependencies": {
+    "@mars/heroku-nextjs-build": "^1.0.1",
     "babel-polyfill": "^6.20.0",
     "classnames": "^2.2.5",
     "combine-errors": "^3.0.3",
@@ -28,10 +29,14 @@
   },
   "scripts": {
     "dev": "next",
-    "postinstall": "next build",
-    "start": "next start -p $PORT"
+    "build": "next build",
+    "start": "next start -p $PORT",
+    "postinstall": "heroku-nextjs-build"
   },
+  "cacheDirectories": [
+    "nextjs/node_modules"
+  ],
   "engines": {
-    "node": "7.3.0"
+    "node": "7.4.0"
   }
 }
