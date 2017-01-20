@@ -2,6 +2,7 @@ import 'babel-polyfill'
 import loadCourse from '../lib/load-course'
 import DatePicker from 'react-datepicker'
 import Header from '../components/header'
+import Footer from '../components/footer'
 import redirect from '../lib/redirect'
 import Head from '../components/head'
 import send from '../lib/mailgun'
@@ -247,7 +248,7 @@ export default class Me extends Component {
             </div>
           </div>
         </div>
-
+        <Footer />
       </div>
 
     )
