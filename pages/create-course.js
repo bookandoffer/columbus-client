@@ -487,9 +487,9 @@ class CourseSchedule extends Component {
   render () {
     const step = Number(get(this.props, 'step'))
     const interval = get(this.props, 'course.interval') || 'DAILY'
-    const startDate = get(this.props, 'course.startDate') || ''
+    const startDate = get(this.props, 'course.startDate') || moment()
     const endDate = get(this.props, 'course.endDate') || moment().add(5, 'days')
-    const startTime = get(this.props, 'course.startTime') || moment()
+    const startTime = get(this.props, 'course.startTime') || ''
 
     const intervals = {
       DAILY: 'Daily',
