@@ -4,6 +4,7 @@ import cookie from 'component-cookie'
 import { Component } from 'react'
 import graph from '../../lib/graph'
 import cls from 'classnames'
+import isEmail from 'email-regex'
 import Router from 'next/router'
 
 export default class Element extends Component {
@@ -86,7 +87,7 @@ class Signup extends Component {
       errors = true
     }
 
-    if (email && email.length >= 5 && ~email.indexOf('@') && email.indexOf('.')) {
+    if (email && isEmail({ exact: true }).test(email)) {
       this.setState({ emailError: null })
     } else {
       this.setState({ emailError: 'Invalid email address' })

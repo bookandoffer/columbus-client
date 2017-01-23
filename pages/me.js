@@ -23,7 +23,7 @@ export default class Me extends Component {
     return (
       <div>
         <Head title='bookandoffer | My courses' />
-        <Header token={this.props.cookies && this.props.cookies.token} />
+        <Header user={user} />
         <div className='subnav layout horizontal bg-484848'>
           <div className='m-auto pv3'>
             <a className='f6 c-FFFFFF mh3 link' href='#'>Deine Kurse</a>

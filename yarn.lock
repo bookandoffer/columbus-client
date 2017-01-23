@@ -1185,6 +1185,10 @@ elliptic@^6.0.0:
     hash.js "^1.0.0"
     inherits "^2.0.1"
 
+email-regex@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/email-regex/-/email-regex-1.0.0.tgz#16c08f1fa8310907090127430a68562728bd029b"
+
 emojis-list@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/emojis-list/-/emojis-list-2.1.0.tgz#4daa4d9db00f9819880c79fa457ae5b09a1fd389"
@@ -1739,6 +1743,12 @@ is-my-json-valid@^2.12.4:
 is-number@^2.0.2, is-number@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/is-number/-/is-number-2.1.0.tgz#01fcbbb393463a548f2f466cce16dece49db908f"
+  dependencies:
+    kind-of "^3.0.2"
+
+is-number@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/is-number/-/is-number-3.0.0.tgz#24fd6201a4782cf50561c810276afc7d12d71195"
   dependencies:
     kind-of "^3.0.2"
 
@@ -2430,6 +2440,13 @@ popsicle@^9.0.0:
     form-data "^2.0.0"
     make-error-cause "^1.2.1"
     tough-cookie "^2.0.0"
+
+poss@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/poss/-/poss-3.0.2.tgz#be80b78a710e81e5ddd744335e82a98faa37fd7b"
+  dependencies:
+    babel-runtime "^6.20.0"
+    co "^4.6.0"
 
 preserve@^0.2.0:
   version "0.2.0"

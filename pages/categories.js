@@ -3,11 +3,18 @@ import Header from '../components/header'
 import Footer from '../components/footer'
 import Head from '../components/head'
 import Link from 'next/link'
+import cookies from 'next-cookies'
+import poss from 'poss'
+import loadUser from '../lib/load-user'
 import { Component } from 'react'
 
 export default class Categories extends Component {
   static async getInitialProps (ctx) {
-
+    const { token } = cookies(ctx)
+    if (!token) {}
+    const [ err, res ] = await poss(loadUser(token))
+    if (err || !res || !res.user) return {}
+    return { user: res.user }
   }
 
   render () {
@@ -15,7 +22,7 @@ export default class Categories extends Component {
 
       <div>
         <Head title='Columbus | Categories' />
-        <Header />
+        <Header {...this.props} />
         <div className='mw7 m-auto pa4'>
           <div className='pv3'>
             <h2 className='f3 dark-gray fw3 mb0'>Book and Offer bietet dir ganz unterschiedliche Kategorien an Kursen an</h2>
@@ -23,7 +30,7 @@ export default class Categories extends Component {
           </div>
 
           <div className='mv3 layout horizontal wrap'>
-            <div className='pa2 w-50'>
+            <div className='pa2 w-100 w-50-ns'>
               <Link href='/courses?category=language'>
                 <div className='aspect-ratio aspect-ratio--16x9  pointer'>
                   <div className='aspect-ratio--object pa3 cover layout vertical justify-end z-0' style={{ backgroundImage: `url(/static/categories/language.png)` }}>
@@ -33,7 +40,7 @@ export default class Categories extends Component {
                 </div>
               </Link>
             </div>
-            <div className='pa2 w-50'>
+            <div className='pa2 w-100 w-50-ns'>
               <Link href='/courses?category=computer'>
                 <div className='aspect-ratio aspect-ratio--16x9 pointer'>
                   <div className='aspect-ratio--object pa3 cover layout vertical justify-end z-0' style={{ backgroundImage: `url(/static/categories/computer.png)` }}>
@@ -43,7 +50,7 @@ export default class Categories extends Component {
                 </div>
               </Link>
             </div>
-            <div className='pa2 w-50'>
+            <div className='pa2 w-100 w-50-ns'>
               <Link href='/courses?category=golf'>
                 <div className='aspect-ratio aspect-ratio--16x9 pointer'>
                   <div className='aspect-ratio--object pa3 cover layout vertical justify-end z-0' style={{ backgroundImage: `url(/static/categories/golf.png)` }}>
@@ -54,7 +61,7 @@ export default class Categories extends Component {
               </Link>
 
             </div>
-            <div className='pa2 w-50'>
+            <div className='pa2 w-100 w-50-ns'>
               <Link href='/courses?category=painting'>
                 <div className='aspect-ratio aspect-ratio--16x9  pointer'>
                   <div className='aspect-ratio--object pa3 cover layout vertical justify-end z-0' style={{ backgroundImage: `url(/static/categories/painting.png)` }}>
@@ -64,7 +71,7 @@ export default class Categories extends Component {
                 </div>
               </Link>
             </div>
-            <div className='pa2 w-50'>
+            <div className='pa2 w-100 w-50-ns'>
               <Link href='/courses?category=skiing'>
                 <div className='aspect-ratio aspect-ratio--16x9  pointer'>
                   <div className='aspect-ratio--object pa3 cover layout vertical justify-end z-0' style={{ backgroundImage: `url(/static/categories/skiing.png)` }}>
@@ -74,7 +81,7 @@ export default class Categories extends Component {
                 </div>
               </Link>
             </div>
-            <div className='pa2 w-50'>
+            <div className='pa2 w-100 w-50-ns'>
               <Link href='/courses?category=cooking'>
                 <div className='aspect-ratio aspect-ratio--16x9  pointer'>
                   <div className='aspect-ratio--object pa3 cover layout vertical justify-end z-0' style={{ backgroundImage: `url(/static/categories/cooking.png)` }}>
@@ -84,7 +91,7 @@ export default class Categories extends Component {
                 </div>
               </Link>
             </div>
-            <div className='pa2 w-50'>
+            <div className='pa2 w-100 w-50-ns'>
               <Link href='/courses?category=yoga'>
                 <div className='aspect-ratio aspect-ratio--16x9  pointer'>
                   <div className='aspect-ratio--object pa3 cover layout vertical justify-end z-0' style={{ backgroundImage: `url(/static/categories/yoga.png)` }}>
@@ -94,7 +101,7 @@ export default class Categories extends Component {
                 </div>
               </Link>
             </div>
-            <div className='pa2 w-50'>
+            <div className='pa2 w-100 w-50-ns'>
               <Link href='/courses?category=chess'>
                 <div className='aspect-ratio aspect-ratio--16x9  pointer'>
                   <div className='aspect-ratio--object pa3 cover layout vertical justify-end z-0' style={{ backgroundImage: `url(/static/categories/chess.png)` }}>
@@ -104,7 +111,7 @@ export default class Categories extends Component {
                 </div>
               </Link>
             </div>
-            <div className='pa2 w-50'>
+            <div className='pa2 w-100 w-50-ns'>
               <Link href='/courses?category=riding'>
                 <div className='aspect-ratio aspect-ratio--16x9  pointer'>
                   <div className='aspect-ratio--object pa3 cover layout vertical justify-end z-0' style={{ backgroundImage: `url(/static/categories/riding.png)` }}>
@@ -115,7 +122,7 @@ export default class Categories extends Component {
               </Link>
             </div>
 
-            <div className='pa2 w-50'>
+            <div className='pa2 w-100 w-50-ns'>
               <Link href='/courses?category=fitness'>
                 <div className='aspect-ratio aspect-ratio--16x9  pointer'>
                   <div className='aspect-ratio--object pa3 cover layout vertical justify-end z-0' style={{ backgroundImage: `url(/static/categories/fitness.png)` }}>

@@ -5,15 +5,21 @@ import Footer from '../components/footer'
 import redirect from '../lib/redirect'
 import Head from '../components/head'
 import { Component } from 'react'
+import poss from 'poss'
+import cookies from 'next-cookies'
+import loadUser from '../lib/load-user'
 import Router from 'next/router'
 import auth from '../lib/auth'
 import get from 'dlv'
 
-const alert = typeof window === 'undefined'
-  ? console.error
-  : window.alert
-
 export default class Thanks extends Component {
+  static async getInitialProps (ctx) {
+    const { token } = cookies(ctx)
+    if (!token) {}
+    const [ err, res ] = await poss(loadUser(token))
+    if (err || !res || !res.user) return {}
+    return { user: res.user }
+  }
 
   render () {
     return (

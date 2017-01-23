@@ -1,24 +1,31 @@
 import 'babel-polyfill'
 import countries from '../lib/countries/index.json'
+import StatusBar from '../components/status-bar'
 import loadCourse from '../lib/load-course'
 import DatePicker from 'react-datepicker'
 import Header from '../components/header'
+import upsertCourse from '../lib/upsert-course'
 import defaults from 'lodash.defaults'
 import redirect from '../lib/redirect'
 import Head from '../components/head'
 import { Component } from 'react'
 import graph from '../lib/graph'
-import assign from 'deep-assign'
 import Link from 'next/link'
 import store from '../lib/store'
+import isNumber from 'is-number'
 import Router from 'next/router'
 import auth from '../lib/auth'
 import moment from 'moment'
 import get from 'dlv'
+import cls from 'classnames'
 
-const alert = typeof window === 'undefined'
-? console.error
-: window.alert
+function alert (message) {
+  if (typeof window === 'undefined') {
+    console.error(message)
+  } else {
+    StatusBar.setState({ error: message })
+  }
+}
 
 export default class Page extends Component {
   static async getInitialProps (ctx) {
@@ -68,6 +75,7 @@ export default class Page extends Component {
     return (
       <div>
         <Head title='bookandoffer | Create a course' />
+        <StatusBar />
         <Header {...this.props} />
         <div>
           <Routes {...this.props} {...this.state} />
@@ -135,6 +143,11 @@ class CourseType extends Component {
     update('course', { type: 'LANGUAGE' })
   }
 
+  nextPage () {
+    const step = Number(get(this.props, 'step'))
+    Router.push(`/create-course?step=${step + 1}`)
+  }
+
   render () {
     const step = Number(get(this.props, 'step'))
     const type = get(this.props, 'course.type') || 'LANGUAGE'
@@ -162,9 +175,7 @@ class CourseType extends Component {
         <div className='layout horizontal bt b--light-gray center mt6 pt4'>
           <Link href={`/create-course?step=${step - 1}`}><span className='c-484848'>← Zurück</span></Link>
           <div className='ml-auto'>
-            <Link href={`/create-course?step=${step + 1}`}>
-              <button className='btn'>Weiter</button>
-            </Link>
+            <button className='btn' onClick={() => this.nextPage()}>Weiter</button>
           </div>
         </div>
       </div>
@@ -173,11 +184,43 @@ class CourseType extends Component {
 }
 
 class CourseLocation extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      errors: {}
+    }
+  }
+
   componentWillMount () {
     update('course', { country: 'DE' })
   }
 
+  nextPage () {
+    const course = store.get('course')
+    const address = get(course, 'address')
+    const city = get(course, 'city')
+    const postal = get(course, 'postal')
+    const errors = {}
+
+    if (!address) errors.address = 'Bitte geben Sie eine Adresse an'
+    if (!city) errors.city = 'Bitte geben Sie eine Stadt ein'
+    if (!postal) errors.postal = 'Postleitzahl erforderlich'
+    if (Object.keys(errors).length) return this.setState({ errors })
+
+    const step = Number(get(this.props, 'step'))
+    Router.push(`/create-course?step=${step + 1}`)
+  }
+
+  update (name, e) {
+    const errors = get(this.state, 'errors') || {}
+    delete errors[name]
+    this.setState({ errors })
+    update('course', { [name]: e.target.value })
+  }
+
   render () {
+    const { errors } = this.state || {}
+
     const step = Number(get(this.props, 'step'))
     const location = defaults(get(this.props, 'course') || {}, {
       country: 'DE',
@@ -200,8 +243,11 @@ class CourseLocation extends Component {
         </label>
 
         <label htmlFor='address' className='mt4' >
-          <div className='f7 fw4 mb1 ml1'>Straße und Hausnummer</div>
-          <input type='text' name='address' value={location.address} className='w-100 input' onInput={(e) => update('course', { address: e.target.value })} />
+          <div className='f7 fw4 mb1 ml1 layout horizontal'>
+            <span className={cls(errors.address && 'red')}>Straße und Hausnummer</span>
+            <span className={cls('ml-auto red', !errors.address && 'dn')}>{errors.address}</span>
+          </div>
+          <input type='text' name='address' value={location.address} className={cls('w-100 input', errors.address && 'b--red')} onInput={(e) => this.update('address', e)} />
         </label>
 
         <label htmlFor='addressSecondary' className='mt4' >
@@ -211,21 +257,25 @@ class CourseLocation extends Component {
 
         <div className='layout horizontal'>
           <label htmlFor='city' className='mr2 mt4 w-100' >
-            <div className='f7 fw4 mb1 ml1'>Stadt</div>
-            <input type='text' name='city' value={location.city} className='w-100 input' onInput={(e) => update('course', { city: e.target.value })} />
+            <div className='f7 fw4 mb1 ml1 layout horizontal'>
+              <span className={cls(errors.city && 'red')}>Stadt</span>
+              <span className={cls('ml-auto red', !errors.city && 'dn')}>{errors.city}</span>
+            </div>
+            <input type='text' name='city' value={location.city} className={cls('w-100 input', errors.address && 'b--red')} onInput={(e) => this.update('city', e)} />
           </label>
           <label htmlFor='postal' className='ml2 mt4 w-100' >
-            <div className='f7 fw4 mb1 ml1'>Postleitzahl</div>
-            <input type='text' name='postal' value={location.postal} className='w-100 input' onInput={(e) => update('course', { postal: e.target.value })} />
+            <div className='f7 fw4 mb1 ml1 layout horizontal'>
+              <span className={cls(errors.postal && 'red')}>Postleitzahl</span>
+              <span className={cls('ml-auto red', !errors.postal && 'dn')}>{errors.postal}</span>
+            </div>
+            <input type='text' name='postal' value={location.postal} className={cls('w-100 input', errors.address && 'b--red')} onInput={(e) => this.update('postal', e)} />
           </label>
         </div>
 
         <div className='layout horizontal bt b--light-gray center mt6 pt4'>
           <Link href={`/create-course?step=${step - 1}`}><span className='c-484848'>← Zurück</span></Link>
           <div className='ml-auto'>
-            <Link href={`/create-course?step=${step + 1}`}>
-              <button className='btn'>Weiter</button>
-            </Link>
+            <button className='btn' onClick={() => this.nextPage()}>Weiter</button>
           </div>
         </div>
       </div>
@@ -268,6 +318,11 @@ class Section2 extends Component {
 }
 
 class ImageUpload extends Component {
+  nextPage () {
+    const step = Number(get(this.props, 'step'))
+    Router.push(`/create-course?step=${step + 1}`)
+  }
+
   openUpload () {
     const url = window.prompt('Bitte geben Sie eine URL zu einem Bild ein')
     if (!url) return
@@ -307,9 +362,7 @@ class ImageUpload extends Component {
         <div className='layout horizontal bt b--light-gray center mv4 pt4 mw6 w-100 m-auto'>
           <Link href={`/create-course?step=${step - 1}`}><span className='c-484848'>← Zurück</span></Link>
           <div className='ml-auto'>
-            <Link href={`/create-course?step=${step + 1}`}>
-              { images.length ? <button className='btn'>Weiter</button> : <button className='btn-gray'>Überspringen</button> }
-            </Link>
+            { images.length ? <button className='btn' onClick={() => this.nextPage()}>Weiter</button> : <button className='btn-gray' onClick={() => this.nextPage()}>Überspringen</button> }
           </div>
         </div>
       </div>
@@ -318,7 +371,34 @@ class ImageUpload extends Component {
 }
 
 class CourseDescription extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      errors: {}
+    }
+  }
+
+  nextPage () {
+    const course = store.get('course')
+    const description = get(course, 'description')
+    const errors = {}
+
+    if (!description) errors.description = 'Bitte geben Sie eine Beschreibung ein'
+    if (Object.keys(errors).length) return this.setState({ errors })
+
+    const step = Number(get(this.props, 'step'))
+    Router.push(`/create-course?step=${step + 1}`)
+  }
+
+  update (name, e) {
+    const errors = get(this.state, 'errors') || {}
+    delete errors[name]
+    this.setState({ errors })
+    update('course', { [name]: e.target.value })
+  }
+
   render () {
+    const { errors } = this.state || {}
     const step = Number(get(this.props, 'step'))
     const description = get(this.props, 'course.description') || ''
 
@@ -326,15 +406,14 @@ class CourseDescription extends Component {
       <div className='mw6 m-auto mt5 layout vertical'>
         <h1 className='h-1'>Fang an, deine Beschreibung zu erstellen</h1>
         <label className='relative'>
-          <input type='text' className='w-100 input' maxLength='500' value={description} onInput={(e) => update('course', { description: e.target.value })} placeholder='Du wirst den Unterricht bei mir lieben, weil' />
+          <input type='text' className={cls('w-100 input', errors.description && 'b--red')} maxLength='500' value={description} onInput={(e) => this.update('description', e)} placeholder='Du wirst den Unterricht bei mir lieben, weil' />
           <div className='absolute top-0 right-0 pa2 f7 silver'>{500 - description.length}</div>
+          <span className={cls('f7 red mt1 ml-auto')}>{errors.description}</span>
         </label>
         <div className='layout horizontal bt b--light-gray center mt6 pt4'>
           <Link href={`/create-course?step=${step - 1}`}><span className='c-484848'>← Zurück</span></Link>
           <div className='ml-auto'>
-            <Link href={`/create-course?step=${step + 1}`}>
-              <button className='btn'>Weiter</button>
-            </Link>
+            <button className='btn' onClick={() => this.nextPage()}>Weiter</button>
           </div>
         </div>
       </div>
@@ -343,20 +422,46 @@ class CourseDescription extends Component {
 }
 
 class CourseTitle extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      errors: {}
+    }
+  }
+
+  nextPage () {
+    const course = store.get('course')
+    const title = get(course, 'title')
+    const errors = {}
+
+    if (!title) errors.title = 'Geben Sie bitte einen Titel ein'
+    if (Object.keys(errors).length) return this.setState({ errors })
+
+    const step = Number(get(this.props, 'step'))
+    Router.push(`/create-course?step=${step + 1}`)
+  }
+
+  update (name, e) {
+    const errors = get(this.state, 'errors') || {}
+    delete errors[name]
+    this.setState({ errors })
+    update('course', { [name]: e.target.value })
+  }
+
   render () {
+    const { errors } = this.state
     const step = Number(get(this.props, 'step'))
     const title = get(this.props, 'course.title') || ''
 
     return (
       <div className='mw6 m-auto mt5 layout vertical'>
         <h1 className='h-1'>Gib deinem Lehrangebot einen Titel</h1>
-        <input className='w-100 input' type='text' value={title} onInput={(e) => update('course', { title: e.target.value })} placeholder='Titel dieses Kurses' />
+        <input className={cls('w-100 input', errors.title && 'b--red')} type='text' value={title} onInput={(e) => this.update('title', e)} placeholder='Titel dieses Kurses' />
+        <span className={cls('f7 red mt1 ml-auto')}>{errors.title}</span>
         <div className='layout horizontal bt b--light-gray center mt6 pt4'>
           <Link href={`/create-course?step=${step - 1}`}><span className='c-484848'>← Zurück</span></Link>
           <div className='ml-auto'>
-            <Link href={`/create-course?step=${step + 1}`}>
-              <button className='btn'>Weiter</button>
-            </Link>
+            <button className='btn' onClick={() => this.nextPage()}>Weiter</button>
           </div>
         </div>
       </div>
@@ -401,6 +506,32 @@ class Section3 extends Component {
 }
 
 class CourseDuration extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      errors: {}
+    }
+  }
+
+  nextPage () {
+    const course = store.get('course')
+    const duration = get(course, 'duration')
+    const errors = {}
+
+    if (!duration || !isNumber(duration)) errors.duration = 'Bitte geben Sie die Länge der Sitzungen ein'
+    if (Object.keys(errors).length) return this.setState({ errors })
+
+    const step = Number(get(this.props, 'step'))
+    Router.push(`/create-course?step=${step + 1}`)
+  }
+
+  update (name, e) {
+    const errors = get(this.state, 'errors') || {}
+    delete errors[name]
+    this.setState({ errors })
+    update('course', { [name]: e.target.value })
+  }
+
   render () {
     const step = Number(get(this.props, 'step'))
     const duration = get(this.props, 'course.duration') || ''
@@ -409,15 +540,16 @@ class CourseDuration extends Component {
       <div className='mw6 m-auto mt5 layout vertical'>
         <h1 className='h-1'>Wie lange dauert eine Sitzung deines Kurses?</h1>
         <label htmlFor='duration'>
-          <div className='f7 fw4 mb1 ml1'>Stunden</div>
-          <input className='w-100 input' type='text' value={duration} onInput={(e) => update('course', { duration: e.target.value })} placeholder='1' />
+          <div className='f7 fw4 mb1 ml1 layout horizontal'>
+            <span className={cls(this.state.errors.duration && 'red')}>Stunden</span>
+            <span className={cls('ml-auto red', !this.state.errors.duration && 'dn')}>{this.state.errors.duration}</span>
+          </div>
+          <input type='text' name='duration' value={duration} className={cls('w-100 input', this.state.errors.duration && 'b--red')} onInput={(e) => this.update('duration', e)} placeholder='1' />
         </label>
         <div className='layout horizontal bt b--light-gray center mt6 pt4'>
           <Link href={`/create-course?step=${step - 1}`}><span className='c-484848'>← Zurück</span></Link>
           <div className='ml-auto'>
-            <Link href={`/create-course?step=${step + 1}`}>
-              <button className='btn'>Weiter</button>
-            </Link>
+            <button className='btn' onClick={() => this.nextPage()}>Weiter</button>
           </div>
         </div>
       </div>
@@ -426,6 +558,32 @@ class CourseDuration extends Component {
 }
 
 class CoursePrice extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      errors: {}
+    }
+  }
+
+  nextPage () {
+    const course = store.get('course')
+    const price = get(course, 'price')
+    const errors = {}
+
+    if (!price || !isNumber(price)) errors.price = 'Bitte geben Sie einen Preis pro Stunde ein'
+    if (Object.keys(errors).length) return this.setState({ errors })
+
+    const step = Number(get(this.props, 'step'))
+    Router.push(`/create-course?step=${step + 1}`)
+  }
+
+  update (name, e) {
+    const errors = get(this.state, 'errors') || {}
+    delete errors[name]
+    this.setState({ errors })
+    update('course', { [name]: e.target.value })
+  }
+
   render () {
     const step = Number(get(this.props, 'step'))
     const price = get(this.props, 'course.price') || ''
@@ -434,19 +592,20 @@ class CoursePrice extends Component {
       <div className='mw6 m-auto mt5 layout vertical'>
         <h1 className='h-1'>Preis pro Kursstunde</h1>
         <div>
-          <div className='f7 fw4 mb1 ml1 mt4'>Preis</div>
-          <label className='layout horizontal center label'>
-            <input type='text' className='w-100 bn outline-0 flex' value={price} onInput={(e) => update('course', { price: e.target.value })} placeholder='410' />
+          <div className='f7 fw4 mb1 ml1 mt4 layout horizontal'>
+            <span className={cls(this.state.errors.price && 'red')}>Preis</span>
+            <span className={cls('ml-auto red', !this.state.errors.price && 'dn')}>{this.state.errors.price}</span>
+          </div>
+          <label className={cls('layout horizontal center label', this.state.errors.price && 'b--red')}>
+            <input type='text' className={cls('w-100 bn outline-0 flex', this.state.errors.price && 'b--red')} value={price} onInput={(e) => this.update('price', e)} placeholder='410' />
             <span className='f4 fw4 ml1'>€</span>
-            <span className='silver f6 ml2 fw2'>für den gesamten Kurs</span>
+            <span className='silver f6 ml2 fw2'>pro Stunde</span>
           </label>
         </div>
         <div className='layout horizontal bt b--light-gray center mt6 pt4'>
           <Link href={`/create-course?step=${step - 1}`}><span className='c-484848'>← Zurück</span></Link>
           <div className='ml-auto'>
-            <Link href={`/create-course?step=${step + 1}`}>
-              <button className='btn'>Weiter</button>
-            </Link>
+            <button className='btn' onClick={() => this.nextPage()}>Weiter</button>
           </div>
         </div>
       </div>
@@ -455,6 +614,32 @@ class CoursePrice extends Component {
 }
 
 class CourseSize extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      errors: {}
+    }
+  }
+
+  nextPage () {
+    const course = store.get('course')
+    const groupSize = get(course, 'groupSize')
+    const errors = {}
+
+    if (!groupSize || !isNumber(groupSize)) errors.groupSize = 'Bitte geben Sie eine Gruppengröße an'
+    if (Object.keys(errors).length) return this.setState({ errors })
+
+    const step = Number(get(this.props, 'step'))
+    Router.push(`/create-course?step=${step + 1}`)
+  }
+
+  update (name, e) {
+    const errors = get(this.state, 'errors') || {}
+    delete errors[name]
+    this.setState({ errors })
+    update('course', { [name]: e.target.value })
+  }
+
   render () {
     const step = Number(get(this.props, 'step'))
     const groupSize = get(this.props, 'course.groupSize') || ''
@@ -462,16 +647,17 @@ class CourseSize extends Component {
     return (
       <div className='mw6 m-auto mt5 layout vertical'>
         <h1 className='h-1'>Lege die maximale Gruppengröße fest</h1>
-        <label htmlFor='duration'>
-          <div className='f7 fw4 mb1 ml1 mt4'>Maximale Teilnehmerzahl</div>
-          <input type='text' className='w-100 input' value={groupSize} onInput={(e) => update('course', { groupSize: e.target.value })} placeholder='10' />
+        <label htmlFor='groupSize'>
+          <div className='f7 fw4 mb1 ml1 layout horizontal'>
+            <span className={cls(this.state.errors.groupSize && 'red')}>Maximale Teilnehmerzahl</span>
+            <span className={cls('ml-auto red', !this.state.errors.groupSize && 'dn')}>{this.state.errors.groupSize}</span>
+          </div>
+          <input type='text' name='groupSize' value={groupSize} className={cls('w-100 input', this.state.errors.groupSize && 'b--red')} onInput={(e) => this.update('groupSize', e)} />
         </label>
         <div className='layout horizontal bt b--light-gray center mt6 pt4'>
           <Link href={`/create-course?step=${step - 1}`}><span className='c-484848'>← Zurück</span></Link>
           <div className='ml-auto'>
-            <Link href={`/create-course?step=${step + 1}`}>
-              <button className='btn'>Weiter</button>
-            </Link>
+            <button className='btn' onClick={() => this.nextPage()}>Weiter</button>
           </div>
         </div>
       </div>
@@ -480,6 +666,36 @@ class CourseSize extends Component {
 }
 
 class CourseSchedule extends Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      errors: {}
+    }
+  }
+
+  nextPage () {
+    const course = store.get('course')
+    const startDate = get(course, 'startDate')
+    const endDate = get(course, 'endDate')
+    const startTime = get(course, 'startTime')
+    const errors = {}
+
+    if (!startDate) errors.startDate = 'Bitte geben Sie ein gültiges Startdatum ein'
+    if (!endDate) errors.endDate = 'Geben Sie ein gültiges Enddatum ein'
+    if (!startTime || !/^\d{1,2}:\d{1,2}\s*(am|pm)?$/i.test(startTime)) errors.startTime = 'Gültige Startzeit erforderlich'
+    if (Object.keys(errors).length) return this.setState({ errors })
+
+    const step = Number(get(this.props, 'step'))
+    Router.push(`/create-course?step=${step + 1}`)
+  }
+
+  update (name, e) {
+    const errors = get(this.state, 'errors') || {}
+    delete errors[name]
+    this.setState({ errors })
+    update('course', { [name]: e.target.value })
+  }
+
   componentWillMount () {
     update('course', { interval: 'DAILY' })
   }
@@ -505,12 +721,16 @@ class CourseSchedule extends Component {
         <div className='layout vertical'>
           <div className='layout horizontal'>
             <label htmlFor='startDate' className='db flex-1 pa3'>
-              <div className='f7 fw4 mb1 ml1 mt4'>Startdatum</div>
-              <DatePicker selected={moment(startDate)} onChange={(date) => update('course', { startDate: date.format('l') })} className='w-100 input' placeholderText='10/1/2017' />
+              <span className={cls(this.state.errors.startDate && 'red')}>Startdatum</span>
+              <DatePicker selected={moment(startDate)} onChange={(date) => update('course', { startDate: date.format('l') })} className={cls('w-100 input', this.state.errors.startDate && 'b--red')} placeholderText='10/1/2017' />
+              <span className={cls('ml-auto red', !this.state.errors.startDate && 'dn')}>{this.state.errors.startDate}</span>
             </label>
             <label htmlFor='endDate' className='db flex-1 pa3'>
-              <div className='f7 fw4 mb1 ml1 mt4'>Enddatum</div>
-              <DatePicker selected={moment(endDate)} onChange={(date) => update('course', { endDate: date.format('l') })} className='w-100 input' placeholderText='10/6/2017' />
+              <div className='f7 fw4 mb1 ml1 layout horizontal'>
+                <span className={cls(this.state.errors.endDate && 'red')}>Enddatum</span>
+                <span className={cls('ml-auto red', !this.state.errors.endDate && 'dn')}>{this.state.errors.endDate}</span>
+              </div>
+              <DatePicker selected={moment(endDate)} onChange={(date) => update('course', { endDate: date.format('l') })} className={cls('w-100 input', this.state.errors.endDate && 'b--red')} placeholderText='10/6/2017' />
             </label>
           </div>
           <div className='layout horizontal'>
@@ -523,8 +743,11 @@ class CourseSchedule extends Component {
               </select>
             </label>
             <label htmlFor='startTime' className='db flex-1 pa3'>
-              <div className='f7 fw4 mb1 ml1 mt4'>Uhrzeit</div>
-              <input type='text' className='w-100 input' value={startTime} onInput={(e) => update('course', { startTime: e.target.value })} placeholder='15:00' />
+              <div className='f7 fw4 mb1 ml1 mt4 layout horizontal'>
+                <span className={cls(this.state.errors.startTime && 'red')}>Uhrzeit</span>
+                <span className={cls('ml-auto red', !this.state.errors.startTime && 'dn')}>{this.state.errors.startTime}</span>
+              </div>
+              <input type='text' className={cls('w-100 input', this.state.errors.startTime && 'b--red')} value={startTime} onInput={(e) => update('course', { startTime: e.target.value })} placeholder='15:00' />
             </label>
           </div>
         </div>
@@ -532,9 +755,7 @@ class CourseSchedule extends Component {
         <div className='layout horizontal bt b--light-gray center mt6 pt4'>
           <Link href={`/create-course?step=${step - 1}`}><span className='c-484848'>← Zurück</span></Link>
           <div className='ml-auto'>
-            <Link href={`/create-course?step=${step + 1}`}>
-              <button className='btn'>Weiter</button>
-            </Link>
+            <button className='btn' onClick={() => this.nextPage()}>Weiter</button>
           </div>
         </div>
       </div>
@@ -544,154 +765,16 @@ class CourseSchedule extends Component {
 
 class Section4 extends Component {
   async save () {
-    const course = store.get('course')
-    const user = this.props.user
-    let res
-
-    if (!course.id) {
-      res = await graph(`
-        mutation createCourse (
-          $address: String!,
-          $addressSecondary: String,
-          $city: String!,
-          $country: String!,
-          $description: String!,
-          $duration: Int!,
-          $endDate: DateTime!,
-          $groupSize: Int!,
-          $images: [String!],
-          $interval: COURSE_INTERVAL!,
-          $postal: String!,
-          $price: Int!,
-          $startDate: DateTime!,
-          $startTime: String!,
-          $title: String!,
-          $type: COURSE_TYPE!,
-          $fullAddress: String!,
-          $userId: ID!
-        ) {
-          createCourse(
-            address: $address,
-            addressSecondary: $addressSecondary,
-            city: $city,
-            country: $country,
-            description: $description,
-            duration: $duration,
-            endDate: $endDate,
-            groupSize: $groupSize,
-            images: $images,
-            interval: $interval,
-            postal: $postal,
-            price: $price,
-            startDate: $startDate,
-            startTime: $startTime,
-            title: $title,
-            type: $type,
-            fullAddress: $fullAddress,
-            userId: $userId
-          ) {
-            id
-          }
-        }
-      `, {
-        address: course.address,
-        addressSecondary: course.addressSecondary,
-        city: course.city,
-        country: course.country,
-        description: course.description,
-        duration: Number(course.duration),
-        endDate: new Date(course.endDate).toISOString(),
-        groupSize: Number(course.groupSize),
-        images: course.images,
-        interval: course.interval,
-        postal: course.postal,
-        price: Number(course.price),
-        startDate: new Date(course.startDate).toISOString(),
-        startTime: course.startTime,
-        title: course.title,
-        type: course.type,
-        fullAddress: fullAddress(course),
-        userId: user.id
+    const [ err, course ] = await upsertCourse(this.props.user, store.get('course'))
+    if (err) {
+      return StatusBar.setState({
+        error: 'Konnte den Kurs nicht erstellen. Wenden Sie sich bitte an hello@bookandoffer.com'
       })
     } else {
-      res = await graph(`
-        mutation updateCourse (
-          $id: ID!,
-          $address: String!,
-          $addressSecondary: String,
-          $city: String!,
-          $country: String!,
-          $description: String!,
-          $duration: Int!,
-          $endDate: DateTime!,
-          $groupSize: Int!,
-          $images: [String!],
-          $interval: COURSE_INTERVAL!,
-          $postal: String!,
-          $price: Int!,
-          $startDate: DateTime!,
-          $startTime: String!,
-          $title: String!,
-          $type: COURSE_TYPE!,
-          $fullAddress: String!,
-          $userId: ID!
-        ) {
-          updateCourse (
-            id: $id,
-            address: $address,
-            addressSecondary: $addressSecondary,
-            city: $city,
-            country: $country,
-            description: $description,
-            duration: $duration,
-            endDate: $endDate,
-            groupSize: $groupSize,
-            images: $images,
-            interval: $interval,
-            postal: $postal,
-            price: $price,
-            startDate: $startDate,
-            startTime: $startTime,
-            title: $title,
-            type: $type,
-            fullAddress: $fullAddress,
-            userId: $userId
-          ) {
-            id
-          }
-        }
-      `, {
-        id: course.id,
-        address: course.address,
-        addressSecondary: course.addressSecondary,
-        city: course.city,
-        country: course.country,
-        description: course.description,
-        duration: Number(course.duration),
-        endDate: new Date(course.endDate).toISOString(),
-        groupSize: Number(course.groupSize),
-        images: course.images,
-        interval: course.interval,
-        postal: course.postal,
-        price: Number(course.price),
-        startDate: new Date(course.startDate).toISOString(),
-        startTime: course.startTime,
-        title: course.title,
-        type: course.type,
-        fullAddress: fullAddress(course),
-        userId: user.id
-      })
-    }
-
-    if (res instanceof Error) {
-      alert(res.message)
-      return
-    } else {
-      // clear out localstorage
+      console.log('created course', course)
       store.remove('course')
+      Router.push('/me')
     }
-
-    Router.push('/me')
   }
 
   render () {
@@ -731,8 +814,4 @@ class Section4 extends Component {
 function update (key, value) {
   const existing = store.get(key)
   store.set(key, Object.assign({}, existing, value))
-}
-
-function fullAddress (course) {
-  return `${course.address} ${course.addressSecondary || ''} ${course.city}, ${course.country} ${course.postal}`
 }
