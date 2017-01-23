@@ -5,6 +5,7 @@ import loadCourse from '../lib/load-course'
 import DatePicker from 'react-datepicker'
 import Header from '../components/header'
 import upsertCourse from '../lib/upsert-course'
+import picker from '../lib/file-picker'
 import defaults from 'lodash.defaults'
 import redirect from '../lib/redirect'
 import Head from '../components/head'
@@ -17,6 +18,8 @@ import Router from 'next/router'
 import auth from '../lib/auth'
 import moment from 'moment'
 import get from 'dlv'
+import superagent from 'superagent'
+import poss from 'poss'
 import cls from 'classnames'
 
 function alert (message) {
@@ -318,51 +321,106 @@ class Section2 extends Component {
 }
 
 class ImageUpload extends Component {
-  nextPage () {
+  constructor (props) {
+    super(props)
+    let images = get(store.get('course'), 'images') || []
+    this.state = {
+      images: images.map(img => { return { uri: img } }),
+      uploading: false
+    }
+  }
+
+  async nextPage () {
+    const files = this.state.images.filter(img => !!img.file).map(img => img.file)
+    const saved = this.state.images.filter(img => !img.file).map(img => img.uri)
     const step = Number(get(this.props, 'step'))
+
+    if (!files.length) {
+      update('course', { images: saved })
+      Router.push(`/create-course?step=${step + 1}`)
+      return
+    }
+
+    this.setState({ uploading: true })
+    const [ err, urls ] = await poss(Promise.all(files.map(async file => {
+      const form = new window.FormData()
+      form.append('data', file)
+      const res = await superagent.post('https://api.graph.cool/file/v1/cixap15jy31av0111cidov8hf').send(form)
+      if (res.ok) return res.body.url
+      else throw new Error('unable to upload file')
+    })))
+
+    this.setState({ uploading: false })
+    if (err) return alert('Unable to upload images at this time')
+
+    update('course', { images: saved.concat(urls) })
     Router.push(`/create-course?step=${step + 1}`)
   }
 
-  openUpload () {
-    const url = window.prompt('Bitte geben Sie eine URL zu einem Bild ein')
-    if (!url) return
+  async openUpload () {
+    const uploads = await new Promise((resolve, reject) => picker({ accept: ['image/*'], multiple: true }, files => resolve(files)))
+    if (!uploads || !uploads.length) return
+    const files = [].slice.call(uploads)
 
-    const images = (get(store.get('course'), 'images') || []).concat(url)
-    update('course', { images: images })
+    const uris = await Promise.all(files.map(async file => {
+      return new Promise((resolve, reject) => {
+        const reader = new window.FileReader()
+        reader.onerror = function (err) { reject(err) }
+        reader.onload = function () { resolve(reader.result) }
+        reader.readAsDataURL(file)
+      })
+    }))
+
+    const images = this.state.images || []
+    this.setState({
+      images: images.concat(files.map((file, i) => { return { file: file, uri: uris[i] } }))
+    })
   }
 
-  deleteImage (src) {
-    let images = get(this.props, 'course.images') || []
-    const i = images.indexOf(src)
-    if (~i) images.splice(i, 1)
-    update('course', { images: images })
+  deleteImage (i) {
+    const images = this.state.images || []
+    images.splice(i, 1)
+    this.setState({ images })
   }
 
   render () {
     const step = Number(get(this.props, 'step'))
-    const images = get(this.props, 'course.images') || []
+    const uploading = this.state.uploading
+    const images = this.state.images
 
     return (
       <div className='mw7 m-auto mt5 layout vertical'>
-        <h1 className='mw6 m-auto'>Zeige deihen Gasten wie dein Unterrichtsort aussieht!</h1>
-        <div className='mt4 layout horizontal b--dotted b--light-gray ba1 ph4 pv6 pointer' style={{ backgroundImage: 'url(/static/rect.svg)' }} onClick={() => this.openUpload()}>
-          <button className='btn layout horizontal center m-auto'>
-            <i className='material-icons mr3'>cloud_upload</i>
-            <span>Fotos hochladen</span>
-          </button>
-        </div>
-        <div className='mt4'>
-          {images.map(src => (
-            <div className='relative'>
-              <img src={src} alt={src} key={src} className='w-100' />
-              <i className='material-icons absolute top-2 right-2 pointer' onClick={() => this.deleteImage(src)}>delete</i>
+        <div className={cls(!uploading && 'dn')}>
+          <div className='fixed absolute--fill layout horizontal center justify-center f4 fw6 z-max' style={{ color: '#00a699', backgroundColor: 'rgba(255, 255, 255, .85)' }}>
+            <div className='layout horizontal center relative'>
+              <div className='absolute'>
+                <div className='loader' />
+              </div>
+              <div className='ml5'>UPLOADING...</div>
             </div>
-          ))}
+          </div>
         </div>
-        <div className='layout horizontal bt b--light-gray center mv4 pt4 mw6 w-100 m-auto'>
-          <Link href={`/create-course?step=${step - 1}`}><span className='c-484848'>← Zurück</span></Link>
-          <div className='ml-auto'>
-            { images.length ? <button className='btn' onClick={() => this.nextPage()}>Weiter</button> : <button className='btn-gray' onClick={() => this.nextPage()}>Überspringen</button> }
+        <div className='layout vertical'>
+          <h1 className='mw6 m-auto'>Zeige deihen Gasten wie dein Unterrichtsort aussieht!</h1>
+          <div className='mt4 layout horizontal b--dotted b--light-gray ba1 ph4 pv6 pointer' style={{ backgroundImage: 'url(/static/rect.svg)' }} onClick={() => this.openUpload()}>
+            <button className='btn layout horizontal center m-auto'>
+              <i className='material-icons mr3'>cloud_upload</i>
+              <span>Fotos hochladen</span>
+            </button>
+          </div>
+          <div className='mt4'>
+            {images.map((img, i) => (
+              <div className='relative' key={i}>
+                <img src={img.uri} alt={i} className='w-100' />
+                <i className='material-icons absolute top-2 right-2 pointer' onClick={() => this.deleteImage(i)}>delete</i>
+              </div>
+          ))}
+          </div>
+          <div className='layout horizontal bt b--light-gray center mv4 pt4 mw6 w-100 m-auto'>
+            <Link href={`/create-course?step=${step - 1}`}><span className='c-484848'>← Zurück</span></Link>
+            <div className='ml-auto'>
+              { images.length ? <button className='btn' onClick={() => this.nextPage()}>Weiter</button> : <button className='btn-gray' onClick={() => this.nextPage()}>Überspringen</button> }
+            </div>
           </div>
         </div>
       </div>

@@ -962,6 +962,16 @@ component-emitter@^1.2.0, component-emitter@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/component-emitter/-/component-emitter-1.2.1.tgz#137918d6d78283f7df7a6b7c5a63e140e69425e6"
 
+component-event@0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/component-event/-/component-event-0.1.4.tgz#3de78fc28782381787e24bf2a7c536bf0142c9b4"
+
+component-file-picker@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/component-file-picker/-/component-file-picker-0.2.1.tgz#14837f32d700d1575ec3baaa173ccdcf27e34e31"
+  dependencies:
+    component-event "0.1.4"
+
 concat-map@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
@@ -1189,6 +1199,10 @@ email-regex@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/email-regex/-/email-regex-1.0.0.tgz#16c08f1fa8310907090127430a68562728bd029b"
 
+emitter-component@*:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/emitter-component/-/emitter-component-1.1.1.tgz#065e2dbed6959bf470679edabeaf7981d1003ab6"
+
 emojis-list@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/emojis-list/-/emojis-list-2.1.0.tgz#4daa4d9db00f9819880c79fa457ae5b09a1fd389"
@@ -1314,6 +1328,12 @@ fbjs@^0.8.1, fbjs@^0.8.4, fbjs@^0.8.8:
 fecha@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/fecha/-/fecha-2.3.0.tgz#791efb33d63b89b7aa8eccc28e59593db2ead700"
+
+file-component@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/file-component/-/file-component-0.1.0.tgz#4ae184370d43f20295032c8a90dc3a9d2ff2f13f"
+  dependencies:
+    emitter-component "*"
 
 filename-regex@^2.0.0:
   version "2.0.0"
