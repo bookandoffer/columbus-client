@@ -102,7 +102,7 @@ export default class Me extends Component {
       from: 'info@bookandoffer.com',
       to: this.props.course.user.email,
       subject: "You've got a new student!",
-      text: `${this.state.email} would like to take ${this.props.course.title} on ${fecha.format(new Date(startDate), 'mediumDate')} for ${numWeeks} weeks. If the inquirer left a note it will appear here: ${textInfo}. Please reply to this email to coordinate further!`,
+      text: `${this.state.email} would like to take ${this.props.course.title} on ${fecha.format(new Date(startDate), 'mediumDate')} for ${numWeeks} hours. If the inquirer left a note it will appear here: ${textInfo}. Please reply to this email to coordinate further!`,
       replyTo: this.state.email
     }
 
@@ -223,7 +223,7 @@ export default class Me extends Component {
                   </div>
                   <div className='items-center layout vertical ma3'>
                     <img src='/static/icons/door-icon.png' className='mw3' />
-                    <div className='flex f7 courseTextSecondary'>{data['duration']} Stunde/Woche</div>
+                    <div className='flex f7 courseTextSecondary'>{data['duration']} Stunden/Woche</div>
                   </div>
                 </div>
               </div>
