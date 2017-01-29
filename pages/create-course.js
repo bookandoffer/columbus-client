@@ -405,7 +405,7 @@ class ImageUpload extends Component {
           <div className='mt4 layout horizontal b--dotted b--light-gray ba1 ph4 pv6 pointer' style={{ backgroundImage: 'url(/static/rect.svg)' }} onClick={() => this.openUpload()}>
             <button className='btn layout horizontal center m-auto'>
               <i className='material-icons mr3'>cloud_upload</i>
-              <span>Fotos hochladen</span>
+              <span>Foto hochladen</span>
             </button>
           </div>
           <div className='mt4'>
