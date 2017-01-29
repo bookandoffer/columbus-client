@@ -277,7 +277,7 @@ class Login extends Component {
             <i className='material-icons'>lock</i>
           </div>
         </label>
-        <a href='mailto:admin@bookandoffer.com' className='f7 c-45A399'>Haben Sie Ihr Passwort vergessen?</a>
+        <a href='mailto:info@bookandoffer.com?Subject=Ich%20habe%20mein%20Passwort%20vergessen' className='f7 c-45A399'>Haben Sie Ihr Passwort vergessen?</a>
         <button className='btn w-100 mt4' onClick={() => this.login()}>Einloggen</button>
         <div className='layout horizontal bt b--light-gray mt4 pt4 center'>
           <span className='c-45A399 b'>Hast du noch keinen Account?</span>
