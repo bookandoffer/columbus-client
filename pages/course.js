@@ -90,6 +90,7 @@ export default class Me extends Component {
     const startDate = this.state.startDate
     const numWeeks = this.state.numWeeks
     const email = this.state.email
+    const textInfo = this.state.textInfo
 
     const errors = {}
     if (!email || !isEmail({ exact: true }).test(email)) errors.email = 'Bitte geben sie eine gültige E-Mail'
@@ -101,7 +102,7 @@ export default class Me extends Component {
       from: 'info@bookandoffer.com',
       to: this.props.course.user.email,
       subject: "You've got a new student!",
-      text: `${this.state.email} would like to take ${this.props.course.title} on ${fecha.format(new Date(startDate), 'mediumDate')} for ${numWeeks} weeks. Please reply to this email to coordinate further!`,
+      text: `${this.state.email} would like to take ${this.props.course.title} on ${fecha.format(new Date(startDate), 'mediumDate')} for ${numWeeks} weeks. If the inquirer left a note it will appear here: ${textInfo}. Please reply to this email to coordinate further!`,
       replyTo: this.state.email
     }
 
@@ -136,8 +137,8 @@ export default class Me extends Component {
 
           <div className='bg-white layout vertical z-1 course-sidebar' style={{height: '470px', width: '300px'}}>
             <div className='layout horizontal items-center ph3 sysFont justify-between' style={{height: '40px', backgroundColor: '#4A4C4C'}}>
-              <span className='white f6'>{data.price} € </span>
-              <span className='white f6'>Woche </span>
+              <span className='white f6'>{data.price} CHF </span>
+              <span className='white f6'>Stunde </span>
             </div>
             <div className='flex sysFont pa3 layout vertical' style={{borderRight: '1px solid #E4E7E7', borderLeft: '1px solid #E4E7E7', borderBottom: '1px solid #E4E7E7'}}>
               <form>
@@ -147,7 +148,7 @@ export default class Me extends Component {
                     <span className={cls('f6', errors.email && 'red')}>Email</span>
                     <span className='f7 red ml-auto'>{errors.email}</span>
                   </div>
-                  <input className={cls('mt2 mb3 transactionInput', errors.email && 'b--red')} id='email' style={{width: '100%', height: '32px', border: '1px solid #686666', borderRadius: '3px'}} type='text' value={this.state.email} onInput={(e) => this.setState({ email: e.target.value })} />
+                  <input className={cls('mt2 mb3 transactionInput', errors.email && 'b--red')} id='email' style={{width: '100%', height: '36px', border: '1px solid #686666', borderRadius: '3px'}} type='text' value={this.state.email} onInput={(e) => this.setState({ email: e.target.value })} />
                 </label>
 
                 <label htmlFor='startDate'>
@@ -155,18 +156,26 @@ export default class Me extends Component {
                     <span className={cls('f6', errors.startDate && 'red')}>Startdatum</span>
                     <span className='f7 red ml-auto'>{errors.startDate}</span>
                   </div>
-                  <DatePicker id='startDate' selected={moment(startDate)} onChange={(date) => this.setState({ startDate: date.format('l') })} className='mt2 mb3 transactionInput course-page-date-picker' style={{width: '100%', height: '32px', border: '1px solid #686666', borderRadius: '3px'}} placeholderText='10/1/2017' />
+                  <DatePicker id='startDate' selected={moment(startDate)} onChange={(date) => this.setState({ startDate: date.format('l') })} className='mt2 mb3 transactionInput course-page-date-picker' style={{width: '100%', height: '36px', border: '1px solid #686666', borderRadius: '3px'}} placeholderText='10/1/2017' />
                 </label>
 
                 <label htmlFor='numWeeks'>
                   <div className='courseTextPrimary layout horizontal center'>
-                    <span className={cls('f6', errors.numWeeks && 'red')}>Anzahl Wochen</span>
+                    <span className={cls('f6', errors.numWeeks && 'red')}>Anzahl Stunden</span>
                     <span className='f7 red ml-auto'>{errors.numWeeks}</span>
                   </div>
-                  <input className={cls('mt2 transactionInput', errors.numWeeks && 'b--red')} id='numWeeks' style={{ width: '100%', height: '32px', border: '1px solid #686666', borderRadius: '3px' }} min='0' type='number' value={this.state.numWeeks} onInput={(e) => this.setState({ numWeeks: parseInt(e.target.value, 10) })} />
+                  <input className={cls('mt2 mb3 transactionInput', errors.numWeeks && 'b--red')} id='numWeeks' style={{ width: '100%', height: '36px', border: '1px solid #686666', borderRadius: '3px' }} min='0' type='number' value={this.state.numWeeks} onInput={(e) => this.setState({ numWeeks: parseInt(e.target.value, 10) })} />
+                </label>
+
+                <label htmlFor='textInfo'>
+                  <div className='courseTextPrimary layout horizontal center'>
+                    <span className='f6'>Notiz (optional)</span>
+                  </div>
+                  <textarea rows='2' maxLength='500' id='textInfo' className='mt2 transactionInput' style={{width: '100%', border: '1px solid #686666', borderRadius: '3px'}} value={this.state.textInfo} onInput={(e) => this.setState({ textInfo: e.target.value })} />
                 </label>
 
                 <div className='flex layout vertical mt4'>
+                {/*
                   <div className='layout courseTextPrimary horizontal ph3 items-center justify-between' style={{height: '35px', borderBottom: '1px solid #E4E7E7'}}>
                     <span>{this.state.numWeeks ? data.price + ' € x ' + this.state.numWeeks + ' Wochen' : '-'}</span>
                     <span>{this.state.numWeeks ? data.price * this.state.numWeeks + '€' : '0€'}</span>
@@ -179,6 +188,7 @@ export default class Me extends Component {
                     <span>Gesamtsumme</span>
                     <span>{this.state.numWeeks ? data.price * this.state.numWeeks + 40 + '€' : '0€'}</span>
                   </div>
+                */}
                   <button className='btn mt3 fw7' onClick={(e) => this.sendEmail(e)}>Buchung anfragen</button>
                 </div>
               </form>
@@ -194,7 +204,7 @@ export default class Me extends Component {
                   <div className='flex h-100' style={{backgroundImage: "url('/static/course-logo.png')", backgroundSize: 'contain', backgroundPosition: 'center center', backgroundRepeat: 'no-repeat'}} />
                 </div>
                 <div className='flex justify-center courseTextSecondary items-start'>
-                  Taleninstituut
+                  Talentinstituut
                 </div>
               </div>
               <div className='pl3'>
@@ -205,7 +215,7 @@ export default class Me extends Component {
                 <div className='layout horizontal w-100 wrap'>
                   <div className='items-center layout vertical ma3'>
                     <img src='/static/icons/house-icon.png' className='mw3' />
-                    <div className='flex f7 courseTextSecondary'>Sprachschule</div>
+                    <div className='flex f7 courseTextSecondary'>{data['type']}</div>
                   </div>
                   <div className='items-center layout vertical ma3'>
                     <img src='/static/icons/people-icon.png' className='mw3' />
@@ -213,7 +223,7 @@ export default class Me extends Component {
                   </div>
                   <div className='items-center layout vertical ma3'>
                     <img src='/static/icons/door-icon.png' className='mw3' />
-                    <div className='flex f7 courseTextSecondary'>{data['duration']} Lektionen/Woche</div>
+                    <div className='flex f7 courseTextSecondary'>{data['duration']} Stunde/Woche</div>
                   </div>
                 </div>
               </div>
@@ -221,7 +231,7 @@ export default class Me extends Component {
           </div>
           <div style={{borderBottom: '2px solid #F1F1F1', marginLeft: '-20%' }} />
 
-          <div className='sysFont pa4'>
+          <div className='sysFont pa4' style={{maxWidth: '70%'}}>
             <p className='f4 fw7 courseTextPrimary'>Über dieses Inserat</p>
             <p className='f5 courseTextSecondary'>{data['description']}</p>
           </div>
@@ -258,6 +268,7 @@ export default class Me extends Component {
           </div>
           <div style={{borderBottom: '2px solid #FAFAFA', marginLeft: '-20%' }} />
 
+          {/*
           <div className='w-100 sysFont pa4'>
             <div className='layout horizontal wrap pb5'>
               <div className='w5 courseTextSecondary fw7' style={{fontSize: '1.1rem'}}>Sprache</div>
@@ -285,6 +296,7 @@ export default class Me extends Component {
               </div>
             </div>
           </div>
+          */}
           <div style={{borderBottom: '2px solid #FAFAFA', marginLeft: '-20%' }} />
 
         </div>

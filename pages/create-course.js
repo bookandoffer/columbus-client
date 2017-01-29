@@ -464,7 +464,7 @@ class CourseDescription extends Component {
       <div className='mw6 m-auto mt5 layout vertical'>
         <h1 className='h-1'>Fang an, deine Beschreibung zu erstellen</h1>
         <label className='relative'>
-          <input type='text' className={cls('w-100 input', errors.description && 'b--red')} maxLength='500' value={description} onInput={(e) => this.update('description', e)} placeholder='Du wirst den Unterricht bei mir lieben, weil' />
+          <textarea rows="4" className={cls('w-100 input', errors.description && 'b--red')} maxLength='500' value={description} onInput={(e) => this.update('description', e)} placeholder='Du wirst den Unterricht bei mir lieben, weil ...' />
           <div className='absolute top-0 right-0 pa2 f7 silver'>{500 - description.length}</div>
           <span className={cls('f7 red mt1 ml-auto')}>{errors.description}</span>
         </label>
@@ -599,7 +599,7 @@ class CourseDuration extends Component {
         <h1 className='h-1'>Wie lange dauert eine Sitzung deines Kurses?</h1>
         <label htmlFor='duration'>
           <div className='f7 fw4 mb1 ml1 layout horizontal'>
-            <span className={cls(this.state.errors.duration && 'red')}>Stunden</span>
+            <span className={cls(this.state.errors.duration && 'red')}>Stunden (bitte nur volle Stunden angeben)</span>
             <span className={cls('ml-auto red', !this.state.errors.duration && 'dn')}>{this.state.errors.duration}</span>
           </div>
           <input type='text' name='duration' value={duration} className={cls('w-100 input', this.state.errors.duration && 'b--red')} onInput={(e) => this.update('duration', e)} placeholder='1' />
@@ -656,7 +656,7 @@ class CoursePrice extends Component {
           </div>
           <label className={cls('layout horizontal center label', this.state.errors.price && 'b--red')}>
             <input type='text' className={cls('w-100 bn outline-0 flex', this.state.errors.price && 'b--red')} value={price} onInput={(e) => this.update('price', e)} placeholder='410' />
-            <span className='f4 fw4 ml1'>€</span>
+            <span className='f4 fw4 ml1'>CHF</span>
             <span className='silver f6 ml2 fw2'>pro Stunde</span>
           </label>
         </div>
@@ -826,7 +826,7 @@ class Section4 extends Component {
     const [ err, course ] = await upsertCourse(this.props.user, store.get('course'))
     if (err) {
       return StatusBar.setState({
-        error: 'Konnte den Kurs nicht erstellen. Wenden Sie sich bitte an hello@bookandoffer.com'
+        error: 'Der Kurs konnte nicht erstellt werden. Bitte wenden Sie sich an info@bookandoffer.com'
       })
     } else {
       console.log('created course', course)
@@ -861,7 +861,7 @@ class Section4 extends Component {
             <span className='f7'>Lektionen, Kalendar, Preis</span>
             <Link href={`/create-course?step=8`}><div className='f7 pt2 c-45A399'>bearbeiten</div></Link>
           </div>
-          <button onClick={() => this.save()} className='btn mt5 self-start'>Speichern und Account erstellen</button>
+          <button onClick={() => this.save()} className='btn mt5 self-start'>Speichern und Kurs erstellen</button>
         </div>
         <div className='flex contain pa4 bg-center' style={{backgroundImage: 'url(/static/translation.svg)'}} />
       </div>
