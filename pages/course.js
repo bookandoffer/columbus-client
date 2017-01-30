@@ -129,7 +129,7 @@ export default class Me extends Component {
     return (
 
       <div className='course-page'>
-        <Head title='Columbus | Course Details' />
+        <Head title='bookandoffer | Course Details' />
         <StatusBar />
         <Header {...this.props} />
 

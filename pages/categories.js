@@ -21,7 +21,7 @@ export default class Categories extends Component {
     return (
 
       <div>
-        <Head title='Columbus | Categories' />
+        <Head title='bookandoffer | Categories' />
         <Header {...this.props} />
         <div className='mw7 m-auto pa4'>
           <div className='pv3'>
