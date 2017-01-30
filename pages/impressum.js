@@ -17,9 +17,9 @@ export default () => (
     <span className = "mb3 mt1">info@bookandoffer.com</span>
 
     <span className = "mv1">Daten im Handelsregister</span>
-    <span className = "mv1">Nummer: (in Gründung)</span>
+    <span className = "mv1">Nummer: CHE-493.321.445</span>
     <span className = "mv1">Geschäftsführende: Ali Kamer Gündüz</span>
-    <span className = "mv1">Handelsregisteramt St.Gallen</span>
+    <span className = "mv1">Handelsregisteramt St. Gallen</span>
     </div>
     <Footer />
   </div>

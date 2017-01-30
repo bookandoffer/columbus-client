@@ -127,12 +127,12 @@ class Section1 extends Component {
           <div className='c-BBBBBB layout vertical mt4'>
             <span className='f7 mt2'>SCHRITT 2</span>
             <span className='f4 mt2'>Beschreib die Atmosphäre</span>
-            <span className='f7'>Fotos, Kurzbeschreibung, Title</span>
+            <span className='f7'>Fotos, Kurzbeschreibung, Titel</span>
           </div>
           <div className='c-BBBBBB layout vertical mt4'>
             <span className='f7 mt2'>SCHRITT 3</span>
             <span className='f4 mt2'>Mach dich bereit für deine Schüler</span>
-            <span className='f7'>Lektionen, Kalendar, Preis</span>
+            <span className='f7'>Lektionen, Kalender, Preis</span>
           </div>
         </div>
         <div className='flex contain pa4 bg-center' style={{backgroundImage: 'url(/static/translation.svg)'}} />
@@ -303,7 +303,7 @@ class Section2 extends Component {
           <div className='layout vertical mt4'>
             <span className='f7 mt2'>SCHRITT 2</span>
             <span className='f4 mt2'>Beschreib die Atmosphäre</span>
-            <span className='f7'>Fotos, Kurzbeschreibung, Title</span>
+            <span className='f7'>Fotos, Kurzbeschreibung, Titel</span>
             <Link href={`/create-course?step=${step + 1}`}>
               <button className='btn-green mt3'>Fortfahren</button>
             </Link>
@@ -311,7 +311,7 @@ class Section2 extends Component {
           <div className='c-BBBBBB layout vertical mt4'>
             <span className='f7 mt2'>SCHRITT 3</span>
             <span className='f4 mt2'>Mach dich bereit für deine Schüler</span>
-            <span className='f7'>Lektionen, Kalendar, Preis</span>
+            <span className='f7'>Lektionen, Kalender, Preis</span>
           </div>
         </div>
         <div className='flex contain pa4 bg-center' style={{backgroundImage: 'url(/static/translation.svg)'}} />
@@ -401,7 +401,7 @@ class ImageUpload extends Component {
           </div>
         </div>
         <div className='layout vertical'>
-          <h1 className='mw6 m-auto'>Zeige deihen Gasten wie dein Unterrichtsort aussieht!</h1>
+          <h1 className='mw6 m-auto'>Zeige wie dein Unterrichtsort aussieht!</h1>
           <div className='mt4 layout horizontal b--dotted b--light-gray ba1 ph4 pv6 pointer' style={{ backgroundImage: 'url(/static/rect.svg)' }} onClick={() => this.openUpload()}>
             <button className='btn layout horizontal center m-auto'>
               <i className='material-icons mr3'>cloud_upload</i>
@@ -545,13 +545,13 @@ class Section3 extends Component {
             <span className='f7 mt2'>SCHRITT 2</span>
             <i className='material-icons self-end f2 c-45A399' style={{height: 0}}>check_circle</i>
             <span className='f4 mt2'>Beschreib die Atmosphäre</span>
-            <span className='f7'>Fotos, Kurzbeschreibung, Title</span>
+            <span className='f7'>Fotos, Kurzbeschreibung, Titel</span>
             <Link href={`/create-course?step=4`}><div className='f7 pt2 c-45A399'>bearbeiten</div></Link>
           </div>
           <div className='layout vertical mt4'>
             <span className='f7 mt2'>SCHRITT 3</span>
             <span className='f4 mt2'>Mach dich bereit für deine Schüler</span>
-            <span className='f7'>Lektionen, Kalendar, Preis</span>
+            <span className='f7'>Lektionen, Kalender, Preis</span>
             <Link href={`/create-course?step=${step + 1}`}>
               <button className='btn-green mt3'>Fortfahren</button>
             </Link>

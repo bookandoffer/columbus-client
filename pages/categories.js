@@ -25,8 +25,8 @@ export default class Categories extends Component {
         <Header {...this.props} />
         <div className='mw7 m-auto pa4'>
           <div className='pv3'>
-            <h2 className='f3 dark-gray fw3 mb0'>Book and Offer bietet dir ganz unterschiedliche Kategorien an Kursen an</h2>
-            <p className='f6'>Damit du bei Book and Offer immer den richtigen Kurs findest, haben wir diee Kurse in ganz unterschiedliche Kategorien unterteilt.</p>
+            <h2 className='f3 dark-gray fw3 mb0'>bookandoffer haben wir in unterschiedliche Kategorien unterteilt</h2>
+            <p className='f6'>Damit du bei bookandoffer immer den richtigen Kurs findest, haben wir die Kurse in ganz unterschiedliche Kategorien unterteilt.</p>
           </div>
 
           <div className='mv3 layout horizontal wrap'>

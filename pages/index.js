@@ -178,7 +178,7 @@ export default class Page extends Component {
         <div className='pa6 tl w-100 layout vertical mb5' style={{backgroundColor: '#F7F9FB'}}>
           <p className='f4 sysFont'>Was ist bookandoffer?</p>
           <div className='w3 sysFont' style={{border: '2px solid #FCBB08', height: '3px'}} />
-          <p className='f5 fw2 courseTextPrimary'>bookandoffer ist eine Platform, die es dir ermöglicht einen passenden Kurs in deiner Nähe zu finden. Du kannst unter den vielen Anbieter wählen und den passenden Kurs raussuchen. Für Anbieter ist bookandoffer die ideale Plattform um Kurse und Angebote bekannt zumachen. Deine Kurse werden schneller gefunden und profitierst von einer großen Gemeinschaft.</p>
+          <p className='f5 fw2 courseTextPrimary'>bookandoffer ist eine Plattform, die es dir ermöglicht, einen passenden Kurs in deiner Nähe zu finden. Du kannst unter den vielen Anbietern wählen und den passenden Kurs aussuchen. Für Anbieter ist bookandoffer die ideale Plattform um Kurse und Angebote bekanntzumachen. Deine Kurse werden schneller gefunden und du profitierst von einer großen Gemeinschaft.</p>
         </div>
 
         <Footer />
