@@ -648,7 +648,7 @@ class CoursePrice extends Component {
 
     return (
       <div className='mw6 m-auto mt5 layout vertical'>
-        <h1 className='h-1'>Preis pro Kursstunde</h1>
+        <h1 className='h-1'>Preis pro Sitzung</h1>
         <div>
           <div className='f7 fw4 mb1 ml1 mt4 layout horizontal'>
             <span className={cls(this.state.errors.price && 'red')}>Preis</span>
@@ -657,7 +657,7 @@ class CoursePrice extends Component {
           <label className={cls('layout horizontal center label', this.state.errors.price && 'b--red')}>
             <input type='text' className={cls('w-100 bn outline-0 flex', this.state.errors.price && 'b--red')} value={price} onInput={(e) => this.update('price', e)} placeholder='410' />
             <span className='f4 fw4 ml1'>CHF</span>
-            <span className='silver f6 ml2 fw2'>pro Stunde</span>
+            <span className='silver f6 ml2 fw2'>pro Sitzung</span>
           </label>
         </div>
         <div className='layout horizontal bt b--light-gray center mt6 pt4'>
