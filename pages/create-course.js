@@ -602,7 +602,7 @@ class CourseDuration extends Component {
             <span className={cls(this.state.errors.duration && 'red')}>Minuten pro Sitzung</span>
             <span className={cls('ml-auto red', !this.state.errors.duration && 'dn')}>{this.state.errors.duration}</span>
           </div>
-          <input type='text' name='duration' value={duration} className={cls('w-100 input', this.state.errors.duration && 'b--red')} onInput={(e) => this.update('duration', e)} placeholder='1' />
+          <input type='text' name='duration' value={duration} className={cls('w-100 input', this.state.errors.duration && 'b--red')} onInput={(e) => this.update('duration', e)} placeholder='90' />
         </label>
         <div className='layout horizontal bt b--light-gray center mt6 pt4'>
           <Link href={`/create-course?step=${step - 1}`}><span className='c-484848'>← Zurück</span></Link>
