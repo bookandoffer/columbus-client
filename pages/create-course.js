@@ -599,7 +599,7 @@ class CourseDuration extends Component {
         <h1 className='h-1'>Wie lange dauert eine Sitzung deines Kurses?</h1>
         <label htmlFor='duration'>
           <div className='f7 fw4 mb1 ml1 layout horizontal'>
-            <span className={cls(this.state.errors.duration && 'red')}>Stunden (bitte nur volle Stunden angeben)</span>
+            <span className={cls(this.state.errors.duration && 'red')}>Minuten pro Sitzung</span>
             <span className={cls('ml-auto red', !this.state.errors.duration && 'dn')}>{this.state.errors.duration}</span>
           </div>
           <input type='text' name='duration' value={duration} className={cls('w-100 input', this.state.errors.duration && 'b--red')} onInput={(e) => this.update('duration', e)} placeholder='1' />

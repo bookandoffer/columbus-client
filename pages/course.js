@@ -138,7 +138,7 @@ export default class Me extends Component {
           <div className='bg-white layout vertical z-1 course-sidebar' style={{height: '470px', width: '300px'}}>
             <div className='layout horizontal items-center ph3 sysFont justify-between' style={{height: '40px', backgroundColor: '#4A4C4C'}}>
               <span className='white f6'>{data.price} CHF </span>
-              <span className='white f6'>Stunde </span>
+              <span className='white f6'>Sitzung </span>
             </div>
             <div className='flex sysFont pa3 layout vertical' style={{borderRight: '1px solid #E4E7E7', borderLeft: '1px solid #E4E7E7', borderBottom: '1px solid #E4E7E7'}}>
               <form>
@@ -161,7 +161,7 @@ export default class Me extends Component {
 
                 <label htmlFor='numWeeks'>
                   <div className='courseTextPrimary layout horizontal center'>
-                    <span className={cls('f6', errors.numWeeks && 'red')}>Anzahl Stunden</span>
+                    <span className={cls('f6', errors.numWeeks && 'red')}>Anzahl Sitzungen</span>
                     <span className='f7 red ml-auto'>{errors.numWeeks}</span>
                   </div>
                   <input className={cls('mt2 mb3 transactionInput', errors.numWeeks && 'b--red')} id='numWeeks' style={{ width: '100%', height: '36px', border: '1px solid #686666', borderRadius: '3px' }} min='0' type='number' value={this.state.numWeeks} onInput={(e) => this.setState({ numWeeks: parseInt(e.target.value, 10) })} />
@@ -223,7 +223,7 @@ export default class Me extends Component {
                   </div>
                   <div className='items-center layout vertical ma3'>
                     <img src='/static/icons/door-icon.png' className='mw3' />
-                    <div className='flex f7 courseTextSecondary'>{data['duration']} Stunden/Woche</div>
+                    <div className='flex f7 courseTextSecondary'>{data['duration']} Minuten pro Sitzung</div>
                   </div>
                 </div>
               </div>
@@ -246,7 +246,7 @@ export default class Me extends Component {
                   <span>Max Teilnehmer: {data['groupSize']}</span>
                 </div>
                 <div className='flex layout vertical courseTextSecondary f6 ph3' style={{lineHeight: '2'}}>
-                  <span>Stunden / Woche: {data['duration']}</span>
+                  <span>Minuten / Sitzung: {data['duration']}</span>
                 </div>
               </div>
             </div>
