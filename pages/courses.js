@@ -97,7 +97,7 @@ class Course extends Component {
             <div className='flex cover layout horizontal' style={{ backgroundImage: `url(${image})` }}>
               <div className='bg-FD5C63 self-end mb3 ph2 layout horizontal' style={{height: '45px', width: '140px'}}>
                 <span className='flex self-center white f3'>{this.props.price}</span>
-                <span className='white self-center' style={{fontSize: '12px', marginTop: '5px'}}>€ Gesamt</span>
+                <span className='white self-center' style={{fontSize: '12px', marginTop: '5px'}}>CHF / Sitzung</span>
               </div>
               <img className='b--white ml-auto self-end' src='/static/course-logo.png' style={{border: '0px solid white', borderRadius: '50px', height: '50px', width: '50px', marginRight: '15px', marginBottom: '-25px'}} />
             </div>
