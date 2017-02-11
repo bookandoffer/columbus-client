@@ -62,7 +62,7 @@ export default class Me extends Component {
 
         <Header {...this.props} />
         <StatusBar />
-        <div className='m-auto pv6 flex-1 w-100' style={{maxWidth: '1500px'}}>
+        <div className='m-auto pv6 w-100' style={{maxWidth: '1500px'}}>
           <div className='layout horizontal wrap'>
             {
             courses.length
