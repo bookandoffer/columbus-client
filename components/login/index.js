@@ -53,7 +53,7 @@ export default class Element extends Component {
     })()
 
     return (
-      <div className='fixed absolute--fill layout horizontal center'>
+      <div className='fixed absolute--fill layout horizontal center z-max'>
         <div className='center ba b--silver ph5 pb5 m-auto bg-FFFFFF' ref='content'>
           <div className='f3 b tc pv5 mb0'>bookandoffer</div>
           {Contents}
